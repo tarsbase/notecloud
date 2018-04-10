@@ -14,6 +14,8 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  has_many :sessions
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)
@@ -30,7 +32,7 @@ class User < ApplicationRecord
     Bcrypt::Password.new(self.password_digest).is_password?(password)
   end 
 
-  def create_session_token
+  def create_session
     session_token = SecureRandom.urlsafe_base64(16)
     session = Session.new(session_token: session_token, user_id: self.id)
     session.save!
