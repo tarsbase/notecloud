@@ -31,13 +31,11 @@ class User < ApplicationRecord
     Bcrypt::Password.new(self.password_digest).is_password?(password)
   end 
 
-  def reset_session_token
-    self.session_token = SecureRandom.urlsafe_base64(16)
-    self.save!
-    self.session_token
+  def create_session_token
+    session_token = SecureRandom.urlsafe_base64(16)
+    session = Session.new(session_token: session_token, user_id: self.id)
+    session.save!
+    session_token
   end 
 
-  def ensure_session_token
-    self.session_token ||= SecureRandom.urlsafe_base64(16)
-  end 
 end
