@@ -10,7 +10,7 @@
 #
 
 class Session < ApplicationRecord
-  validates :session_token, :user_is, presence: true
+  validates :session_token, :user_id, presence: true
 
   belongs_to :user
 end
