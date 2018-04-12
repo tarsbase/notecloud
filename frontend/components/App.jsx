@@ -1,8 +1,9 @@
 import React from 'react';
+import Main from './main/main';
 
 const App = () => (
   <div>
-    <h1>Evernote!</h1>
+    <Main />
   </div>
 );
 
