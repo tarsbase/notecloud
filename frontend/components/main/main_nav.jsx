@@ -11,6 +11,7 @@ export default class MainNav extends React.Component {
     return (
       <nav>
         <h1>NOTECLOUD</h1>
+        
       </nav>
     );
   }
