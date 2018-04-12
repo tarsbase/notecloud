@@ -10,7 +10,8 @@ export default class SessionLinks extends React.Component {
   render() {
     return (
       <div>
-
+        <Link to='/login'>Login</Link>
+        <Link to='/signup'>Signup</Link>
       </div>
     );
   }

@@ -14,6 +14,10 @@ const receiveErrors = errors => ({
   errors
 });
 
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS
+});
+
 export const login = user => dispatch =>
   SessionApiUtil.login(user).then(
     currentUser => dispatch(receiveCurrentUser(currentUser)),
