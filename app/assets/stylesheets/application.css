@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.main-logo {
+  font-size: 24px;
+  color: #2DBE60;
+}
+
+.session-links > a:last-child {
+  margin-left: 40px;
+}

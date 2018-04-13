@@ -12,11 +12,13 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  clearErrors: () => dispatch(clearErrors()),
-  login: user => dispatch(login(user)),
-  signup: user => dispatch(signup(user))
-});
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const formAction = ownProps.location.pathname === '/login' ? login : signup;
+  return {
+    clearErrors: () => dispatch(clearErrors()),
+    formAction
+  };
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(SessionForm)

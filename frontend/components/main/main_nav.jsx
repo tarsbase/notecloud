@@ -10,7 +10,7 @@ export default class MainNav extends React.Component {
   render() {
     return (
       <nav className='main-nav'>
-        <h1>NOTECLOUD</h1>
+        <h1 className="main-logo">NOTECLOUD</h1>
         <SessionLinks/>
       </nav>
     );
