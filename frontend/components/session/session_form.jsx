@@ -12,11 +12,11 @@ export default class SessionForm extends React.Component {
     const user = Object.assign({}, this.state);
     this.props.formAction(user);
   }
-
+  
   update(fieldName) {
     return e => this.setState({ [fieldName]: e.target.value });
   }
-
+  
   render() {
     const title = this.props.formType === 'login' ? 'Login' : 'Signup';
     return (
