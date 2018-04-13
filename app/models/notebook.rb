@@ -10,4 +10,8 @@
 #
 
 class Notebook < ApplicationRecord
+  validates :name, :user_id, presence: true
+
+  has_many :notes
+  belongs_to :user
 end
