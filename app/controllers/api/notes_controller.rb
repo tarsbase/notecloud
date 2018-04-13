@@ -25,6 +25,22 @@ class Api::NotesController < ApplicationController
     end 
   end 
 
+  def update
+    @note = current_user.notes.find(params[:id])
+
+    if @note.update_attributes(note_params)
+      render :show
+    else 
+      render json: @note.errors.full_messages, status: 422
+    end 
+  end 
+
+  def destroy
+    @note = current_user.notes.find(params[:id])
+    @note.destroy!
+    render :show
+  end 
+
   private 
 
   def note_params
