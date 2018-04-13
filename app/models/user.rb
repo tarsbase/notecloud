@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  after_create :create_first_notebook
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     user && user.is_password?(password) ? user : nil
@@ -39,6 +41,13 @@ class User < ApplicationRecord
     session = Session.new(session_token: session_token, user_id: self.id)
     session.save!
     session_token
+  end 
+
+  private 
+
+  def create_first_notebook
+    notebook = Notebook.new(title: "My Notes", user_id: self.id)
+    notebook.save!
   end 
 
 end
