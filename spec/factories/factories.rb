@@ -1,7 +1,7 @@
 FactoryBot.define do 
   factory :user do 
     username "Vargas"
-    password 'farface69'
+    password 'fartface69'
   end 
 end 
 
