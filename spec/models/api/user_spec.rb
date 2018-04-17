@@ -2,21 +2,15 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  it 'is valid when required attributes are present' do 
-    expect(FactoryBot.build(:user)).to be_valid
-  end 
+  subject { FactoryBot.build(:user) }
+  it {should validate_uniqueness_of(:username)}
 
-  context 'is invalid' do
-    specify 'when username is blank' do 
-      expect(FactoryBot.build(:user, username: '')).not_to be_valid
-    end
-    
-    specify 'when password is blank' do 
-      expect(FactoryBot.build(:user, password: '')).not_to be_valid
-    end 
-    
-    specify 'when password is less than 6 characters' do 
-      expect(FactoryBot.build(:user, password: '12345')).not_to be_valid
-    end 
-  end 
+  it { should validate_presence_of(:username) }
+  it { should allow_value(nil).for(:password) }
+  it { should_not allow_value("").for(:password) }
+  it { should validate_presence_of(:password_digest) }
+  it { should have_many(:sessions) }  
+  it { should have_many(:notebooks) }  
+  it { should have_many(:notes) }  
+
 end
