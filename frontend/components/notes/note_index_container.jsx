@@ -9,3 +9,12 @@ import {
 const mapStateToProps = (state, ownProps) => ({
   notes: Object.values(state.notes)
 });
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  fetchAction: () => dispatch(getAllNotes())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NoteIndex);

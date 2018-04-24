@@ -1,22 +1,23 @@
-import { 
+import {
   RECEIVE_ALL_NOTES,
   RECEIVE_NOTE,
   REMOVE_NOTE
-} from '../util/note_api_util';
+} from '../actions/note_actions';
 
 const NotesReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   const newState = { ...oldState };
+  console.log(action);
   switch (action.type) {
     case RECEIVE_ALL_NOTES:
       return action.notes;
     case RECEIVE_NOTE:
-      newState[action.note.id] = action.note
+      newState[action.note.id] = action.note;
       return newState;
     case REMOVE_NOTE:
       delete newState[action.note.id];
       return newState;
-    default: 
+    default:
       return oldState;
   }
 };

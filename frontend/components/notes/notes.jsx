@@ -1,4 +1,5 @@
 import React from 'react';
+import NoteIndexContainer from './note_index_container';
 
 export default class Notes extends React.Component {
   constructor(props) {
@@ -7,7 +8,9 @@ export default class Notes extends React.Component {
 
   render() {
     return (
-      <div></div>
+      <div>
+        <NoteIndexContainer/>
+      </div>
     );
   }
 }

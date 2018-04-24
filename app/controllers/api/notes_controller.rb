@@ -11,7 +11,7 @@ class Api::NotesController < ApplicationController
   end 
 
   def index 
-    @notes = current_user.notes.inculdes(:notebook)
+    @notes = current_user.notes
     render :index
   end 
 
