@@ -12,13 +12,13 @@ export default class NoteIndex extends React.Component {
 
   render() {
     const notes = this.props.notes.map( note => <NoteIndexItem key={note.id} note={note}/>);
-    return (
-      <div>
-        <h1>Notes</h1>
-        <ul>
-          {notes}
-        </ul>
-      </div>
-    );
+    const noteMsg = notes.length === 1 ? 'note' : 'notes';
+    return <div className="notes-index-container">
+        <div className="notes-header">
+          <h1>NOTES</h1>
+          <h3>{notes.length} {noteMsg}</h3>
+        </div>
+        <ul>{notes}</ul>
+      </div>;
   }
 }
