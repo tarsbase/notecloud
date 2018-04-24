@@ -11,7 +11,12 @@
 #
 
 class Note < ApplicationRecord
+  include ActionView::Helpers::DateHelper
   validates :title, :body, presence: true
 
   belongs_to :notebook
+
+  def last_update 
+    time_ago_in_words(self.updated_at)
+  end 
 end

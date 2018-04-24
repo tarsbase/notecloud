@@ -59,7 +59,20 @@
 }
 
 .notes-header > h3 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   color: #ababab;
+}
+
+.note-list-item {
+  height: 150px;
+  padding: 10px 20px;
+}
+
+.note-title {
+  font-family: Times, serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #4a4a4a;
+  
 }

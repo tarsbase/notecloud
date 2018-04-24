@@ -7,8 +7,12 @@ export default class NoteIndexItem extends React.Component {
   }
 
   render() {
+    const { note } = this.props;
     return (
-      <li>{this.props.note.title}</li>
+      <li className="note-list-item">
+        <div className="note-title">{note.title}</div>
+        <div>{note.last_updated}</div>
+      </li>
     );
   }
 }
