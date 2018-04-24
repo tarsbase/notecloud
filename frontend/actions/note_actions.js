@@ -25,5 +25,6 @@ export const getAllNotes = () => dispatch =>
 export const getNote = id => dispatch =>
   NoteApiUtil.fetchNote(id).then(note => dispatch(receiveNote(note)));
 
-
+export const getNotesByNotebookId = notebookId => dispatch => 
+  NoteApiUtil.fetchNotesByNotebook(notebookId).then( notes => dispatch(receiveAllNotes(notes)));
 

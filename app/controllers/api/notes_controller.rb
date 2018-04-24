@@ -11,12 +11,12 @@ class Api::NotesController < ApplicationController
   end 
 
   def index 
-    @notes = current_user.notes
+    @notes = current_user.notes.inculdes(:notebook)
     render :index
   end 
 
   def show
-    @note = current_user.notes.find(params[:id])
+    @note = current_user.notes.find(params[:id]).includes(:notebook)
 
     if @note 
       render :show
