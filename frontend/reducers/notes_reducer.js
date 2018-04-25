@@ -7,7 +7,6 @@ import {
 const NotesReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   const newState = { ...oldState };
-  console.log(action);
   switch (action.type) {
     case RECEIVE_ALL_NOTES:
       return action.notes;
