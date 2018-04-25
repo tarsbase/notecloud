@@ -17,6 +17,6 @@ class Note < ApplicationRecord
   belongs_to :notebook
 
   def last_update 
-    time_ago_in_words(self.updated_at)
+    time_ago_in_words(self.updated_at).upcase
   end 
 end

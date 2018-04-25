@@ -45,6 +45,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
+  padding-bottom: 10px;
   height: 100px;
   border-bottom: 1px solid #ececec
 }
@@ -74,5 +75,15 @@
   font-size: 16px;
   font-weight: 400;
   color: #4a4a4a;
-  
+  margin-bottom: 4px;
+}
+
+.note-updated {
+  margin-bottom: 8px;
+}
+
+.note-updated, .note-body {
+  font-size: 12px;
+  color: #878787;
+  font-weight: 400;
 }
