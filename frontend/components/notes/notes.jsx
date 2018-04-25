@@ -1,5 +1,6 @@
 import React from 'react';
 import NoteIndexContainer from './note_index_container';
+import NoteFormContainer from './note_form_contianer';
 
 export default class Notes extends React.Component {
   constructor(props) {
@@ -8,8 +9,9 @@ export default class Notes extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="notes-page">
         <NoteIndexContainer/>
+        <NoteFormContainer/>
       </div>
     );
   }

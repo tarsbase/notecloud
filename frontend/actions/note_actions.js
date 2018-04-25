@@ -29,3 +29,11 @@ export const getNotesByNotebookId = notebookId => dispatch =>
   NoteApiUtil.fetchNotesByNotebook(notebookId).then(notes =>
     dispatch(receiveAllNotes(notes))
   );
+
+export const makeNewNote = note => dispatch =>
+  NoteApiUtil.createNote(note).then(newNote => dispatch(receiveNote(newNote)));
+
+export const modifyNote = note => dispatch =>
+  NoteApiUtil.updateNote(note).then(updatedNote =>
+    dispatch(receiveNote(updatedNote))
+  );

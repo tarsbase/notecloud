@@ -35,6 +35,11 @@
 
 /* Notes Page */
 
+.notes-page {
+  display: flex;
+  flex-direction: row;
+}
+
 .notes-index-container {
   height: 100%;
   width: 350px;
@@ -75,11 +80,11 @@
   font-size: 16px;
   font-weight: 400;
   color: #4a4a4a;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .note-updated {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .note-updated, .note-body {
