@@ -92,3 +92,8 @@
   color: #878787;
   font-weight: 400;
 }
+
+.note-form {
+  display: flex;
+  flex-direction: column;
+}

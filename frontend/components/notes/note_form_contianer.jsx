@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     noteAction = makeNewNote;
   }
 
-  return { noteAction };
+  return { noteAction: note => dispatch(noteAction(note)) };
 };
 
 export default withRouter(
