@@ -35,6 +35,7 @@ gem 'rails_12factor'
 gem 'seed_dump'
 
 gem 'jquery-rails'
+gem 'font-awesome-rails'
 
 
 # Use Capistrano for deployment
