@@ -169,6 +169,10 @@
   margin: 5px;
 }
 
+.nav-icon:hover {
+  cursor: pointer;
+}
+
 .main-sub-nav {
   display: flex;
   flex-direction: column;
