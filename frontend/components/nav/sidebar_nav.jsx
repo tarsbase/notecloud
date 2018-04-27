@@ -1,4 +1,5 @@
 import React from 'react';
+import NavButtonConianer from './nav_button_container';
 
 export default class SidebarNav extends React.Component {
   constructor(props) {
@@ -6,18 +7,20 @@ export default class SidebarNav extends React.Component {
   }
 
   render() {
-    return <div className="sidebar-nav">
+    return (
+      <div className="sidebar-nav">
         <div>
-          <i className="fa fa-plus-circle fa-2x nav-icon" />
+          <NavButtonConianer type="newNote"/>
         </div>
         <div className="main-sub-nav">
-          <i className="fa fa-sticky-note nav-icon" />
-          <i className="fa fa-book nav-icon" />
-          <i className="fa fa-tag nav-icon" />
+          <NavButtonConianer type="notes" />
+          <NavButtonConianer type="notebooks"/>
+          <NavButtonConianer type="tags"/>
         </div>
         <div>
-          <i className="fa fa-sign-out nav-icon" />
+          <NavButtonConianer type="logout"/>
         </div>
-      </div>;
+      </div>
+    );
   }
 }
