@@ -4,7 +4,7 @@ import { logout } from '../../actions/session_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
-  
+  modalIsOpen: state.ui.modalIsOpen
 });
 
 const mapDispatchToProps = dispatch => {

@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import NavButton from './nav_button';
 import { logout } from '../../actions/session_actions';
+import { toggleSidebarModal } from '../../actions/ui_actions';
 
 const getButtonInfo = ownProps => {
   const classes = ['fa', 'nav-icon'];
   let tooltipText;
-  let action = () => {};
+  let action = toggleSidebarModal;
   switch (ownProps.type) {
     case 'newNote':
       ['fa-plus-circle', 'fa-2x'].forEach(selector => classes.push(selector));
@@ -15,11 +16,11 @@ const getButtonInfo = ownProps => {
       classes.push('fa-sticky-note');
       tooltipText = 'NOTES';
       break;
-    case 'notebooks':
+      case 'notebooks':
       classes.push('fa-book');
       tooltipText = 'NOTEBOOKS';
       break;
-    case 'tags':
+      case 'tags':
       classes.push('fa-tag');
       tooltipText = 'TAGS';
       break;

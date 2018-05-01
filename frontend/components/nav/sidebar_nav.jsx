@@ -10,15 +10,15 @@ export default class SidebarNav extends React.Component {
     return (
       <div className="sidebar-nav">
         <div>
-          <NavButtonConianer type="newNote"/>
+          <NavButtonConianer type="newNote" />
         </div>
         <div className="main-sub-nav">
           <NavButtonConianer type="notes" />
-          <NavButtonConianer type="notebooks"/>
-          <NavButtonConianer type="tags"/>
+          <NavButtonConianer type="notebooks" />
+          <NavButtonConianer type="tags" />
         </div>
         <div>
-          <NavButtonConianer type="logout"/>
+          <NavButtonConianer type="logout" />
         </div>
       </div>
     );
