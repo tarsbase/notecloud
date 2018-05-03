@@ -8,7 +8,11 @@ export default class NavButton extends React.Component {
   }
 
   handleClick() {
-    this.props.action();
+    if (!this.props.modalIsOpen && this.props.type === "Notes") {
+      return;
+    } else {
+      this.props.action();
+    }
   }
 
   render() {

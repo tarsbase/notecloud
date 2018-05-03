@@ -179,3 +179,26 @@ body {
   justify-content: space-between;
 }
 
+/* Sidebar Modal */
+
+.sidebar-container { 
+  position: fixed;
+  z-index: 1;
+  overflow: hidden;
+  top: 0;
+  left: 56px;
+  /* width: 50%; */
+  height: 100%;
+  background: white;
+  border-right: 1px solid #ececec;
+}
+
+.hide-sidebar {
+  width: 0px;
+  transition: all 0.4s ease;
+}
+
+.open-sidebar {
+  width: 250px;
+  transition: all 0.4s ease;
+}

@@ -21,15 +21,18 @@ export default class Notes extends React.Component {
   }
 
   render() {
+    const classList = ["sidebar-container"];
+    if (this.props.modalIsOpen) {
+      classList.push("open-sidebar");
+    } else {
+      classList.push("hide-sidebar");
+    }
     return (
       <div className="notes-page">
         <SidebarNav />
-        <Modal
-          isOpen={this.props.modalIsOpen}
-          style={customStyles}
-        >
-          <div>Hiya!</div>
-        </Modal>
+        <div className={classList.join(" ")}>
+          <div>Hello</div>
+        </div>
         <NoteIndexContainer />
         <NoteFormContainer />
       </div>
