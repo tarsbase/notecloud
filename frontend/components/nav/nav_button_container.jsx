@@ -6,8 +6,9 @@ import { toggleSidebarModal } from '../../actions/ui_actions';
 const getButtonInfo = ownProps => {
   const classes = ['fa', 'nav-icon'];
   let tooltipText;
-  let action = toggleSidebarModal;
+  let uiAction = toggleSidebarModal;
   let type;
+  let sidebarComponent = null;
   switch (ownProps.type) {
     case 'newNote':
       ['fa-plus-circle', 'fa-2x'].forEach(selector => classes.push(selector));
@@ -29,12 +30,12 @@ const getButtonInfo = ownProps => {
     case 'logout':
       classes.push('fa-sign-out');
       tooltipText = 'LOGOUT';
-      action = logout;
+      uiAction = logout;
       break;
     default:
       break;
   }
-  return { action, classes, tooltipText, type };
+  return { uiAction, classes, tooltipText, type };
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -43,8 +44,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const { action } = getButtonInfo(ownProps);
-  return { action: () => dispatch(action()) };
+  const { uiAction } = getButtonInfo(ownProps);
+  return { uiAction: () => dispatch(uiAction()) };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavButton);

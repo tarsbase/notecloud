@@ -11,7 +11,7 @@ export default class NavButton extends React.Component {
     if (!this.props.modalIsOpen && this.props.type === "Notes") {
       return;
     } else {
-      this.props.action();
+      this.props.uiAction();
     }
   }
 
