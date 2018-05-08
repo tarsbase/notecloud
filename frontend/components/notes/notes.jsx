@@ -2,7 +2,6 @@ import React from 'react';
 import NoteIndexContainer from './note_index_container';
 import NoteFormContainer from './note_form_contianer';
 import SidebarNav from '../nav/sidebar_nav';
-import Modal from 'react-modal';
 
 const customStyles = {
   content: {

@@ -1,13 +1,16 @@
-import { TOGGLE_SIDEBAR_MODAL } from '../actions/ui_actions';
+import { OPEN_SIDEBAR_MODAL, CLOSE_SIDEBAR_MODAL } from '../actions/ui_actions';
 
-const defaultState = { modalIsOpen: false };
+const defaultState = { sidebarModalIsOpen: false };
 
 const UIReducer = (oldState = defaultState, action) => {
   Object.freeze(oldState);
   const newState = { ...oldState };
   switch (action.type) {
-    case TOGGLE_SIDEBAR_MODAL: 
-      newState.modalIsOpen = !newState.modalIsOpen;
+    case OPEN_SIDEBAR_MODAL: 
+      newState.sidebarModalIsOpen = true;
+      return newState;
+    case CLOSE_SIDEBAR_MODAL: 
+      newState.sidebarModalIsOpen = false;
       return newState;
     default: 
       return oldState;

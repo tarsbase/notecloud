@@ -6,7 +6,6 @@ import { toggleSidebarModal } from '../../actions/ui_actions';
 const getButtonInfo = ownProps => {
   const classes = ['fa', 'nav-icon'];
   let tooltipText;
-  let uiAction = toggleSidebarModal;
   let type;
   let sidebarComponent = null;
   switch (ownProps.type) {
