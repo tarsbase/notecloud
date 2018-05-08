@@ -1,50 +1,60 @@
 import { connect } from 'react-redux';
 import NavButton from './nav_button';
 import { logout } from '../../actions/session_actions';
-import { toggleSidebarModal } from '../../actions/ui_actions';
+import {
+  openSidebarModal,
+  closeSidebarModal,
+  sidebarModalComponent
+} from '../../actions/ui_actions';
 
-const getButtonInfo = ownProps => {
+const getButtonInfo = (ownProps, dispatch) => {
   const classes = ['fa', 'nav-icon'];
-  let tooltipText;
   let type;
-  let sidebarComponent = null;
+  let action = () => {};
   switch (ownProps.type) {
     case 'newNote':
       ['fa-plus-circle', 'fa-2x'].forEach(selector => classes.push(selector));
-      tooltipText = 'NEW NOTE';
+      type = 'New Note';
       break;
     case 'notes':
       classes.push('fa-sticky-note');
-      tooltipText = 'NOTES';
       type = 'Notes';
       break;
     case 'notebooks':
       classes.push('fa-book');
-      tooltipText = 'NOTEBOOKS';
+      type = 'Notebooks';
       break;
     case 'tags':
       classes.push('fa-tag');
-      tooltipText = 'TAGS';
+      type = 'Tags';
       break;
     case 'logout':
       classes.push('fa-sign-out');
-      tooltipText = 'LOGOUT';
-      uiAction = logout;
+      type = 'Logout';
       break;
     default:
       break;
   }
-  return { uiAction, classes, tooltipText, type };
+  return { classes, type };
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const { classes, tooltipText, type } = getButtonInfo(ownProps);
-  return { classes, tooltipText, modalIsOpen: state.ui.modalIsOpen, type };
+  const { classes, type } = getButtonInfo(ownProps);
+  return {
+    sidebarModalIsOpen: state.ui.sidebarModalIsOpen,
+    sidebarModalComponent: state.ui.sidebarModalComponent,
+    classes,
+    type
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const { uiAction } = getButtonInfo(ownProps);
-  return { uiAction: () => dispatch(uiAction()) };
+  return {
+    openSidebarModal: () => dispatch(openSidebarModal()),
+    closeSidebarModal: () => dispatch(closeSidebarModal()),
+    sidebarModalComponent: componentName =>
+      dispatch(sidebarModalComponent(componentName))
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavButton);
