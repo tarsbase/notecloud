@@ -7,49 +7,7 @@ export default class NavButton extends React.Component {
   }
 
   handleClick() {
-    const {
-      type,
-      logout,
-      openNotebooksModal,
-      closeNotebooksModal,
-      openTagsModal,
-      closeTagsModal,
-      notebooksModalIsOpen,
-      tagsModalIsOpen
-    } = this.props;
-
-    if (type === "Notes") {
-      if (notebooksModalIsOpen) {
-        closeNotebooksModal();
-      }
-      if (tagsModalIsOpen) {
-        closeTagsModal();
-      }
-      return;
-    }
-
-    if (type === "Notebooks") {
-      if (notebooksModalIsOpen) {
-        closeNotebooksModal();
-      } else {
-        openNotebooksModal();
-      }
-      return;
-    }
-
-    if (type === "Tags") {
-      if (tagsModalIsOpen) {
-        closeTagsModal();
-      } else {
-        openTagsModal();
-      }
-      return;
-    }
-
-    if (type === 'Logout') {
-      logout();
-    }
-
+    this.props.action();
   }
 
   render() {

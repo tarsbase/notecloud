@@ -8,8 +8,9 @@ import {
   closeTagsModal
 } from '../../actions/ui_actions';
 
-const getButtonInfo = ownProps => {
+const navButtonSelector = (ownProps) => {
   const classes = ['fa', 'nav-icon'];
+  let action = () => {};
   let type;
   switch (ownProps.type) {
     case 'newNote':
@@ -18,28 +19,45 @@ const getButtonInfo = ownProps => {
       break;
     case 'notes':
       classes.push('fa-sticky-note');
+      if (ownProps.notebooksModalIsOpen) {
+        action = closeNotebooksModal;
+      } 
+      if (ownProps.tagsModalIsOpen) {
+        action = closeTagsModal;
+      }
       type = 'Notes';
       break;
     case 'notebooks':
       classes.push('fa-book');
+      if (ownProps.notebooksModalIsOpen) {
+        action = closeNotebooksModal;
+      } else {
+        action = openNotebooksModal;
+      }
       type = 'Notebooks';
       break;
     case 'tags':
       classes.push('fa-tag');
+      if (ownProps.tagsModalIsOpen) {
+        action = closeTagsModal;
+      } else {
+        action = openTagsModal;
+      }
       type = 'Tags';
       break;
     case 'logout':
       classes.push('fa-sign-out');
       type = 'Logout';
+      action = logout;
       break;
     default:
       break;
   }
-  return { classes, type };
+  return { classes, type, action };
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const { classes, type } = getButtonInfo(ownProps);
+  const { classes, type } = navButtonSelector(ownProps);
   return {
     notebooksModalIsOpen: state.ui.notebooksModalIsOpen,
     tagsModalIsOpen: state.ui.tagsModalIsOpen,
@@ -49,12 +67,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const { action } = navButtonSelector(ownProps);
   return {
-    logout: () => dispatch(logout()),
-    openNotebooksModal: () => dispatch(openNotebooksModal()),
-    closeNotebooksModal: () => dispatch(closeNotebooksModal()),
-    openTagsModal: () => dispatch(openTagsModal()),
-    closeTagsModal: () => dispatch(closeTagsModal())
+    action: () => dispatch(action())
   };
 };
 

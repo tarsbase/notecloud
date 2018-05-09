@@ -1,7 +1,7 @@
 import React from 'react';
 import NoteIndexContainer from './note_index_container';
 import NoteFormContainer from './note_form_contianer';
-import SidebarNav from '../nav/sidebar_nav';
+import SidebarNavContainer from '../nav/sidebar_nav_container';
 
 export default class Notes extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class Notes extends React.Component {
     }
     return (
       <div className="notes-page">
-        <SidebarNav />
+        <SidebarNavContainer />
         <div className={notebookClasses.join(" ")}>
           <div>Notebooks</div>
         </div>

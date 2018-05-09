@@ -7,15 +7,28 @@ export default class SidebarNav extends React.Component {
   }
 
   render() {
+    const { notebooksModalIsOpen, tagsModalIsOpen } = this.props;
     return (
       <div className="sidebar-nav">
         <div>
           <NavButtonContainer type="newNote" />
         </div>
         <div className="main-sub-nav">
-          <NavButtonContainer type="notes" />
-          <NavButtonContainer type="notebooks" />
-          <NavButtonContainer type="tags" />
+          <NavButtonContainer
+            type="notes"
+            notebooksModalIsOpen={notebooksModalIsOpen}
+            tagsModalIsOpen={tagsModalIsOpen}
+          />
+          <NavButtonContainer
+            type="notebooks"
+            notebooksModalIsOpen={notebooksModalIsOpen}
+            tagsModalIsOpen={tagsModalIsOpen}
+          />
+          <NavButtonContainer
+            type="tags"
+            notebooksModalIsOpen={notebooksModalIsOpen}
+            tagsModalIsOpen={tagsModalIsOpen}
+          />
         </div>
         <div>
           <NavButtonContainer type="logout" />
