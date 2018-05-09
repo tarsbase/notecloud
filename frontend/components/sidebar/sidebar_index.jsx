@@ -7,6 +7,8 @@ export default class SidebarIndex extends React.Component {
   }
 
   render() {
-    return <div></div>;
+    return <div>
+        <div>{this.props.title}</div>
+      </div>;
   }
 }

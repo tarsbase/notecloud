@@ -27,10 +27,10 @@ export default class Notes extends React.Component {
       <div className="notes-page">
         <SidebarNavContainer />
         <div className={notebookClasses.join(" ")}>
-          {}
+          {notebooksModalIsOpen && <SidebarIndexContainer type="notebooks"/>}
         </div>
         <div className={tagClasses.join(" ")}>
-          <div>Tags</div>
+          {tagsModalIsOpen && <SidebarIndexContainer type="tags"/>}
         </div>
         <NoteIndexContainer />
         <NoteFormContainer />

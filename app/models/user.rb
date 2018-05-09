@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :sessions
   has_many :notebooks
   has_many :notes, through: :notebooks
+  has_many :tags
 
   attr_reader :password
 
