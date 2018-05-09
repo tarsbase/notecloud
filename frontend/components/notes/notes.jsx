@@ -2,6 +2,7 @@ import React from 'react';
 import NoteIndexContainer from './note_index_container';
 import NoteFormContainer from './note_form_contianer';
 import SidebarNavContainer from '../nav/sidebar_nav_container';
+import SidebarIndexContainer from '../sidebar/sidebar_index_container';
 
 export default class Notes extends React.Component {
   constructor(props) {
@@ -9,14 +10,15 @@ export default class Notes extends React.Component {
   }
 
   render() {
+    const { notebooksModalIsOpen, tagsModalIsOpen } = this.props;
     const notebookClasses = ["sidebar-modal"];
     const tagClasses = ["sidebar-modal"];
-    if (this.props.notebooksModalIsOpen) {
+    if (notebooksModalIsOpen) {
       notebookClasses.push("open-sidebar-modal");
     } else {
       notebookClasses.push("hide-sidebar-modal");
     }
-    if (this.props.tagsModalIsOpen) {
+    if (tagsModalIsOpen) {
       tagClasses.push("open-sidebar-modal");
     } else {
       tagClasses.push("hide-sidebar-modal");
@@ -25,7 +27,7 @@ export default class Notes extends React.Component {
       <div className="notes-page">
         <SidebarNavContainer />
         <div className={notebookClasses.join(" ")}>
-          <div>Notebooks</div>
+          {}
         </div>
         <div className={tagClasses.join(" ")}>
           <div>Tags</div>
