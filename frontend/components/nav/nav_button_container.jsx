@@ -2,15 +2,15 @@ import { connect } from 'react-redux';
 import NavButton from './nav_button';
 import { logout } from '../../actions/session_actions';
 import {
-  openSidebarModal,
-  closeSidebarModal,
-  sidebarModalComponent
+  openNotebooksModal,
+  closeNotebooksModal,
+  openTagsModal,
+  closeTagsModal
 } from '../../actions/ui_actions';
 
-const getButtonInfo = (ownProps, dispatch) => {
+const getButtonInfo = ownProps => {
   const classes = ['fa', 'nav-icon'];
   let type;
-  let action = () => {};
   switch (ownProps.type) {
     case 'newNote':
       ['fa-plus-circle', 'fa-2x'].forEach(selector => classes.push(selector));
@@ -41,8 +41,8 @@ const getButtonInfo = (ownProps, dispatch) => {
 const mapStateToProps = (state, ownProps) => {
   const { classes, type } = getButtonInfo(ownProps);
   return {
-    sidebarModalIsOpen: state.ui.sidebarModalIsOpen,
-    sidebarModalComponent: state.ui.sidebarModalComponent,
+    notebooksModalIsOpen: state.ui.notebooksModalIsOpen,
+    tagsModalIsOpen: state.ui.tagsModalIsOpen,
     classes,
     type
   };
@@ -50,10 +50,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    openSidebarModal: () => dispatch(openSidebarModal()),
-    closeSidebarModal: () => dispatch(closeSidebarModal()),
-    sidebarModalComponent: componentName =>
-      dispatch(sidebarModalComponent(componentName))
+    logout: () => dispatch(logout()),
+    openNotebooksModal: () => dispatch(openNotebooksModal()),
+    closeNotebooksModal: () => dispatch(closeNotebooksModal()),
+    openTagsModal: () => dispatch(openTagsModal()),
+    closeTagsModal: () => dispatch(closeTagsModal())
   };
 };
 

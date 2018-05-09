@@ -1,21 +1,20 @@
-// export const TOGGLE_SIDEBAR_MODAL = 'TOGGLE_SIDEBAR_MODAL';
-export const OPEN_SIDEBAR_MODAL = 'OPEN_SIDEBAR_MODAL';
-export const CLOSE_SIDEBAR_MODAL = 'CLOSE_SIDEBAR_MODAL';
-export const SIDEBAR_MODAL_COMPONENT = 'SIDEBAR_MODAL_COMPONENT';
+export const OPEN_NOTEBOOKS_MODAL = 'OPEN_NOTEBOOKS_MODAL';
+export const CLOSE_NOTEBOOKS_MODAL = 'CLOSE_NOTEBOOKS_MODAL';
+export const OPEN_TAGS_MODAL = 'OPEN_TAGS_MODAL';
+export const CLOSE_TAGS_MODAL = 'CLOSE_TAGS_MODAL';
 
-// export const toggleSidebarModal = () => ({
-//   type: TOGGLE_SIDEBAR_MODAL
-// });
-
-export const openSidebarModal = () => ({
-  type: OPEN_SIDEBAR_MODAL
+export const openNotebooksModal = () => ({
+  type: OPEN_NOTEBOOKS_MODAL
 });
 
-export const closeSidebarModal = () => ({
-  type: CLOSE_SIDEBAR_MODAL
+export const closeNotebooksModal = () => ({
+  type: CLOSE_NOTEBOOKS_MODAL
 });
 
-export const sidebarModalComponent = componentName => ({
-  type: SIDEBAR_MODAL_COMPONENT,
-  componentName
+export const openTagsModal = () => ({
+  type: OPEN_TAGS_MODAL
+});
+
+export const closeTagsModal = () => ({
+  type: CLOSE_TAGS_MODAL
 });

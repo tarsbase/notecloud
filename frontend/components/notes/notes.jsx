@@ -3,34 +3,32 @@ import NoteIndexContainer from './note_index_container';
 import NoteFormContainer from './note_form_contianer';
 import SidebarNav from '../nav/sidebar_nav';
 
-const customStyles = {
-  content: {
-    top: 20,
-    left: 100,
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
-  }
-};
-
 export default class Notes extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const classList = ["sidebar-container"];
-    if (this.props.modalIsOpen) {
-      classList.push("open-sidebar");
+    const notebookClasses = ["sidebar-modal"];
+    const tagClasses = ["sidebar-modal"];
+    if (this.props.notebooksModalIsOpen) {
+      notebookClasses.push("open-sidebar-modal");
     } else {
-      classList.push("hide-sidebar");
+      notebookClasses.push("hide-sidebar-modal");
+    }
+    if (this.props.tagsModalIsOpen) {
+      tagClasses.push("open-sidebar-modal");
+    } else {
+      tagClasses.push("hide-sidebar-modal");
     }
     return (
       <div className="notes-page">
         <SidebarNav />
-        <div className={classList.join(" ")}>
-          <div>Hello</div>
+        <div className={notebookClasses.join(" ")}>
+          <div>Notebooks</div>
+        </div>
+        <div className={tagClasses.join(" ")}>
+          <div>Tags</div>
         </div>
         <NoteIndexContainer />
         <NoteFormContainer />

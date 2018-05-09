@@ -3,16 +3,53 @@ import React from 'react';
 export default class NavButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { displayTooltip: false };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    if (!this.props.modalIsOpen && this.props.type === "Notes") {
+    const {
+      type,
+      logout,
+      openNotebooksModal,
+      closeNotebooksModal,
+      openTagsModal,
+      closeTagsModal,
+      notebooksModalIsOpen,
+      tagsModalIsOpen
+    } = this.props;
+
+    if (type === "Notes") {
+      if (notebooksModalIsOpen) {
+        closeNotebooksModal();
+      }
+      if (tagsModalIsOpen) {
+        closeTagsModal();
+      }
       return;
-    } else {
-      this.props.uiAction();
     }
+
+    if (type === "Notebooks") {
+      if (notebooksModalIsOpen) {
+        closeNotebooksModal();
+      } else {
+        openNotebooksModal();
+      }
+      return;
+    }
+
+    if (type === "Tags") {
+      if (tagsModalIsOpen) {
+        closeTagsModal();
+      } else {
+        openTagsModal();
+      }
+      return;
+    }
+
+    if (type === 'Logout') {
+      logout();
+    }
+
   }
 
   render() {

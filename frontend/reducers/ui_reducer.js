@@ -1,23 +1,29 @@
 import {
-  OPEN_SIDEBAR_MODAL,
-  CLOSE_SIDEBAR_MODAL,
-  SIDEBAR_MODAL_COMPONENT
+  OPEN_NOTEBOOKS_MODAL,
+  CLOSE_NOTEBOOKS_MODAL,
+  OPEN_TAGS_MODAL,
+  CLOSE_TAGS_MODAL
 } from '../actions/ui_actions';
 
-const defaultState = { sidebarModalIsOpen: false, sidebarModalComponent: null };
+const defaultState = { notebooksModalIsOpen: false, tagsModalIsOpen: false };
 
 const UIReducer = (oldState = defaultState, action) => {
   Object.freeze(oldState);
   const newState = { ...oldState };
   switch (action.type) {
-    case OPEN_SIDEBAR_MODAL:
-      newState.sidebarModalIsOpen = true;
+    case OPEN_NOTEBOOKS_MODAL:
+      newState.tagsModalIsOpen = false;
+      newState.notebooksModalIsOpen = true;
       return newState;
-    case CLOSE_SIDEBAR_MODAL:
-      newState.sidebarModalIsOpen = false;
+    case CLOSE_NOTEBOOKS_MODAL:
+      newState.notebooksModalIsOpen = false;
       return newState;
-    case SIDEBAR_MODAL_COMPONENT:
-      newState.sidebarModalComponent = action.componentName;
+    case OPEN_TAGS_MODAL:
+      newState.notebooksModalIsOpen = false;
+      newState.tagsModalIsOpen = true;
+      return newState;
+    case CLOSE_TAGS_MODAL: 
+      newState.tagsModalIsOpen = false;
       return newState;
     default:
       return oldState;

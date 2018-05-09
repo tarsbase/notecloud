@@ -181,7 +181,7 @@ body {
 
 /* Sidebar Modal */
 
-.sidebar-container { 
+.sidebar-modal { 
   position: fixed;
   z-index: 1;
   overflow: hidden;
@@ -193,12 +193,12 @@ body {
   border-right: 1px solid #ececec;
 }
 
-.hide-sidebar {
+.hide-sidebar-modal {
   width: 0px;
   transition: all 0.4s ease;
 }
 
-.open-sidebar {
+.open-sidebar-modal {
   width: 250px;
   transition: all 0.4s ease;
 }
