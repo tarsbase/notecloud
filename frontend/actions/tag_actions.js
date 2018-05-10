@@ -25,9 +25,10 @@ export const getAllTags = () => dispatch =>
 export const getTag = id => dispatch =>
   TagApiUtil.fetchTag(id).then(tag => dispatch(receiveTag(tag)));
 
-export const createTag = tag => dispatch => 
-  TagApiUtil.createTag(tag).then( newTag => dispatch(receiveTag(newTag)));
+export const createTag = tag => dispatch =>
+  TagApiUtil.createTag(tag).then(newTag => dispatch(receiveTag(newTag)));
 
-export const updateTag = tag => dispatch => 
-  TagApiUtil.updateTag(tag).then( updatedTag => dispatch(receiveTag(updatedTag)));
-
+export const updateTag = tag => dispatch =>
+  TagApiUtil.updateTag(tag).then(updatedTag =>
+    dispatch(receiveTag(updatedTag))
+  );
