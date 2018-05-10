@@ -3,6 +3,7 @@ import SessionReducer from './session_reducer';
 import errorsReducer from './errors_reducer';
 import NotesReducer from './notes_reducer';
 import UIReducer from './ui_reducer';
+import NotebookReducer from './notebook_reducer';
 import TagReducer from './tag_reducer';
 
 const rootReducer = combineReducers({
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
   errors: errorsReducer,
   notes: NotesReducer,
   ui: UIReducer,
-  tags: TagReducer
+  tags: TagReducer,
+  notebooks: NotebookReducer
 });
 
 export default rootReducer;
