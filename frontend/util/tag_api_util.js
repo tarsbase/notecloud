@@ -20,7 +20,7 @@ export const createTag = tag => (
   })
 );
 
-export const updatetag = tag => (
+export const updateTag = tag => (
   $.ajax({
     method: 'PATCH',
     url: `api/tags/${tag.id}`,
