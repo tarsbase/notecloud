@@ -1,4 +1,5 @@
 class Api::NotesController < ApplicationController
+  before_action :require_login
 
   def create
     @note = Note.new(note_params)
@@ -37,8 +38,13 @@ class Api::NotesController < ApplicationController
 
   def destroy
     @note = current_user.notes.find(params[:id])
-    @note.destroy!
-    render :show
+
+    if @note 
+      @note.destroy!
+      render :show
+    else 
+      render json: ["Note does not exist"], status: 404
+    end 
   end 
 
   private 
