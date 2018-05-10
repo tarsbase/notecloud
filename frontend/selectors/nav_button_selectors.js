@@ -4,7 +4,7 @@ import {
   openTagsModal,
   closeTagsModal
 } from '../actions/ui_actions';
-import { logout } from '../actions/session_actions'
+import { logout } from '../actions/session_actions';
 
 export const navButtonSelector = ownProps => {
   const classes = ['fa', 'nav-icon'];

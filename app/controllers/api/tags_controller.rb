@@ -34,7 +34,7 @@ class Api::TagsController < ApplicationController
       @tag.destroy! 
       render :show
     else 
-      render json: ["tag does not exist"], status: 404
+      render json: ["Tag does not exist"], status: 404
     end 
   end
 
