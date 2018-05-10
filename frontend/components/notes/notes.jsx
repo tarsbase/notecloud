@@ -7,30 +7,47 @@ import SidebarIndexContainer from '../sidebar/sidebar_index_container';
 export default class Notes extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    const {
+      notebooksModalIsOpen,
+      closeNotebooksModal,
+      closeTagsModal
+    } = this.props;
+    
+    if (e.target.classList.contains('sidebar-modal')) {
+      if (notebooksModalIsOpen) {
+        closeNotebooksModal();
+      } else {
+        closeTagsModal();
+      }
+    }
   }
 
   render() {
     const { notebooksModalIsOpen, tagsModalIsOpen } = this.props;
-    const notebookClasses = ["sidebar-modal"];
-    const tagClasses = ["sidebar-modal"];
+    const notebookClasses = ['sidebar-modal'];
+    const tagClasses = ['sidebar-modal'];
     if (notebooksModalIsOpen) {
-      notebookClasses.push("open-sidebar-modal");
+      notebookClasses.push('open-sidebar-modal');
     } else {
-      notebookClasses.push("hide-sidebar-modal");
+      notebookClasses.push('hide-sidebar-modal');
     }
     if (tagsModalIsOpen) {
-      tagClasses.push("open-sidebar-modal");
+      tagClasses.push('open-sidebar-modal');
     } else {
-      tagClasses.push("hide-sidebar-modal");
+      tagClasses.push('hide-sidebar-modal');
     }
     return (
       <div className="notes-page">
         <SidebarNavContainer />
-        <div className={notebookClasses.join(" ")}>
-          {notebooksModalIsOpen && <SidebarIndexContainer type="notebooks"/>}
+        <div className={notebookClasses.join(' ')} onClick={this.handleClick}>
+          {notebooksModalIsOpen && <SidebarIndexContainer type="notebooks" />}
         </div>
-        <div className={tagClasses.join(" ")}>
-          {tagsModalIsOpen && <SidebarIndexContainer type="tags"/>}
+        <div className={tagClasses.join(' ')} onClick={this.handleClick}>
+          {tagsModalIsOpen && <SidebarIndexContainer type="tags" />}
         </div>
         <NoteIndexContainer />
         <NoteFormContainer />

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Notes from './notes';
-import { logout } from '../../actions/session_actions';
+import { closeNotebooksModal, closeTagsModal } from "../../actions/ui_actions";
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    // fetchAction: () => dispatch(getAllNotes())
+    closeNotebooksModal: () => dispatch(closeNotebooksModal()),
+    closeTagsModal: () => dispatch(closeTagsModal())
   };
 };
 
