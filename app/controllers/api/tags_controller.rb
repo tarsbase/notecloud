@@ -27,6 +27,20 @@ class Api::TagsController < ApplicationController
     end 
   end
 
+  def update 
+    @tag = current_user.tags.find(params[:id])
+
+    if @tag 
+      if @tag.update_attributes(tag_params)
+        render :show
+      else 
+        render json: @tag.errors.full_messages, status: 422
+      end 
+    else 
+      render json: ["Tag does not exist"], status: 404
+    end 
+  end 
+
   def destroy
     @tag = current_user.notes.find(params[:id])
 

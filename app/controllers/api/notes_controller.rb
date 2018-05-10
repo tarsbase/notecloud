@@ -29,10 +29,14 @@ class Api::NotesController < ApplicationController
   def update
     @note = current_user.notes.find(params[:id])
 
-    if @note.update_attributes(note_params)
-      render :show
+    if @note 
+      if @note.update_attributes(note_params)
+        render :show
+      else 
+        render json: @note.errors.full_messages, status: 422
+      end 
     else 
-      render json: @note.errors.full_messages, status: 422
+      render json: ["Note does not exist"], status: 404
     end 
   end 
 
