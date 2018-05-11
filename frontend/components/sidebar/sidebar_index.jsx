@@ -1,16 +1,22 @@
 import React from 'react';
+import SidebarIndexItem from './sidebar_index_item';
 
 export default class SidebarIndex extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
-    return <div className="sidebar-index">
+    const entities = this.props.entities.map(entity => (
+      <SidebarIndexItem key={entity.id} entity={entity} type={this.props.type}/>
+    ));
+    return (
+      <div className="sidebar-index">
         <div className="sidebar-header">
-          <h1>{this.props.title}</h1>
+          <h1>{this.props.type.toUpperCase()}</h1>
         </div>
-      </div>;
+        <ul>{entities}</ul>
+      </div>
+    );
   }
 }

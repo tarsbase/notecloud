@@ -20,7 +20,7 @@ export default class NoteIndexItem extends React.Component {
             <div className="note-list-item-info note-title">
               {note.title}
             </div>
-            <i className="fa fa-trash trash" onClick={this.handleClick} />
+            <i className="fa fa-trash note-index-trash" onClick={this.handleClick} />
           </div>
           <div className="note-list-item-info note-updated">
             {note.last_updated} AGO

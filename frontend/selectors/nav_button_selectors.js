@@ -12,7 +12,7 @@ export const navButtonSelector = ownProps => {
   let type;
   switch (ownProps.type) {
     case 'newNote':
-      ['fa-plus-circle', 'fa-2x'].forEach(selector => classes.push(selector));
+      ['fa-plus-circle', 'fa-2x', 'new-note'].forEach(selector => classes.push(selector));
       type = 'New Note';
       break;
     case 'notes':

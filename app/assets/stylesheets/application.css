@@ -77,7 +77,11 @@ body {
   justify-content: space-between;
 }
 
-.trash {
+.trash:hover {
+  cursor: pointer;
+}
+
+.note-index-trash {
   color: white;
 }
 
@@ -124,15 +128,43 @@ body {
   width: 100%;
 }
 
-.note-form-header {
-  height: 75px;
-}
-
 .note-form {
   width: 80%;
-  margin: 20px;
+  margin: 20px 40px;
   display: flex;
   flex-direction: column;
+}
+
+.note-form-header {
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px 40px;
+  border-bottom: 1px solid #ececec;
+  font-size: 12px;
+  color: #606060;
+}
+
+.note-form-top-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.note-form-top-header > * {
+  margin-left: 10px;
+}
+
+.note-form-bottom-header {
+  margin-bottom: 10px;
+}
+
+.note-notebook-info {
+  width: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .note-form-input {
@@ -170,7 +202,22 @@ body {
 }
 
 .note-form-submit {
-  width: 100px;
+  width: 50px;
+  height: 24px;
+  font-size: 12px;
+  padding: 0 12px;
+}
+
+.fadeout {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.4s
+}
+
+.fadein {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.4s
 }
 
 /* Sidebar Nav */
@@ -188,12 +235,24 @@ body {
 }
 
 .nav-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   color: #2dbe60;
-  margin: 5px;
+  padding-top: 10px;
+  transition: 0.4s ease-in-out;
 }
 
 .nav-icon:hover {
   cursor: pointer;
+  background-color: #2dbe60;
+  color: white;
+}
+
+.new-note {
+  width: 24px;
+  height: 24px;
+  padding-top: 0;
 }
 
 .main-sub-nav {
@@ -204,7 +263,7 @@ body {
 
 /* Sidebar Modal */
 
-.sidebar-modal { 
+.sidebar-modal {
   position: fixed;
   z-index: 1;
   overflow: hidden;
