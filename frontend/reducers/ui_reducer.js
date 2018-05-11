@@ -5,7 +5,7 @@ import {
   CLOSE_TAGS_MODAL
 } from '../actions/ui_actions';
 
-const defaultState = { notebooksModalIsOpen: false, tagsModalIsOpen: false };
+const defaultState = { notebooksModalIsOpen: false, tagsModalIsOpen: false};
 
 const UIReducer = (oldState = defaultState, action) => {
   Object.freeze(oldState);

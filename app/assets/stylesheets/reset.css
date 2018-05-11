@@ -43,5 +43,10 @@ table {
 
 a {
 	color: #000;
-  text-decoration: none;
 }
+
+a, a:hover, a:active, a:visited, a:focus {
+    text-decoration:none;
+}
+
+

@@ -10,11 +10,6 @@ const mapStateToProps = (state, ownProps) => ({
   notes: Object.values(state.notes)
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchAction: () => dispatch(getAllNotes())
-});
+const mapDispatchToProps = (dispatch, ownProps) => ({});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NoteIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(NoteIndex);

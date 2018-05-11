@@ -6,10 +6,6 @@ export default class NoteIndex extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.fetchAction();
-  }
-
   render() {
     const notes = this.props.notes.sort((a,b) => {
       const aDate = new Date(a.updated_at);

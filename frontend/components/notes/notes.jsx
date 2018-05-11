@@ -10,13 +10,19 @@ export default class Notes extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getAllNotes();
+    this.props.getAllNotebooks();
+    this.props.getAllTags();
+  }
+
   handleClick(e) {
     const {
       notebooksModalIsOpen,
       closeNotebooksModal,
       closeTagsModal
     } = this.props;
-    
+
     if (e.target.classList.contains('sidebar-modal')) {
       if (notebooksModalIsOpen) {
         closeNotebooksModal();
@@ -44,10 +50,10 @@ export default class Notes extends React.Component {
       <div className="notes-page">
         <SidebarNavContainer />
         <div className={notebookClasses.join(' ')} onClick={this.handleClick}>
-          {notebooksModalIsOpen && <SidebarIndexContainer type="notebooks" />}
+          <SidebarIndexContainer type="notebooks" />
         </div>
         <div className={tagClasses.join(' ')} onClick={this.handleClick}>
-          {tagsModalIsOpen && <SidebarIndexContainer type="tags" />}
+          <SidebarIndexContainer type="tags" />
         </div>
         <NoteIndexContainer />
         <NoteFormContainer />

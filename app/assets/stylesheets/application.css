@@ -74,6 +74,19 @@ body {
 .note-list-item {
   height: 100px;
   padding: 10px 20px;
+  transition: 0.4s ease-in-out;
+}
+
+.note-list-item-info {
+  transition: 0.4s ease-in-out;
+}
+
+.note-list-item:hover {
+  background-color: #2dbe60;
+}
+
+.note-list-item:hover div {
+  color: white;
 }
 
 .note-title {
