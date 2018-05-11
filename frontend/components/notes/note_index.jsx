@@ -11,7 +11,7 @@ export default class NoteIndex extends React.Component {
       const aDate = new Date(a.updated_at);
       const bDate = new Date(b.updated_at);
       return bDate - aDate;
-    }).map( note => <NoteIndexItem key={note.id} note={note}/>);
+    }).map( note => <NoteIndexItem key={note.id} note={note} deleteNote={this.props.deleteNote}/>);
     const noteMsg = notes.length === 1 ? 'note' : 'notes';
     return <div className="notes-index-container">
         <div className="sidebar-header">

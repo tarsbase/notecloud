@@ -37,3 +37,6 @@ export const updateNote = note => dispatch =>
   NoteApiUtil.updateNote(note).then(updatedNote =>
     dispatch(receiveNote(updatedNote))
   );
+
+export const deleteNote = id => dispatch =>
+  NoteApiUtil.destroyNote(id).then(note => dispatch(removeNote(note)));

@@ -71,6 +71,16 @@ body {
   color: #ababab;
 }
 
+.note-list-item-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.trash {
+  color: white;
+}
+
 .note-list-item {
   height: 100px;
   padding: 10px 20px;
