@@ -10,13 +10,11 @@ export default class SidebarIndex extends React.Component {
     const entities = this.props.entities.map(entity => (
       <SidebarIndexItem key={entity.id} entity={entity} type={this.props.type}/>
     ));
-    return (
-      <div className="sidebar-index">
+    return <div className="sidebar-index">
         <div className="sidebar-header">
           <h1>{this.props.type.toUpperCase()}</h1>
         </div>
-        <ul>{entities}</ul>
-      </div>
-    );
+          <ul className="sidebar-list">{entities}</ul>
+      </div>;
   }
 }

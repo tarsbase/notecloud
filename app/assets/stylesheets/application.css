@@ -43,7 +43,7 @@ body {
 
 .notes-index-container {
   height: 100%;
-  width: 350px;
+  width: 250px;
 }
 
 .sidebar-header {
@@ -122,6 +122,13 @@ body {
   font-weight: 400;
 }
 
+.note-body {
+  line-height: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .note-page {
   border-left: 1px solid #ececec;
   height: 100vh;
@@ -165,6 +172,9 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  max-width: 190px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .note-form-input {
@@ -288,4 +298,29 @@ body {
   height: 100%;
   background-color: white;
   border-right: 1px solid #ececec;
+}
+
+/* Sidebar Index */
+
+.sidebar-list {
+  padding: 20px;
+}
+
+.sidebar-list-item {
+  border-bottom: 1px solid #ececec;
+  padding-bottom: 20px;
+}
+
+.sidebar-item-title {
+  color: #878787;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.note-count {
+  margin-top: 10px;
+  color: #878787;
+  font-size: 11px;
+  font-weight: 500;
 }

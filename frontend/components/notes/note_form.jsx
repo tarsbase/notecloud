@@ -8,6 +8,7 @@ export default class NoteForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleSubmit(e) {
@@ -19,6 +20,11 @@ export default class NoteForm extends React.Component {
 
   handleChange(field) {
     return e => this.setState({ note: { [field]: e.target.value } });
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    this.props.deleteNote(this.props.note.id);
   }
 
   render() {
@@ -33,7 +39,7 @@ export default class NoteForm extends React.Component {
                 value="Save"
                 className="btn btn-success note-form-submit"
               />
-              <i className="fa fa-trash trash" />
+              <i className="fa fa-trash trash" onClick={this.handleDelete}/>
             </div>
             <div className="note-form-bottom-header">
               <div className="note-notebook-info">

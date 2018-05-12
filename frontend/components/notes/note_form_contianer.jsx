@@ -4,7 +4,8 @@ import NoteForm from './note_form';
 import {
   createNote,
   updateNote,
-  getAllNotes
+  getAllNotes,
+  deleteNote
 } from '../../actions/note_actions';
 import { selectNote } from '../../selectors/note_form_selectors';
 
@@ -23,7 +24,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   return { 
     noteAction: note => dispatch(noteAction(note)),
-    getAllNotes: () => dispatch(getAllNotes())
+    getAllNotes: () => dispatch(getAllNotes()),
+    deleteNote: id => dispatch(deleteNote(id))
    };
 };
 
