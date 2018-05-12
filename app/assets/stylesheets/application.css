@@ -19,6 +19,10 @@ body {
   font-family: 'Helvetica', sans-serif;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .main-nav {
   display: flex;
   justify-content: space-between;
@@ -39,11 +43,14 @@ body {
 .notes-page {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .notes-index-container {
   height: 100%;
   width: 250px;
+  position: absolute;
+  left: 75px;
 }
 
 .sidebar-header {
@@ -129,10 +136,12 @@ body {
   text-overflow: ellipsis;
 }
 
-.note-page {
+.note-form-page {
   border-left: 1px solid #ececec;
   height: 100vh;
-  width: 100%;
+  position: fixed;
+  left: 325px;
+  width: 70%;
 }
 
 .note-form {
@@ -176,6 +185,11 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.note-notebook-name {
+  margin-left: 5px;
+}
+
 
 .note-form-input {
   border: none;
@@ -242,6 +256,7 @@ body {
   justify-content: space-between;
   text-align: center;
   padding: 10px;
+  position: fixed;
 }
 
 .nav-icon {
@@ -263,6 +278,11 @@ body {
   width: 24px;
   height: 24px;
   padding-top: 0;
+  color: #2dbe60;
+}
+
+.new-note:hover {
+  cursor: pointer;
 }
 
 .main-sub-nav {

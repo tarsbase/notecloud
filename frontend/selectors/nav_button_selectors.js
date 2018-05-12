@@ -7,7 +7,7 @@ import {
 import { logout } from '../actions/session_actions';
 
 export const navButtonSelector = ownProps => {
-  const classes = ['fa', 'nav-icon'];
+  const classes = ['fa'];
   let action = () => ({ type: null });
   let type;
   switch (ownProps.type) {
@@ -17,6 +17,7 @@ export const navButtonSelector = ownProps => {
       break;
     case 'notes':
       classes.push('fa-sticky-note');
+      classes.push('nav-icon');
       if (ownProps.notebooksModalIsOpen) {
         action = closeNotebooksModal;
       }
@@ -27,6 +28,7 @@ export const navButtonSelector = ownProps => {
       break;
     case 'notebooks':
       classes.push('fa-book');
+      classes.push('nav-icon');
       if (ownProps.notebooksModalIsOpen) {
         action = closeNotebooksModal;
       } else {
@@ -36,6 +38,7 @@ export const navButtonSelector = ownProps => {
       break;
     case 'tags':
       classes.push('fa-tag');
+      classes.push('nav-icon');
       if (ownProps.tagsModalIsOpen) {
         action = closeTagsModal;
       } else {
@@ -45,6 +48,7 @@ export const navButtonSelector = ownProps => {
       break;
     case 'logout':
       classes.push('fa-sign-out');
+      classes.push('nav-icon');
       type = 'Logout';
       action = logout;
       break;

@@ -30,7 +30,7 @@ export default class NoteForm extends React.Component {
   render() {
     if (this.props.note) {
       return (
-        <div className="note-page">
+        <div className="note-form-page">
           <div className="note-form-header">
             <div className="note-form-top-header">
               <input
