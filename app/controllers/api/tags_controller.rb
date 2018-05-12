@@ -3,6 +3,7 @@ class Api::TagsController < ApplicationController
 
   def index
     @tags = current_user.tags
+    # debugger
     render :index
   end
 
