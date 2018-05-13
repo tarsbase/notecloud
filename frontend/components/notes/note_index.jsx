@@ -4,6 +4,16 @@ import NoteIndexItem from './note_index_item';
 export default class NoteIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { page: 1 };
+  }
+
+  getPosts() {
+    this.props.getAllNotes(this.state.page);
+    this.setState({page: this.state.page += 1});
+  }
+
+  componentDidMount() {
+    this.getPosts();
   }
 
   render() {

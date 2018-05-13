@@ -11,7 +11,6 @@ export default class Notes extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllNotes();
     this.props.getAllNotebooks();
     this.props.getAllTags();
   }

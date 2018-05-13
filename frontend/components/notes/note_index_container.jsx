@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import NoteIndex from './note_index';
 import {
-  deleteNote
+  deleteNote,
+  getAllNotes
 } from '../../actions/note_actions';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -9,6 +10,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  getAllNotes: page => dispatch(getAllNotes(page)),
   deleteNote: id => dispatch(deleteNote(id))
 });
 

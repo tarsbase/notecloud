@@ -12,7 +12,7 @@ class Api::NotesController < ApplicationController
   end 
 
   def index 
-    @notes = current_user.notes
+    @notes = current_user.notes.page(params[:page])
     render :index
   end 
 
