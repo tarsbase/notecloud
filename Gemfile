@@ -38,6 +38,8 @@ gem 'font-awesome-rails'
 
 gem 'jquery-rails'
 
+gem 'kaminari'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,32 +1,20 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import NoteForm from './note_form';
-import {
-  createNote,
-  updateNote,
-  getAllNotes,
-  deleteNote
-} from '../../actions/note_actions';
-import { selectNote } from '../../selectors/note_form_selectors';
+import { deleteNote } from '../../actions/note_actions';
+import { selectState, selectAction } from '../../selectors/note_form_selectors';
 
 const mapStateToProps = (state, ownProps) => {
-  const note = selectNote(state, ownProps);
-  return { note };
+  const {note, currentNotebook } = selectState(state, ownProps);
+  return { note, currentNotebook };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  let noteAction;
-  if (ownProps.match.path === '/notes/:noteId') {
-    noteAction = updateNote;
-  } else {
-    noteAction = createNote;
-  }
-
-  return { 
-    noteAction: note => dispatch(noteAction(note)),
-    getAllNotes: () => dispatch(getAllNotes()),
+  const action = selectAction(ownProps);
+  return {
+    action: note => dispatch(action(note)),
     deleteNote: id => dispatch(deleteNote(id))
-   };
+  };
 };
 
 export default withRouter(

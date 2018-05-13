@@ -1,5 +1,6 @@
 import React from 'react';
 import NavButtonContainer from './nav_button_container';
+import { Link } from 'react-router-dom';
 
 export default class SidebarNav extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class SidebarNav extends React.Component {
     return (
       <div className="sidebar-nav">
         <div>
-          <NavButtonContainer type="newNote" />
+          <Link to="/notes" className="fa fa-plus-circle fa-2x new-note-link"></Link>
         </div>
         <div className="main-sub-nav">
           <NavButtonContainer

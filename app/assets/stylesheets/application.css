@@ -137,11 +137,11 @@ body::-webkit-scrollbar {
 }
 
 .note-form-page {
+  width: 70%;
   border-left: 1px solid #ececec;
   height: 100vh;
   position: fixed;
   left: 325px;
-  width: 70%;
 }
 
 .note-form {
@@ -190,7 +190,6 @@ body::-webkit-scrollbar {
   margin-left: 5px;
 }
 
-
 .note-form-input {
   border: none;
   width: 100%;
@@ -235,13 +234,13 @@ body::-webkit-scrollbar {
 .fadeout {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.4s
+  transition: visibility 0s, opacity 0.4s;
 }
 
 .fadein {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s, opacity 0.4s
+  transition: visibility 0s, opacity 0.4s;
 }
 
 /* Sidebar Nav */
@@ -274,15 +273,15 @@ body::-webkit-scrollbar {
   color: white;
 }
 
-.new-note {
+.new-note-link {
   width: 24px;
   height: 24px;
   padding-top: 0;
   color: #2dbe60;
 }
 
-.new-note:hover {
-  cursor: pointer;
+.new-note-link:active, .new-note-link:hover, .new-note-link:focus {
+  color: #2dbe60;
 }
 
 .main-sub-nav {
@@ -298,7 +297,7 @@ body::-webkit-scrollbar {
   z-index: 1;
   overflow: hidden;
   top: 0;
-  left: 56px;
+  left: 75px;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.6);
 }

@@ -3,28 +3,33 @@ import React from 'react';
 export default class NoteForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      note: { title: '', body: '' }
-    };
+    this.state = this.props.note;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.note !== this.state) {
+      this.setState(nextProps.note);
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    const note = Object.assign({}, this.state.note);
-    note['notebook_id'] = 1;
-    this.props.noteAction(note);
+    const note = Object.assign({}, this.state);
+    note.notebook_id = note.notebook.id || this.props.currentNotebook.id;
+    this.props.action(note);
   }
 
   handleChange(field) {
-    return e => this.setState({ note: { [field]: e.target.value } });
+    return e => this.setState({ [field]: e.target.value });
   }
 
   handleDelete(e) {
     e.preventDefault();
     this.props.deleteNote(this.props.note.id);
+    this.props.history.push("/notes");
   }
 
   render() {
@@ -56,7 +61,7 @@ export default class NoteForm extends React.Component {
               <input
                 type="text"
                 className="note-form-input note-title-input"
-                value={this.state.note.title || this.props.note.title}
+                value={this.state.title}
                 placeholder="Title Your Note"
                 onChange={this.handleChange('title')}
               />
@@ -64,7 +69,7 @@ export default class NoteForm extends React.Component {
             <div className="form-group">
               <textarea
                 className="note-form-input note-body-input"
-                value={this.state.note.body || this.props.note.body}
+                value={this.state.body}
                 placeholder="Start Writing"
                 onChange={this.handleChange('body')}
               />

@@ -8,6 +8,7 @@ export default class NavButton extends React.Component {
 
   handleClick() {
     this.props.action();
+  
   }
 
   render() {

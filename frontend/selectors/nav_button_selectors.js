@@ -11,10 +11,6 @@ export const navButtonSelector = ownProps => {
   let action = () => ({ type: null });
   let type;
   switch (ownProps.type) {
-    case 'newNote':
-      ['fa-plus-circle', 'fa-2x', 'new-note'].forEach(selector => classes.push(selector));
-      type = 'New Note';
-      break;
     case 'notes':
       classes.push('fa-sticky-note');
       classes.push('nav-icon');
