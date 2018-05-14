@@ -6,11 +6,12 @@ import {
 } from '../../actions/note_actions';
 
 const mapStateToProps = (state, ownProps) => ({
-  notes: Object.values(state.notes)
+  notes: Object.values(state.notes),
+  deleteModalIsOpen: state.ui.deleteModalIsOpen
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getAllNotes: page => dispatch(getAllNotes(page)),
+  getAllNotes: () => dispatch(getAllNotes()),
   deleteNote: id => dispatch(deleteNote(id))
 });
 

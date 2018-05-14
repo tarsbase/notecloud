@@ -5,7 +5,10 @@ import {
   CLOSE_TAGS_MODAL
 } from '../actions/ui_actions';
 
-const defaultState = { notebooksModalIsOpen: false, tagsModalIsOpen: false};
+const defaultState = {
+  notebooksModalIsOpen: false,
+  tagsModalIsOpen: false
+};
 
 const UIReducer = (oldState = defaultState, action) => {
   Object.freeze(oldState);
@@ -22,7 +25,7 @@ const UIReducer = (oldState = defaultState, action) => {
       newState.notebooksModalIsOpen = false;
       newState.tagsModalIsOpen = true;
       return newState;
-    case CLOSE_TAGS_MODAL: 
+    case CLOSE_TAGS_MODAL:
       newState.tagsModalIsOpen = false;
       return newState;
     default:

@@ -7,13 +7,8 @@ export default class NoteIndex extends React.Component {
     this.state = { page: 1 };
   }
 
-  getPosts() {
-    this.props.getAllNotes(this.state.page);
-    this.setState({page: this.state.page += 1});
-  }
-
   componentDidMount() {
-    this.getPosts();
+    this.props.getAllNotes();
   }
 
   render() {
@@ -29,6 +24,7 @@ export default class NoteIndex extends React.Component {
           <h3>{notes.length} {noteMsg}</h3>
         </div>
         <ul>{notes}</ul>
+        
       </div>;
   }
 }

@@ -38,3 +38,8 @@ export const updateNotebook = notebook => dispatch =>
   NotebookApiUtil.updateNotebook(notebook).then(updatedNotebook =>
     dispatch(receiveNotebook(updatedNotebook))
   );
+
+export const deleteNotebook = id => dispatch =>
+  NotebookApiUtil.destroyNotebook(id).then(notebook =>
+    dispatch(removeNotebook(notebook))
+  );

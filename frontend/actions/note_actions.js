@@ -20,8 +20,8 @@ const removeNote = note => ({
   note
 });
 
-export const getAllNotes = (page) => dispatch =>
-  NoteApiUtil.fetchAllNotes(page).then(notes => dispatch(receiveAllNotes(notes)));
+export const getAllNotes = () => dispatch =>
+  NoteApiUtil.fetchAllNotes().then(notes => dispatch(receiveAllNotes(notes)));
 
 export const getNote = id => dispatch =>
   NoteApiUtil.fetchNote(id).then(note => dispatch(receiveNote(note)));

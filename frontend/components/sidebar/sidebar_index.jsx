@@ -1,5 +1,6 @@
 import React from 'react';
 import SidebarIndexItem from './sidebar_index_item';
+import NotebooksIndexContainer from '../notebooks/notebook_index_container';
 
 export default class SidebarIndex extends React.Component {
   constructor(props) {
@@ -14,7 +15,8 @@ export default class SidebarIndex extends React.Component {
         <div className="sidebar-header">
           <h1>{this.props.type.toUpperCase()}</h1>
         </div>
-          <ul className="sidebar-list">{entities}</ul>
+          {this.props.type === 'notebooks' && <NotebooksIndexContainer/>}
+          
       </div>;
   }
 }

@@ -78,7 +78,7 @@ body::-webkit-scrollbar {
   color: #ababab;
 }
 
-.note-list-item-header {
+.list-item-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -88,13 +88,20 @@ body::-webkit-scrollbar {
   cursor: pointer;
 }
 
-.note-index-trash {
+.list-item-trash {
   color: white;
+}
+
+.list-item-trash:hover {
+  cursor: pointer;
 }
 
 .note-list-item {
   height: 100px;
   padding: 10px 20px;
+}
+
+.list-item {
   transition: 0.4s ease-in-out;
 }
 
@@ -102,11 +109,11 @@ body::-webkit-scrollbar {
   transition: 0.4s ease-in-out;
 }
 
-.note-list-item:hover {
+.list-item:hover {
   background-color: #2dbe60;
 }
 
-.note-list-item:hover div {
+.list-item:hover div {
   color: white;
 }
 
@@ -280,7 +287,9 @@ body::-webkit-scrollbar {
   color: #2dbe60;
 }
 
-.new-note-link:active, .new-note-link:hover, .new-note-link:focus {
+.new-note-link:active,
+.new-note-link:hover,
+.new-note-link:focus {
   color: #2dbe60;
 }
 
@@ -319,19 +328,76 @@ body::-webkit-scrollbar {
   border-right: 1px solid #ececec;
 }
 
-/* Sidebar Index */
+/* Full Screen Modal */
 
-.sidebar-list {
+.fs-modal {
+  background: #ffff;
+  position: fixed;
+  z-index: 1;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide-fs-modal {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.show-fs-modal {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Delete Modal */
+
+.delete-modal-header {
+  color: #878787;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.delete-modal-warning {
+  color: #383838;
+  font-size: 32px;
+  margin: 40px 0;
+}
+
+.delete-modal-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.btn-cancel {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.empty-space {
+  width: 25px;
+}
+/* Notebook Index */
+
+.notebook-list-item {
+  border-bottom: 1px solid #ececec;
   padding: 20px;
 }
 
-.sidebar-list-item {
-  border-bottom: 1px solid #ececec;
-  padding-bottom: 20px;
-}
-
-.sidebar-item-title {
-  color: #878787;
+.notebook-item-title {
+  color: #4a4a4a;
   font-family: 'Times New Roman', Times, serif;
   font-size: 16px;
   font-weight: 400;

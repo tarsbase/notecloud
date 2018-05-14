@@ -18,3 +18,4 @@ export const openTagsModal = () => ({
 export const closeTagsModal = () => ({
   type: CLOSE_TAGS_MODAL
 });
+

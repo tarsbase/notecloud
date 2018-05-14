@@ -1,6 +1,6 @@
 import React from 'react';
 import NoteIndexContainer from './note_index_container';
-import NoteFormContainer from './note_form_contianer';
+import NoteFormContainer from './note_form_container';
 import SidebarNavContainer from '../nav/sidebar_nav_container';
 import SidebarIndexContainer from '../sidebar/sidebar_index_container';
 
@@ -11,7 +11,6 @@ export default class Notes extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllNotebooks();
     this.props.getAllTags();
   }
 
