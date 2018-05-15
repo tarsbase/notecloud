@@ -4,7 +4,6 @@ export default class NoteForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { note: this.props.note, modalIsOpen: false };
-    console.log(this.state);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.openModal = this.openModal.bind(this);
