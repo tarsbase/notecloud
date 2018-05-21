@@ -4,7 +4,19 @@ import NoteIndexItem from './note_index_item';
 export default class NoteIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { page: 1 };
+    this.state = { noteIndexIsVisible: true };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.noteIndexIsVisible !== nextProps.noteIndexIsVisible) {
+      if (nextProps.noteIndexIsVisible) {
+        setTimeout( () => {
+          this.setState({ noteIndexIsVisible: true });
+        }, 600);
+      } else {
+        this.setState({noteIndexIsVisible: false });
+      }
+    }
   }
 
   componentDidMount() {
@@ -13,7 +25,7 @@ export default class NoteIndex extends React.Component {
 
   render() {
     const noteIndexClasses = ['notes-index-container'];
-    if (this.props.noteIndexIsVisible) {
+    if (this.state.noteIndexIsVisible) {
       noteIndexClasses.push('show');
     } else {
       noteIndexClasses.push('hide');
