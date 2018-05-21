@@ -39,7 +39,7 @@ export default class NavButton extends React.Component {
           className={this.props.classes.join(' ')}
           onClick={this.handleClick}
         />
-        <div className={tooltipClasses.join(' ')}>{this.props.type}</div>
+        <div className={tooltipClasses.join(' ')}>{this.props.type.toUpperCase()}</div>
       </div>
     );
   }

@@ -7,7 +7,8 @@ import {
 
 const mapStateToProps = (state, ownProps) => ({
   notes: Object.values(state.notes),
-  deleteModalIsOpen: state.ui.deleteModalIsOpen
+  deleteModalIsOpen: state.ui.deleteModalIsOpen,
+  noteIndexIsVisible: state.ui.noteIndexIsVisible
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

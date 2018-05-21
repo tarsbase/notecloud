@@ -47,13 +47,13 @@ export default class Notes extends React.Component {
     return (
       <div className="notes-page">
         <SidebarNavContainer />
+        <NoteIndexContainer />
         <div className={notebookClasses.join(' ')} onClick={this.handleClick}>
           <SidebarIndexContainer type="notebooks" />
         </div>
         <div className={tagClasses.join(' ')} onClick={this.handleClick}>
           <SidebarIndexContainer type="tags" />
         </div>
-        <NoteIndexContainer />
         <NoteFormContainer />
       </div>
     );

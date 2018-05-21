@@ -7,7 +7,8 @@ import {
 
 const defaultState = {
   notebooksModalIsOpen: false,
-  tagsModalIsOpen: false
+  tagsModalIsOpen: false,
+  noteIndexIsVisible: true
 };
 
 const UIReducer = (oldState = defaultState, action) => {
@@ -17,16 +18,20 @@ const UIReducer = (oldState = defaultState, action) => {
     case OPEN_NOTEBOOKS_MODAL:
       newState.tagsModalIsOpen = false;
       newState.notebooksModalIsOpen = true;
+      newState.noteIndexIsVisible = false;
       return newState;
-    case CLOSE_NOTEBOOKS_MODAL:
+      case CLOSE_NOTEBOOKS_MODAL:
       newState.notebooksModalIsOpen = false;
+      newState.noteIndexIsVisible = true;
       return newState;
     case OPEN_TAGS_MODAL:
       newState.notebooksModalIsOpen = false;
       newState.tagsModalIsOpen = true;
+      newState.noteIndexIsVisible = false;
       return newState;
     case CLOSE_TAGS_MODAL:
       newState.tagsModalIsOpen = false;
+      newState.noteIndexIsVisible = true;
       return newState;
     default:
       return oldState;
