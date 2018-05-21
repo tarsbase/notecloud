@@ -32,7 +32,7 @@ export default class Notes extends React.Component {
 
   render() {
     const { notebooksModalIsOpen, tagsModalIsOpen } = this.props;
-    const notebookClasses = ['sidebar-modal'];
+    const notebookClasses = ['sidebar-modal', 'notebooks-modal'];
     const tagClasses = ['sidebar-modal'];
     if (notebooksModalIsOpen) {
       notebookClasses.push('open-sidebar-modal');

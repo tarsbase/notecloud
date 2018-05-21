@@ -332,13 +332,15 @@ body::-webkit-scrollbar {
 /* Sidebar Modal */
 
 .sidebar-modal {
-  /* position: fixed; */
   z-index: 1;
   overflow: hidden;
   top: 0;
-  margin-left: 75px;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.6);
+}
+
+.notebooks-modal {
+  margin-left: 75px;
 }
 
 .hide-sidebar-modal {
