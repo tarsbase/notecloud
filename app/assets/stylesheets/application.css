@@ -49,7 +49,7 @@ body::-webkit-scrollbar {
 .notes-index-container {
   height: 100%;
   width: 250px;
-  margin-left: 75px;
+  /* margin-left: 75px; */
 }
 
 .sidebar-header {
@@ -261,7 +261,7 @@ body::-webkit-scrollbar {
   justify-content: space-between;
   text-align: center;
   padding: 10px;
-  position: fixed;
+  /* position: fixed; */
 }
 
 .nav-btn {
@@ -271,7 +271,7 @@ body::-webkit-scrollbar {
 .tooltip-text {
   position: absolute;
   width: 100px;
-  z-index: 99;
+  z-index: 2;
   background: #8a8686;
   color: white;
   left: 54px;
@@ -291,6 +291,7 @@ body::-webkit-scrollbar {
 
 .show-tooltip {
   visibility: visible;
+  z-index: 999;
   opacity: 1;
   transition: all 0.4s ease-in-out;
 }
@@ -335,13 +336,15 @@ body::-webkit-scrollbar {
   overflow: hidden;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.6);
+  z-index: 1;
 }
 
 .notebooks-modal {
-  margin-left: 75px;
+  /* margin-left: 75px; */
 }
 
 .hide-sidebar-modal {
+  /* z-index: 0; */
   width: 0px;
   transition: all 0.5s ease-in-out;
 }
