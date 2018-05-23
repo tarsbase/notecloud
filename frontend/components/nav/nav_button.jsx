@@ -16,12 +16,14 @@ export default class NavButton extends React.Component {
   }
 
   showTooltip() {
+    this.props.showTooltip();
     this.timeout = setTimeout(() => {
       this.setState({showTooltip: true});
     }, 1000);
   }
   
   hideTooltip() {
+    this.props.hideTooltip();
     clearTimeout(this.timeout);
     this.setState({showTooltip: false});
   }

@@ -2,12 +2,15 @@ import {
   OPEN_NOTEBOOKS_MODAL,
   CLOSE_NOTEBOOKS_MODAL,
   OPEN_TAGS_MODAL,
-  CLOSE_TAGS_MODAL
+  CLOSE_TAGS_MODAL,
+  SHOW_TOOLTIP,
+  HIDE_TOOLTIP
 } from '../actions/ui_actions';
 
 const defaultState = {
   notebooksModalIsOpen: false,
-  tagsModalIsOpen: false
+  tagsModalIsOpen: false,
+  tooltipHidden: true
 };
 
 const UIReducer = (oldState = defaultState, action) => {
@@ -27,6 +30,12 @@ const UIReducer = (oldState = defaultState, action) => {
       return newState;
     case CLOSE_TAGS_MODAL:
       newState.tagsModalIsOpen = false;
+      return newState;
+    case SHOW_TOOLTIP:
+      newState.tooltipHidden = false;
+      return newState;
+    case HIDE_TOOLTIP:
+      newState.tooltipHidden = true;
       return newState;
     default:
       return oldState;

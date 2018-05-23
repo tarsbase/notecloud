@@ -9,8 +9,12 @@ export default class SidebarNav extends React.Component {
 
   render() {
     const { notebooksModalIsOpen, tagsModalIsOpen } = this.props;
+    const sidebarNavClasses = ['sidebar-nav'];
+    if (this.props.tooltipHidden) {
+      sidebarNavClasses.push('fixed');
+    }
     return (
-      <div className="sidebar-nav">
+      <div className={sidebarNavClasses.join(' ')}>
         <div>
           <Link to="/notes" className="fa fa-plus-circle fa-2x new-note-link"></Link>
         </div>

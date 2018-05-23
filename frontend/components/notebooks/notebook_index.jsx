@@ -18,6 +18,6 @@ export default class NotebookIndex extends React.Component {
         deleteNotebook={this.props.deleteNotebook}
       />
     ));
-    return <ul>{notebooks}</ul>;
+    return <ul className="sidebar-modal-list">{notebooks}</ul>;
   }
 }

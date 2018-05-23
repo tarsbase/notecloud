@@ -49,10 +49,16 @@ body::-webkit-scrollbar {
 .notes-index-container {
   height: 100%;
   width: 250px;
-  /* margin-left: 75px; */
+}
+
+.left-margin {
+  margin-left: 75px;
 }
 
 .sidebar-header {
+  background: white;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -263,6 +269,10 @@ body::-webkit-scrollbar {
   padding: 10px;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .nav-btn {
   position: relative;
 }
@@ -333,6 +343,8 @@ body::-webkit-scrollbar {
 
 .sidebar-modal {
   position: fixed;
+  top: 0;
+  bottom: 0;
   left: 75px;
   overflow: hidden;
   height: 100%;
@@ -355,6 +367,15 @@ body::-webkit-scrollbar {
   height: 100%;
   background-color: white;
   border-right: 1px solid #ececec;
+}
+
+.sidebar-modal-list {
+  overflow: auto;
+  max-height: 98%;
+}
+
+.sidebar-modal-list::-webkit-scrollbar {
+  display: none;
 }
 
 .hide {
@@ -415,7 +436,6 @@ body::-webkit-scrollbar {
   flex-direction: row;
   justify-content: center;
 }
-
 
 .btn-cancel {
   color: #fff;

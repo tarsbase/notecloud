@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import NavButton from './nav_button';
 import { navButtonSelector } from '../../selectors/nav_button_selectors';
-
+import { showTooltip, hideTooltip } from '../../actions/ui_actions';
+ 
 const mapStateToProps = (state, ownProps) => {
   const { classes, type } = navButtonSelector(ownProps);
   return {
@@ -15,7 +16,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { action } = navButtonSelector(ownProps);
   return {
-    action: () => dispatch(action())
+    action: () => dispatch(action()),
+    showTooltip: () => dispatch(showTooltip()),
+    hideTooltip: () => dispatch(hideTooltip())
   };
 };
 
