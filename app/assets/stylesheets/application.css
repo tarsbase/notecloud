@@ -261,7 +261,6 @@ body::-webkit-scrollbar {
   justify-content: space-between;
   text-align: center;
   padding: 10px;
-  /* position: fixed; */
 }
 
 .nav-btn {
@@ -333,18 +332,15 @@ body::-webkit-scrollbar {
 /* Sidebar Modal */
 
 .sidebar-modal {
+  position: fixed;
+  left: 75px;
   overflow: hidden;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.6);
   z-index: 1;
 }
 
-.notebooks-modal {
-  /* margin-left: 75px; */
-}
-
 .hide-sidebar-modal {
-  /* z-index: 0; */
   width: 0px;
   transition: all 0.5s ease-in-out;
 }
