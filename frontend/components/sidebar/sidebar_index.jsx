@@ -1,5 +1,4 @@
 import React from 'react';
-import SidebarIndexItem from './sidebar_index_item';
 import NotebooksIndexContainer from '../notebooks/notebook_index_container';
 import TagIndexContainer from '../tags/tag_index_container';
 
@@ -46,13 +45,6 @@ export default class SidebarIndex extends React.Component {
     } else {
       modalClasses.push('hide-fs-modal');
     }
-    const entities = this.props.entities.map(entity => (
-      <SidebarIndexItem
-        key={entity.id}
-        entity={entity}
-        type={this.props.type}
-      />
-    ));
     return (
       <div className="sidebar-index">
         <div className="sidebar-header">
@@ -68,6 +60,7 @@ export default class SidebarIndex extends React.Component {
               <div>CREATE {singularName}</div>
             </div>
             <input
+              className="fs-modal-input"
               type="text"
               value={this.state.entityName}
               placeholder={`Title your ${singularName.toLowerCase()}`}
@@ -75,14 +68,14 @@ export default class SidebarIndex extends React.Component {
             />
             <div className="fs-modal-btns">
               <div
-                className="btn btn-cancel delete-modal-btn"
+                className="btn btn-cancel fs-modal-btn"
                 onClick={this.closeModal}
               >
                 Cancel
               </div>
               <div className="empty-space" />
-              <div className="btn btn-success" onClick={this.handleClick}>
-                CREATE {singularName}
+              <div className="btn btn-success fs-modal-btn" onClick={this.handleClick}>
+                Create {singularName.toLowerCase()}
               </div>
             </div>
           </div>

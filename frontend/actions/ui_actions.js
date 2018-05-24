@@ -4,8 +4,8 @@ export const OPEN_TAGS_MODAL = 'OPEN_TAGS_MODAL';
 export const CLOSE_TAGS_MODAL = 'CLOSE_TAGS_MODAL';
 export const SHOW_TOOLTIP = 'SHOW_TOOLTIP';
 export const HIDE_TOOLTIP = 'HIDE_TOOLTIP';
-export const OPEN_FS_MODAL = 'OPEN_FS_MODAL';
-export const CLOSE_FS_MODAL = 'CLOSE_FS_MODAL';
+export const OPEN_DELETE_MODAL = 'OPEN_DELETE_MODAL';
+export const CLOSE_DELETE_MODAL = 'CLOSE_DELETE_MODAL';
 
 export const openNotebooksModal = () => ({
   type: OPEN_NOTEBOOKS_MODAL
@@ -31,10 +31,12 @@ export const hideTooltip = () => ({
   type: HIDE_TOOLTIP
 });
 
-export const openFsModal = () => ({
-  type: OPEN_FS_MODAL
+export const openDeleteModal = (entityType, entity) => ({
+  type: OPEN_DELETE_MODAL,
+  entity,
+  entityType
 });
 
-export const closeFsModal = () => ({
-  type: CLOSE_FS_MODAL
+export const closeDeleteModal = () => ({
+  type: CLOSE_DELETE_MODAL
 });

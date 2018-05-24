@@ -6,7 +6,8 @@ import { getAllTags } from '../../actions/tag_actions';
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   notebooksModalIsOpen: state.ui.notebooksModalIsOpen,
-  tagsModalIsOpen: state.ui.tagsModalIsOpen
+  tagsModalIsOpen: state.ui.tagsModalIsOpen,
+  deleteEntityType: state.ui.deleteEntityType
 });
 
 const mapDispatchToProps = dispatch => {

@@ -16,6 +16,7 @@ export default class NotebookIndex extends React.Component {
         key={notebook.id}
         notebook={notebook}
         deleteNotebook={this.props.deleteNotebook}
+        openDeleteModal={this.props.openDeleteModal}
       />
     ));
     return <ul className="sidebar-modal-list">{notebooks}</ul>;

@@ -3,6 +3,7 @@ import NoteIndexContainer from './note_index_container';
 import NoteFormContainer from './note_form_container';
 import SidebarNavContainer from '../nav/sidebar_nav_container';
 import SidebarIndexContainer from '../sidebar/sidebar_index_container';
+import DeleteModalContainer from '../modals/delete_modal_container';
 
 export default class Notes extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class Notes extends React.Component {
   }
 
   render() {
-    const { notebooksModalIsOpen, tagsModalIsOpen } = this.props;
+    const { notebooksModalIsOpen, tagsModalIsOpen, deleteEntityType } = this.props;
     const notebookClasses = ['sidebar-modal', 'notebooks-modal'];
     const tagClasses = ['sidebar-modal'];
     if (notebooksModalIsOpen) {
@@ -55,6 +56,7 @@ export default class Notes extends React.Component {
           <SidebarIndexContainer type="tags" />
         </div>
         <NoteFormContainer />
+        <DeleteModalContainer deleteEntityType={deleteEntityType}/>
       </div>
     );
   }
