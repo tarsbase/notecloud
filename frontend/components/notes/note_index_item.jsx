@@ -57,15 +57,15 @@ class NoteIndexItem extends React.Component {
           </div>
         </li>
         <div className={modalClasses.join(' ')}>
-          <div className="delete-modal-content">
-            <div className="delete-modal-header">
+          <div className="fs-modal-content">
+            <div className="fs-modal-header">
               <div className="fa fa-trash fa-2x" />
               <div>DELETE NOTE</div>
             </div>
             <div className="delete-modal-warning">
               Are you sure you want to delete {note.title}?
             </div>
-            <div className="delete-modal-btns">
+            <div className="fs-modal-btns">
               <div
                 className="btn btn-cancel delete-modal-btn"
                 onClick={this.closeModal}

@@ -11,9 +11,10 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const { fetchAction } = sidebarIndexSelector(null, ownProps);
+  const { fetchAction, createAction } = sidebarIndexSelector(null, ownProps);
   return {
-    fetchAction: () => dispatch(fetchAction())
+    fetchAction: () => dispatch(fetchAction()),
+    createAction: (entityName) => dispatch(createAction(entityName))
   };
 };
 

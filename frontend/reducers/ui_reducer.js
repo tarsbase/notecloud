@@ -4,13 +4,16 @@ import {
   OPEN_TAGS_MODAL,
   CLOSE_TAGS_MODAL,
   SHOW_TOOLTIP,
-  HIDE_TOOLTIP
+  HIDE_TOOLTIP,
+  OPEN_FS_MODAL,
+  CLOSE_FS_MODAL
 } from '../actions/ui_actions';
 
 const defaultState = {
   notebooksModalIsOpen: false,
   tagsModalIsOpen: false,
-  tooltipHidden: true
+  tooltipHidden: true,
+  fsModalIsOpen: false
 };
 
 const UIReducer = (oldState = defaultState, action) => {
@@ -36,6 +39,12 @@ const UIReducer = (oldState = defaultState, action) => {
       return newState;
     case HIDE_TOOLTIP:
       newState.tooltipHidden = true;
+      return newState;
+    case OPEN_FS_MODAL: 
+      newState.fsModalIsOpen = true;
+      return newState;
+    case CLOSE_FS_MODAL:
+      newState.fsModalIsOpen = false;
       return newState;
     default:
       return oldState;

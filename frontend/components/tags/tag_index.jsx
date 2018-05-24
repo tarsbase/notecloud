@@ -12,10 +12,7 @@ export default class TagIndex extends React.Component {
   }
 
   render() {
-    console.log(this.props.tags);
-    return <div>
-        <div>Tag Index</div>
-        <div>{}</div>
-      </div>;
+    const tags = this.props.tags.map( tag => <TagIndexItem key={tag.id} tag={tag}/>);
+    return <ul>{tags}</ul>;
   }
 }
