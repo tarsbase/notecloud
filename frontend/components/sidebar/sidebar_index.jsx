@@ -1,6 +1,7 @@
 import React from 'react';
 import SidebarIndexItem from './sidebar_index_item';
 import NotebooksIndexContainer from '../notebooks/notebook_index_container';
+import TagIndexContainer from '../tags/tag_index_container';
 
 export default class SidebarIndex extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class SidebarIndex extends React.Component {
           <h1>{this.props.type.toUpperCase()}</h1>
         </div>
           {this.props.type === 'notebooks' && <NotebooksIndexContainer/>}
-          
+          {this.props.type === 'tags' && <TagIndexContainer/>}
       </div>;
   }
 }

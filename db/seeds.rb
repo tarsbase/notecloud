@@ -5,6 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Notebook.destroy_all
+Note.destroy_all
+Tag.destroy_all
+Tagging.destroy_all
+
 
 4.times do 
   notebook = Notebook.new(
@@ -25,7 +30,7 @@ end
 
 12.times do 
   tag = Tag.new(
-    name: Faker::StarWars.specie,
+    name: Faker::StarWars.unique.specie,
     user_id: User.find_by(username: 'alex').id
   )
   tag.save!
