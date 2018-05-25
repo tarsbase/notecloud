@@ -5,7 +5,7 @@ export const selectState = (state, ownProps) => {
   let currentNotebook;
   if (ownProps.match.params.noteId) {
     note = state.notes[ownProps.match.params.noteId];
-    // currentNotebook = note.notebook.id;
+    currentNotebook = note.notebook;
   } else {
     note = { title: '', body: '' };
     currentNotebook = Object.values(state.notebooks).sort((a, b) => {

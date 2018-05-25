@@ -203,7 +203,7 @@ body::-webkit-scrollbar {
 }
 
 .note-notebook-name {
-  margin-left: 5px;
+  margin: 0 10px 0 5px;
 }
 
 .note-form-input {

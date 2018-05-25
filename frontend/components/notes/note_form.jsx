@@ -3,7 +3,7 @@ import React from 'react';
 export default class NoteForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { note: this.props.note };
+    this.state = { note: this.props.note, currentNotebook: this.props.currentNotebook };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -11,7 +11,7 @@ export default class NoteForm extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.note !== this.state.note) {
-      this.setState({ note: nextProps.note });
+      this.setState({ note: nextProps.note, currentNotebook: this.props.currentNotebook });
     }
   }
 
@@ -25,9 +25,10 @@ export default class NoteForm extends React.Component {
   }
 
   handleSubmit(e) {
+    console.log(this.state);
     e.preventDefault();
     const note = Object.assign({}, this.state.note);
-    note.notebook_id = note.notebook_id || this.props.currentNotebook.id;
+    note.notebook_id = note.notebook_id || this.state.currentNotebook.id;
     this.props.action(note);
   }
 
@@ -50,7 +51,7 @@ export default class NoteForm extends React.Component {
   }
 
   render() {
-    if (this.props.note) {
+    if (this.props.currentNotebook && this.props.note) {
       return (
         <div className="note-form-page">
           <div className="note-form-header">
@@ -67,9 +68,12 @@ export default class NoteForm extends React.Component {
               <div className="note-notebook-info">
                 <i className="fa fa-book" />
                 <div className="note-notebook-name">
-                  {this.props.note.notebook_name}
+                  {this.props.currentNotebook.name}
                 </div>
-                <div className="note-tags" />
+                <div className="note-tags">
+                  <i className="fa fa-tag"/>
+
+                </div>
               </div>
             </div>
           </div>
