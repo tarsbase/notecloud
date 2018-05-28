@@ -1,6 +1,4 @@
 import React from 'react';
-import NotebooksIndexContainer from '../notebooks/notebook_index_container';
-import TagIndexContainer from '../tags/tag_index_container';
 import NotebookIndexItem from '../notebooks/notebook_index_item';
 import TagIndexItem from '../tags/tag_index_item';
 
