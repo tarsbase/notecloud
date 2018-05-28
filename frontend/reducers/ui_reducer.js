@@ -3,10 +3,15 @@ import {
   CLOSE_NOTEBOOKS_MODAL,
   OPEN_TAGS_MODAL,
   CLOSE_TAGS_MODAL,
+  OPEN_SIDEBAR_MODAL,
+  CLOSE_SIDEBAR_MODAL,
   SHOW_TOOLTIP,
   HIDE_TOOLTIP,
   OPEN_DELETE_MODAL,
-  CLOSE_DELETE_MODAL
+  CLOSE_DELETE_MODAL,
+  TOGGLE_NOTEBOOKS_DROPDOWN,
+  CLOSE_NOTEBOOKS_DROPDOWN,
+  SET_CURRENT_NOTEBOOK
 } from '../actions/ui_actions';
 
 const defaultState = {
@@ -15,7 +20,9 @@ const defaultState = {
   tooltipHidden: true,
   delteModalIsOpen: false,
   deleteEntityType: null,
-  deleteEntity: null
+  deleteEntity: null,
+  notebooksDropdownIsOpen: false,
+  currentNotebook: null
 };
 
 const UIReducer = (oldState = defaultState, action) => {
@@ -26,7 +33,7 @@ const UIReducer = (oldState = defaultState, action) => {
       newState.tagsModalIsOpen = false;
       newState.notebooksModalIsOpen = true;
       return newState;
-      case CLOSE_NOTEBOOKS_MODAL:
+    case CLOSE_NOTEBOOKS_MODAL:
       newState.notebooksModalIsOpen = false;
       return newState;
     case OPEN_TAGS_MODAL:
@@ -42,7 +49,7 @@ const UIReducer = (oldState = defaultState, action) => {
     case HIDE_TOOLTIP:
       newState.tooltipHidden = true;
       return newState;
-    case OPEN_DELETE_MODAL: 
+    case OPEN_DELETE_MODAL:
       newState.deleteModalIsOpen = true;
       newState.deleteEntity = action.entity;
       newState.deleteEntityType = action.entityType;
@@ -51,6 +58,15 @@ const UIReducer = (oldState = defaultState, action) => {
       newState.deleteModalIsOpen = false;
       newState.deleteEntity = null;
       newState.deleteEntityType = null;
+      return newState;
+    case TOGGLE_NOTEBOOKS_DROPDOWN:
+      newState.notebooksDropdownIsOpen = !newState.notebooksDropdownIsOpen;
+      return newState;
+    case CLOSE_NOTEBOOKS_DROPDOWN:
+      newState.notebooksDropdownIsOpen = false;
+      return newState;
+    case SET_CURRENT_NOTEBOOK:
+      newState.currentNotebook = action.notebook;
       return newState;
     default:
       return oldState;

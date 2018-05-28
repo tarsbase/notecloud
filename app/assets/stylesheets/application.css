@@ -49,6 +49,7 @@ body::-webkit-scrollbar {
 .notes-index-container {
   height: 100%;
   width: 250px;
+  
 }
 
 .left-margin {
@@ -189,21 +190,26 @@ body::-webkit-scrollbar {
 }
 
 .note-form-bottom-header {
+  display: flex;
+  flex-direction: row;
   margin-bottom: 10px;
 }
 
 .note-notebook-info {
-  width: 70px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  max-width: 190px;
   white-space: nowrap;
   text-overflow: ellipsis;
+  margin-right: 20px;
 }
 
 .note-notebook-name {
-  margin: 0 10px 0 5px;
+  margin: 0 5px;
+}
+
+.fa-angle-down:hover {
+  cursor: pointer;
 }
 
 .note-form-input {
@@ -421,7 +427,6 @@ body::-webkit-scrollbar {
 
 /* Delete Modal */
 
-
 .fs-modal-header {
   color: #878787;
   height: 80px;
@@ -445,17 +450,17 @@ body::-webkit-scrollbar {
   outline: none;
 }
 
-.fs-modal-input::placeholder { 
-    color: #c4c4c4;
-    opacity: 1; 
+.fs-modal-input::placeholder {
+  color: #c4c4c4;
+  opacity: 1;
 }
 
-.fs-modal-input:-ms-input-placeholder { 
-    color: #c4c4c4;
+.fs-modal-input:-ms-input-placeholder {
+  color: #c4c4c4;
 }
 
-.fs-modal-input::-ms-input-placeholder { 
-    color: #c4c4c4;
+.fs-modal-input::-ms-input-placeholder {
+  color: #c4c4c4;
 }
 
 .fs-modal-btns {
@@ -502,3 +507,24 @@ body::-webkit-scrollbar {
   font-size: 11px;
   font-weight: 500;
 }
+
+/* Notebooks Dropdown */
+
+.notebooks-dropdown {
+  background: white;
+  height: 470px;
+  width: 365px;
+  position: absolute;
+  z-index: 1;
+  border-top: 1px solid #ececec;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04), -6px 8px 15px rgba(0, 0, 0, 0.04),
+    6px 8px 15px rgba(0, 0, 0, 0.04);
+  top: 94px;
+  left: 40px;
+}
+
+.selected-notebook, .selected-check { 
+  color: #2dbe60;
+}
+
+

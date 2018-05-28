@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class NavButton extends React.Component {
   constructor(props) {
@@ -36,13 +37,13 @@ export default class NavButton extends React.Component {
       tooltipClasses.push('hide-tooltip');
     }
     return (
-      <div className="nav-btn" onMouseEnter={this.showTooltip} onMouseLeave={this.hideTooltip}>
+      <Link to={this.props.linkPath} className="nav-btn" onMouseEnter={this.showTooltip} onMouseLeave={this.hideTooltip}>
         <i
           className={this.props.classes.join(' ')}
           onClick={this.handleClick}
         />
         <div className={tooltipClasses.join(' ')}>{this.props.type.toUpperCase()}</div>
-      </div>
+      </Link>
     );
   }
 }

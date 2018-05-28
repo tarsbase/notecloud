@@ -12,12 +12,16 @@ class Api::NotesController < ApplicationController
   end 
 
   def index 
-    @notes = current_user.notes
+    if params[:notebook_id] 
+      @notes = current_user.notebooks.includes(:notes).find(params[:notebook_id]).notes
+    else 
+      @notes = current_user.notes
+    end 
     render :index
   end 
 
   def show
-    @note = current_user.notes.find(params[:id]).includes(:notebook)
+    @note = current_user.notes.includes(:notebook).find(params[:id])
 
     if @note 
       render :show
@@ -54,6 +58,6 @@ class Api::NotesController < ApplicationController
   private 
 
   def note_params
-    params.require(:note).permit(:title, :body, :notebook_id)
+    params.require(:note).permit(:title, :body, :notebook_id, :tag_id)
   end
 end

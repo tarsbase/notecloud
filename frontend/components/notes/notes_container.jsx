@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => {
   return {
     closeNotebooksModal: () => dispatch(closeNotebooksModal()),
     closeTagsModal: () => dispatch(closeTagsModal()),
-    getAllTags: () => dispatch(getAllTags())
+    getAllTags: () => dispatch(getAllTags()),
   };
 };
 

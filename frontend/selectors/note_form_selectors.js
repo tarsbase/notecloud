@@ -5,16 +5,18 @@ export const selectState = (state, ownProps) => {
   let currentNotebook;
   if (ownProps.match.params.noteId) {
     note = state.notes[ownProps.match.params.noteId];
-    currentNotebook = note.notebook;
   } else {
-    note = { title: '', body: '' };
     currentNotebook = Object.values(state.notebooks).sort((a, b) => {
       a = new Date(a.updated_at);
       b = new Date(b.updated_at);
       return b - a;
     })[0];
+    note = { title: '', body: '', notebook: currentNotebook };
   }
-  return { note, currentNotebook };
+  if (note) {
+    note.notebook = state.ui.currentNotebook || note.notebook;
+  }
+  return note;
 };
 
 export const selectAction = ownProps => {

@@ -1,17 +1,30 @@
 import React from 'react';
+import NotebooksDropdownContainer from '../modals/notebooks_dropdown_container';
 
 export default class NoteForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { note: this.props.note, currentNotebook: this.props.currentNotebook };
+    this.state = {
+      note: this.props.note
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.openDropdown = this.openDropdown.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.note !== this.state.note) {
-      this.setState({ note: nextProps.note, currentNotebook: this.props.currentNotebook });
+      this.setState({
+        note: nextProps.note
+      });
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.match.params.noteId) {
+      console.log('hi');
+      this.props.getNote(this.props.match.params.noteId);
     }
   }
 
@@ -28,7 +41,7 @@ export default class NoteForm extends React.Component {
     console.log(this.state);
     e.preventDefault();
     const note = Object.assign({}, this.state.note);
-    note.notebook_id = note.notebook_id || this.state.currentNotebook.id;
+    note.notebook_id = note.notebook_id || this.props.note.notebook.id;
     this.props.action(note);
   }
 
@@ -43,15 +56,20 @@ export default class NoteForm extends React.Component {
 
   handleDelete(e) {
     e.preventDefault();
-    this.props.deleteNote(this.props.note.id); 
+    this.props.deleteNote(this.props.note.id);
     this.closeModal();
     setTimeout(() => {
-      this.props.history.push("/notes");
+      this.props.history.push('/notes');
     }, 400);
   }
 
+  openDropdown(e) {
+    e.preventDefault();
+    this.props.toggleNotebooksDropdown();
+  }
+
   render() {
-    if (this.props.currentNotebook && this.props.note) {
+    if (this.props.note && this.props.note.notebook) {
       return (
         <div className="note-form-page">
           <div className="note-form-header">
@@ -68,15 +86,19 @@ export default class NoteForm extends React.Component {
               <div className="note-notebook-info">
                 <i className="fa fa-book" />
                 <div className="note-notebook-name">
-                  {this.props.currentNotebook.name}
+                  {this.props.note.notebook.name}
                 </div>
-                <div className="note-tags">
-                  <i className="fa fa-tag"/>
-
-                </div>
+                <i className="fa fa-angle-down" onClick={this.openDropdown} />
+              </div>
+              <div className="note-tags">
+                <i className="fa fa-tag" />
               </div>
             </div>
           </div>
+          <NotebooksDropdownContainer
+            note={this.state.note}
+            currentNotebook={this.props.note.notebook}
+          />
           <form className="note-form">
             <div className="form-group">
               <input

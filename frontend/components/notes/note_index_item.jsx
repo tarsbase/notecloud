@@ -14,8 +14,15 @@ class NoteIndexItem extends React.Component {
 
   render() {
     const { note } = this.props;
+    // console.log(this.props.match.params);
+    let linkPath;
+    if (this.props.match.params.notebookId) {
+      linkPath = `/notebooks/${this.props.match.params.notebookId}/notes/${note.id}`;
+    } else {
+      linkPath = `/notes/${note.id}`;
+    }
     return (
-      <Link to={`/notes/${note.id}`}>
+      <Link to={linkPath}>
         <li className="note-list-item list-item">
           <div className="list-item-header">
             <div className="note-list-item-info note-title">{note.title}</div>

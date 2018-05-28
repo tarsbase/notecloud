@@ -47,7 +47,7 @@ export default class Notes extends React.Component {
     }
     return (
       <div className="notes-page">
-        <SidebarNavContainer />
+        <SidebarNavContainer/>
         <NoteIndexContainer />
         <div className={notebookClasses.join(' ')} onClick={this.handleClick}>
           <SidebarIndexContainer type="notebooks" />

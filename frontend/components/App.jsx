@@ -8,13 +8,25 @@ import NotesContainer from './notes/notes_container';
 const App = () => (
   <div>
     <Switch>
-      <AuthRoute path="/login" component={SessionFormContainer} />
-      <AuthRoute path="/signup" component={SessionFormContainer} />
-      <ProtectedRoute path="/notes/:noteId?" component={NotesContainer}/>
-      <AuthRoute path="/" component={Main} />
+      <AuthRoute exact path="/login" component={SessionFormContainer} />
+      <AuthRoute exact path="/signup" component={SessionFormContainer} />
+      <ProtectedRoute exact path="/notes/:noteId" component={NotesContainer} />
+      <ProtectedRoute exact path="/notes" component={NotesContainer} />
+      <ProtectedRoute
+        exact
+        path="/notebooks/:notebookId/notes/:noteId"
+        component={NotesContainer}
+      />
+      <ProtectedRoute
+        exact
+        path="/notebooks/:notebookId/notes"
+        component={NotesContainer}
+      />
+      <ProtectedRoute exact path="/notebooks" component={NotesContainer} />
+      <ProtectedRoute exact path="/tags" component={NotesContainer} />
+      <AuthRoute exact path="/" component={Main} />
     </Switch>
   </div>
 );
 
 export default App;
- 

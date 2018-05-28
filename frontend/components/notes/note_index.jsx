@@ -6,8 +6,14 @@ export default class NoteIndex extends React.Component {
     super(props);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.getArg !== nextProps.getArg) {
+      nextProps.getAction(nextProps.getArg);
+    }
+  }
+
   componentDidMount() {
-    this.props.getAllNotes();
+    this.props.getAction(this.props.getArg);
   }
 
   render() {

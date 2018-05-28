@@ -20,7 +20,7 @@ const NotebookReducer = (oldState = {}, action) => {
       return newState;
     case RECEIVE_NOTE:
       notebook = newState[action.note.notebook.id];
-      if (!notebook.notes.includes(action.note.id)) {
+      if (notebook && !notebook.notes.includes(action.note.id)) {
         notebook.notes.push(action.note.id);
       }
       return newState;

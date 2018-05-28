@@ -6,6 +6,10 @@ export const SHOW_TOOLTIP = 'SHOW_TOOLTIP';
 export const HIDE_TOOLTIP = 'HIDE_TOOLTIP';
 export const OPEN_DELETE_MODAL = 'OPEN_DELETE_MODAL';
 export const CLOSE_DELETE_MODAL = 'CLOSE_DELETE_MODAL';
+export const TOGGLE_NOTEBOOKS_DROPDOWN = 'TOGGLE_NOTEBOOKS_DROPDOWN';
+export const CLOSE_NOTEBOOKS_DROPDOWN = 'CLOSE_NOTEBOOKS_DROPDOWN';
+export const SET_CURRENT_NOTEBOOK = 'SET_CURRENT_NOTEBOOK';
+
 
 export const openNotebooksModal = () => ({
   type: OPEN_NOTEBOOKS_MODAL
@@ -39,4 +43,17 @@ export const openDeleteModal = (entityType, entity) => ({
 
 export const closeDeleteModal = () => ({
   type: CLOSE_DELETE_MODAL
+});
+
+export const toggleNotebooksDropdown = () => ({
+  type: TOGGLE_NOTEBOOKS_DROPDOWN
+});
+
+export const closeNotebooksDropdown = () => ({
+  type: CLOSE_NOTEBOOKS_DROPDOWN
+});
+
+export const setCurrentNotebook = (notebook) => ({
+  type: SET_CURRENT_NOTEBOOK,
+  notebook
 });
