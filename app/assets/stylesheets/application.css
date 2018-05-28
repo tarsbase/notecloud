@@ -508,6 +508,10 @@ body::-webkit-scrollbar {
   font-weight: 500;
 }
 
+.list-item:hover {
+  cursor: pointer;
+}
+
 /* Notebooks Dropdown */
 
 .notebooks-dropdown {

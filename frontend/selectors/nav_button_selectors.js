@@ -30,13 +30,13 @@ export const navButtonSelector = ownProps => {
     case 'notes':
       classes.push('fa-sticky-note');
       classes.push('nav-icon');
+      linkPath = `/notes`;
       if (ownProps.notebooksModalIsOpen) {
         action = closeNotebooksModal;
       }
       if (ownProps.tagsModalIsOpen) {
         action = closeTagsModal;
       }
-      linkPath = `/notes`;
       type = 'Notes';
       break;
     case 'notebooks':
@@ -44,22 +44,24 @@ export const navButtonSelector = ownProps => {
       classes.push('nav-icon');
       if (ownProps.notebooksModalIsOpen) {
         action = closeNotebooksModal;
+        linkPath = '/notes';
       } else {
         action = openNotebooksModal;
+        linkPath = '/notebooks';
       }
       type = 'Notebooks';
-      linkPath = '/notebooks';
       break;
     case 'tags':
       classes.push('fa-tag');
       classes.push('nav-icon');
       if (ownProps.tagsModalIsOpen) {
         action = closeTagsModal;
+        linkPath = '/notes';
       } else {
         action = openTagsModal;
+        linkPath = '/tags';
       }
       type = 'Tags';
-      linkPath = '/tags';
       break;
     case 'logout':
       classes.push('fa-sign-out');

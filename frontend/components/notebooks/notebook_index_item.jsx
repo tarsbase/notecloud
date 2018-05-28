@@ -10,6 +10,9 @@ class NotebookIndexItem extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
+    if (e.target.classList.contains('list-item-trash')) {
+      return;
+    }
     const { setCurrentNotebook, notebook, updateNote, note } = this.props;
     if (setCurrentNotebook) {
       if (note.id) {

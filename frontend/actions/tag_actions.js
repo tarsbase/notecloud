@@ -32,3 +32,6 @@ export const updateTag = tag => dispatch =>
   TagApiUtil.updateTag(tag).then(updatedTag =>
     dispatch(receiveTag(updatedTag))
   );
+
+export const deleteTag = id => dispatch =>
+  TagApiUtil.deleteTag(id).then(tag => dispatch(removeTag(tag)));

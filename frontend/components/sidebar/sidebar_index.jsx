@@ -1,6 +1,8 @@
 import React from 'react';
 import NotebooksIndexContainer from '../notebooks/notebook_index_container';
 import TagIndexContainer from '../tags/tag_index_container';
+import NotebookIndexItem from '../notebooks/notebook_index_item';
+import TagIndexItem from '../tags/tag_index_item';
 
 export default class SidebarIndex extends React.Component {
   constructor(props) {
@@ -10,6 +12,10 @@ export default class SidebarIndex extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchAction();
   }
 
   openModal(e) {
@@ -36,6 +42,20 @@ export default class SidebarIndex extends React.Component {
   }
 
   render() {
+    let entities;
+    if (this.props.type === 'notebooks') {
+      entities = this.props.entities.map( entity => (
+        <NotebookIndexItem
+          key={entity.id}
+          notebook={entity}
+          deleteNotebook={this.props.deleteAction}
+          openDeleteModal={this.props.openDeleteModal}
+          closeNotebooksModal={this.props.closeModal}
+        />
+      ));
+    } else {
+      entities = this.props.entities.map( entity => <TagIndexItem key={entity.id} tag={entity}/>);
+    }
     const singularName = this.props.type
       .toUpperCase()
       .slice(0, this.props.type.length - 1);
@@ -51,8 +71,7 @@ export default class SidebarIndex extends React.Component {
           <h1>{this.props.type.toUpperCase()}</h1>
           <i className="fa fa-plus sidebar-plus" onClick={this.openModal} />
         </div>
-        {this.props.type === 'notebooks' && <NotebooksIndexContainer />}
-        {this.props.type === 'tags' && <TagIndexContainer />}
+        <ul>{entities}</ul>
         <div className={modalClasses.join(' ')}>
           <div className="fs-modal-content">
             <div className="fs-modal-header">

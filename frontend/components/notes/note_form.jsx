@@ -23,7 +23,6 @@ export default class NoteForm extends React.Component {
 
   componentDidMount() {
     if (this.props.match.params.noteId) {
-      console.log('hi');
       this.props.getNote(this.props.match.params.noteId);
     }
   }
@@ -38,7 +37,6 @@ export default class NoteForm extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log(this.state);
     e.preventDefault();
     const note = Object.assign({}, this.state.note);
     note.notebook_id = note.notebook_id || this.props.note.notebook.id;

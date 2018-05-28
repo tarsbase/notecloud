@@ -28,7 +28,7 @@ export const updateTag = tag => (
   })
 );
 
-export const destroyTag = id => (
+export const deleteTag = id => (
   $.ajax({
     method: 'DELETE',
     url: `api/tags/${id}`
