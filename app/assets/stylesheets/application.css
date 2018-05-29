@@ -302,6 +302,11 @@ body::-webkit-scrollbar {
   -moz-border-radius: 3px;
 }
 
+.new-note-link + .tooltip-text {
+  top: -7px;
+  left: 40px;
+}
+
 .hide-tooltip {
   visibility: hidden;
   opacity: 0;

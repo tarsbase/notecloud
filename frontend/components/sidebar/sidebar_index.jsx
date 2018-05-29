@@ -30,19 +30,19 @@ export default class SidebarIndex extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    const entity = {name: this.state.entityName};
+    const entity = { name: this.state.entityName };
     this.props.createAction(entity);
     this.closeModal();
   }
 
   handleChange() {
-    return e => this.setState({['entityName']: e.target.value});
+    return e => this.setState({ ['entityName']: e.target.value });
   }
 
   render() {
     let entities;
     if (this.props.type === 'notebooks') {
-      entities = this.props.entities.map( entity => (
+      entities = this.props.entities.map(entity => (
         <NotebookIndexItem
           key={entity.id}
           notebook={entity}
@@ -52,7 +52,9 @@ export default class SidebarIndex extends React.Component {
         />
       ));
     } else {
-      entities = this.props.entities.map( entity => <TagIndexItem key={entity.id} tag={entity}/>);
+      entities = this.props.entities.map(entity => (
+        <TagIndexItem key={entity.id} tag={entity} />
+      ));
     }
     const singularName = this.props.type
       .toUpperCase()
@@ -91,7 +93,10 @@ export default class SidebarIndex extends React.Component {
                 Cancel
               </div>
               <div className="empty-space" />
-              <div className="btn btn-success fs-modal-btn" onClick={this.handleClick}>
+              <div
+                className="btn btn-success fs-modal-btn"
+                onClick={this.handleClick}
+              >
                 Create {singularName.toLowerCase()}
               </div>
             </div>

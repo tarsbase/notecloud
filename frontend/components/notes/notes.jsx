@@ -12,6 +12,9 @@ export default class Notes extends React.Component {
   }
 
   componentDidMount() {
+    if (typeof this.props.openModal === 'function') {
+      this.props.openModal();
+    }
     this.props.getAllTags();
   }
 
@@ -32,7 +35,11 @@ export default class Notes extends React.Component {
   }
 
   render() {
-    const { notebooksModalIsOpen, tagsModalIsOpen, deleteEntityType } = this.props;
+    const {
+      notebooksModalIsOpen,
+      tagsModalIsOpen,
+      deleteEntityType
+    } = this.props;
     const notebookClasses = ['sidebar-modal', 'notebooks-modal'];
     const tagClasses = ['sidebar-modal'];
     if (notebooksModalIsOpen) {
@@ -47,7 +54,7 @@ export default class Notes extends React.Component {
     }
     return (
       <div className="notes-page">
-        <SidebarNavContainer/>
+        <SidebarNavContainer />
         <NoteIndexContainer />
         <div className={notebookClasses.join(' ')} onClick={this.handleClick}>
           <SidebarIndexContainer type="notebooks" />
@@ -56,7 +63,7 @@ export default class Notes extends React.Component {
           <SidebarIndexContainer type="tags" />
         </div>
         <NoteFormContainer />
-        <DeleteModalContainer deleteEntityType={deleteEntityType}/>
+        <DeleteModalContainer deleteEntityType={deleteEntityType} />
       </div>
     );
   }
