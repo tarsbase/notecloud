@@ -1,31 +1,22 @@
 import { connect } from 'react-redux';
 import NoteIndex from './note_index';
 import { withRouter } from 'react-router-dom';
-import { getAllNotes, getNotesByNotebookId } from '../../actions/note_actions';
 import { openDeleteModal } from '../../actions/ui_actions';
+import { noteIndexSelector } from '../../selectors/note_index_selectors';
 
 const mapStateToProps = (state, ownProps) => {
-  let getArg;
-  if (ownProps.match.params.notebookId) {
-    getArg = ownProps.match.params.notebookId;
-  } else {
-    getArg = null;
-  }
+  const { getArg, headerTitle } = noteIndexSelector(ownProps, state);
   return {
     notes: Object.values(state.notes),
     deleteModalIsOpen: state.ui.deleteModalIsOpen,
     tooltipHidden: state.ui.tooltipHidden,
-    getArg
+    getArg,
+    headerTitle
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  let getAction;
-  if (ownProps.match.params.notebookId) {
-    getAction = getNotesByNotebookId;
-  } else {
-    getAction = getAllNotes;
-  }
+  const { getAction, getNotebookAction } = noteIndexSelector(ownProps);
   return {
     getAction: id => dispatch(getAction(id)),
     openDeleteModal: (entityType, entity) =>

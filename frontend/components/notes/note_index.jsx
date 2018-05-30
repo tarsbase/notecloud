@@ -38,7 +38,7 @@ export default class NoteIndex extends React.Component {
     return (
       <div className={noteIndexClasses.join(' ')}>
         <div className="sidebar-header">
-          <h1>NOTES</h1>
+          <h1>{this.props.headerTitle}</h1>
           <h3>
             {notes.length} {noteMsg}
           </h3>

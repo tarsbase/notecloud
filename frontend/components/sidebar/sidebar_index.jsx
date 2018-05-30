@@ -19,6 +19,7 @@ export default class SidebarIndex extends React.Component {
   openModal(e) {
     e.preventDefault();
     this.setState({ modalIsOpen: true });
+    this.props.openCreateModal();
   }
 
   closeModal(e) {

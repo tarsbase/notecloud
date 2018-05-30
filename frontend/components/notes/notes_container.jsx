@@ -7,7 +7,7 @@ import {
   openNotebooksModal,
   openTagsModal
 } from '../../actions/ui_actions';
-import { getAllTags } from '../../actions/tag_actions';
+
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -21,14 +21,13 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   let openModal = null;
   if (ownProps.location.pathname === '/notebooks') {
-    openModal = dispatch(openNotebooksModal());
+    openModal = () => dispatch(openNotebooksModal());
   } else if (ownProps.location.pathname === '/tags') {
-    openModal = dispatch(openTagsModal());
+    openModal = () => dispatch(openTagsModal());
   }
   return {
     closeNotebooksModal: () => dispatch(closeNotebooksModal()),
     closeTagsModal: () => dispatch(closeTagsModal()),
-    getAllTags: () => dispatch(getAllTags()),
     openModal
   };
 };

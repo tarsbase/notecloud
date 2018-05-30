@@ -11,22 +11,23 @@ export default class NavButton extends React.Component {
     this.hideTooltip = this.hideTooltip.bind(this);
   }
 
-  handleClick() {
+  handleClick(e) {
     this.hideTooltip();
     this.props.action();
+    // this.props.history.push(this.props.linkPath);
   }
 
-  showTooltip() {
+  showTooltip(e) {
     this.props.showTooltip();
     this.timeout = setTimeout(() => {
-      this.setState({showTooltip: true});
+      this.setState({ showTooltip: true });
     }, 1000);
   }
-  
+
   hideTooltip() {
     this.props.hideTooltip();
     clearTimeout(this.timeout);
-    this.setState({showTooltip: false});
+    this.setState({ showTooltip: false });
   }
 
   render() {
@@ -37,12 +38,16 @@ export default class NavButton extends React.Component {
       tooltipClasses.push('hide-tooltip');
     }
     return (
-      <Link to={this.props.linkPath} className="nav-btn" onMouseEnter={this.showTooltip} onMouseLeave={this.hideTooltip}>
+      <Link to={this.props.linkPath} className="nav-btn">
         <i
+          onMouseEnter={this.showTooltip}
+          onMouseLeave={this.hideTooltip}
           className={this.props.classes.join(' ')}
           onClick={this.handleClick}
         />
-        <div className={tooltipClasses.join(' ')}>{this.props.type.toUpperCase()}</div>
+        <div className={tooltipClasses.join(' ')}>
+          {this.props.type.toUpperCase()}
+        </div>
       </Link>
     );
   }
