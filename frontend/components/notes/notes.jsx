@@ -30,6 +30,7 @@ export default class Notes extends React.Component {
       } else {
         closeTagsModal();
       }
+      this.props.history.push('/notes');
     }
   }
 

@@ -24,6 +24,7 @@ const App = () => (
       />
       <ProtectedRoute exact path="/notebooks" component={NotesContainer} />
       <ProtectedRoute exact path="/tags" component={NotesContainer} />
+      <ProtectedRoute exact path="/tags/:tagId/notes" component={NotesContainer} />
       <AuthRoute exact path="/" component={Main} />
     </Switch>
   </div>

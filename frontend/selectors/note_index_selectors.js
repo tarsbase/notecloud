@@ -1,4 +1,8 @@
-import { getAllNotes, getNotesByNotebookId } from '../actions/note_actions';
+import {
+  getAllNotes,
+  getNotesByNotebookId,
+  getNotesByTagId
+} from '../actions/note_actions';
 
 export const noteIndexSelector = (ownProps, state) => {
   let getArg;
@@ -10,6 +14,12 @@ export const noteIndexSelector = (ownProps, state) => {
     getAction = getNotesByNotebookId;
     if (state) {
       headerTitle = state.notebooks[ownProps.match.params.notebookId].name;
+    }
+  } else if (ownProps.match.params.tagId) {
+    getArg = ownProps.match.params.tagId;
+    getAction = getNotesByTagId;
+    if (state) {
+      headerTitle = state.tags[ownProps.match.params.tagId].name;
     }
   } else {
     getArg = null;

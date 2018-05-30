@@ -1,25 +1,27 @@
 import { connect } from 'react-redux';
 import SidebarIndex from './sidebar_index';
 import { sidebarIndexSelector } from '../../selectors/sidebar_index_selectors';
-import { openDeleteModal, openCreateModal } from '../../actions/ui_actions';
+import { openDeleteModal } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const { entities } = sidebarIndexSelector(state, ownProps);
-  return { 
-    type: ownProps.type, 
+  return {
+    type: ownProps.type,
     entities
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const { fetchAction, createAction, deleteAction, closeModal } = sidebarIndexSelector(null, ownProps);
+  const { fetchAction, createAction, closeModal } = sidebarIndexSelector(
+    null,
+    ownProps
+  );
   return {
     fetchAction: () => dispatch(fetchAction()),
-    createAction: (entityName) => dispatch(createAction(entityName)),
-    deleteAction: id => dispatch(deleteAction(id)),
+    createAction: entityName => dispatch(createAction(entityName)),
     closeModal: () => dispatch(closeModal()),
-    openDeleteModal: (entityType, entity) => dispatch(openDeleteModal(entityType, entity)),
-    openCreateModal: () => dispatch(openCreateModal())
+    openDeleteModal: (entityType, entity) =>
+      dispatch(openDeleteModal(entityType, entity)),
   };
 };
 

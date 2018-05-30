@@ -49,7 +49,6 @@ body::-webkit-scrollbar {
 .notes-index-container {
   height: 100%;
   width: 250px;
-  
 }
 
 .left-margin {
@@ -532,8 +531,47 @@ body::-webkit-scrollbar {
   left: 40px;
 }
 
-.selected-notebook, .selected-check { 
+.selected-notebook,
+.selected-check {
   color: #2dbe60;
 }
 
+/* Tag Index Item */
 
+.tag-list-item {
+  margin: 5px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  background-color: #f8f8f8; 
+  margin-right: 20px;
+}
+
+.tag:hover {
+  background-color: #2dbe60;  
+}
+
+.tag:hover div {
+  color: white;
+}
+
+.tag div {
+  font-size: 13px;
+  color: #4a4a4a;
+  margin-right: 20px;
+  float: left;
+}
+
+.tag-trash {
+  position: absolute;
+  margin-top: 5px;
+  color: #606060;
+}
+
+.tag-trash:hover {
+  cursor: pointer;
+}

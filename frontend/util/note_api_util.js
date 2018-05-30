@@ -19,6 +19,13 @@ export const fetchNotesByNotebook = notebookId => (
   })
 );
 
+export const fetchNotesByTag = tagId => (
+  $.ajax({
+    method: 'GET',
+    url: `api/tags/${tagId}/notes`
+  })
+);
+
 export const createNote = note => (
   $.ajax({
     method: 'POST',

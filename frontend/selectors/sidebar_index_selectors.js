@@ -10,7 +10,6 @@ export const sidebarIndexSelector = (state, ownProps) => {
   let entities;
   let fetchAction;
   let createAction;
-  let deleteAction;
   let closeModal;
   if (ownProps.type === 'notebooks') {
     if (state) {
@@ -18,7 +17,6 @@ export const sidebarIndexSelector = (state, ownProps) => {
     }
     fetchAction = getAllNotebooks;
     createAction = createNotebook;
-    deleteAction = deleteNotebook;
     closeModal = closeNotebooksModal;
   } else {
     if (state) {
@@ -26,8 +24,7 @@ export const sidebarIndexSelector = (state, ownProps) => {
     }
     fetchAction = getAllTags;
     createAction = createTag;
-    deleteAction = deleteTag;
     closeModal = closeTagsModal;
   }
-  return { entities, fetchAction, createAction, deleteAction, closeModal };
+  return { entities, fetchAction, createAction, closeModal };
 };

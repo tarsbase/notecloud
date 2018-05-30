@@ -4,7 +4,6 @@ export const RECEIVE_NOTE = 'RECEIVE_NOTE';
 export const RECEIVE_ALL_NOTES = 'RECEIVE_ALL_NOTES';
 export const REMOVE_NOTE = 'REMOVE_NOTE';
 
-
 const receiveNote = note => ({
   type: RECEIVE_NOTE,
   note
@@ -28,6 +27,11 @@ export const getNote = id => dispatch =>
 
 export const getNotesByNotebookId = notebookId => dispatch =>
   NoteApiUtil.fetchNotesByNotebook(notebookId).then(notes =>
+    dispatch(receiveAllNotes(notes))
+  );
+
+export const getNotesByTagId = tagId => dispatch =>
+  NoteApiUtil.fetchNotesByTag(tagId).then(notes =>
     dispatch(receiveAllNotes(notes))
   );
 

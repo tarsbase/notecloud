@@ -19,7 +19,6 @@ export default class SidebarIndex extends React.Component {
   openModal(e) {
     e.preventDefault();
     this.setState({ modalIsOpen: true });
-    this.props.openCreateModal();
   }
 
   closeModal(e) {
@@ -34,6 +33,7 @@ export default class SidebarIndex extends React.Component {
     const entity = { name: this.state.entityName };
     this.props.createAction(entity);
     this.closeModal();
+    this.setState({ entityName: ''});
   }
 
   handleChange() {
@@ -47,14 +47,18 @@ export default class SidebarIndex extends React.Component {
         <NotebookIndexItem
           key={entity.id}
           notebook={entity}
-          deleteNotebook={this.props.deleteAction}
           openDeleteModal={this.props.openDeleteModal}
           closeNotebooksModal={this.props.closeModal}
         />
       ));
     } else {
       entities = this.props.entities.map(entity => (
-        <TagIndexItem key={entity.id} tag={entity} />
+        <TagIndexItem
+          key={entity.id}
+          tag={entity}
+          openDeleteModal={this.props.openDeleteModal}
+          closeTagsModal={this.props.closeModal}
+        />
       ));
     }
     const singularName = this.props.type

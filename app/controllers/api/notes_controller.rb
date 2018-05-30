@@ -14,6 +14,8 @@ class Api::NotesController < ApplicationController
   def index 
     if params[:notebook_id] 
       @notes = current_user.notebooks.includes(:notes).find(params[:notebook_id]).notes
+    elsif params[:tag_id]
+      @notes = current_user.tags.includes(:notes).find(params[:tag_id]).notes
     else 
       @notes = current_user.notes
     end 
