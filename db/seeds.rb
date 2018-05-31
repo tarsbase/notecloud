@@ -36,6 +36,7 @@ end
   tag.save!
 end 
 
-Tag.all.each do |tag|
-  tagging = Tagging.new(tag_id: tag.id, note_id: User.find_by(username: 'alex').notes.order("RANDOM()").first.id)
+User.find_by(username: 'alex').tags.each do |tag|
+  tagging = Tagging.new(note_id: User.find_by(username: 'alex').notes.order('RANDOM()').limit(1).first.id, tag_id: tag.id)
+  tagging.save!
 end 
