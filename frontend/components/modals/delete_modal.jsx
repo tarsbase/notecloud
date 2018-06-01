@@ -35,7 +35,7 @@ export default class DeleteModal extends React.Component {
         <div className="fs-modal-content">
           <div className="fs-modal-header">
             <div className="fa fa-trash fa-2x" />
-            <div>DELETE NOTE</div>
+            <div>DELETE {this.props.titleType}</div>
           </div>
           <div className="delete-modal-warning">
             Are you sure you want to delete {title}?

@@ -11,12 +11,12 @@ export const selectState = (state, ownProps) => {
       b = new Date(b.updated_at);
       return b - a;
     })[0];
-    note = { title: '', body: '', notebook: currentNotebook };
+    note = { title: '', body: '', notebook: currentNotebook, tags: [] };
   }
   if (note) {
     note.notebook = state.ui.currentNotebook || note.notebook;
   }
-  return note;
+  return note ;
 };
 
 export const selectAction = ownProps => {

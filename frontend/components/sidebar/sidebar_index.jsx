@@ -33,7 +33,7 @@ export default class SidebarIndex extends React.Component {
     const entity = { name: this.state.entityName };
     this.props.createAction(entity);
     this.closeModal();
-    this.setState({ entityName: ''});
+    this.setState({ entityName: '' });
   }
 
   handleChange() {
@@ -76,7 +76,7 @@ export default class SidebarIndex extends React.Component {
           <h1>{this.props.type.toUpperCase()}</h1>
           <i className="fa fa-plus sidebar-plus" onClick={this.openModal} />
         </div>
-        <ul>{entities}</ul>
+        <ul className="sidebar-index-list">{entities}</ul>
         <div className={modalClasses.join(' ')}>
           <div className="fs-modal-content">
             <div className="fs-modal-header">

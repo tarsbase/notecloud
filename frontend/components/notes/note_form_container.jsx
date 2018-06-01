@@ -10,7 +10,9 @@ import { updateNote, getNote } from '../../actions/note_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const note = selectState(state, ownProps);
-  return { note };
+  return {
+    note
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -67,7 +67,10 @@ export default class NoteForm extends React.Component {
   }
 
   render() {
-    if (this.props.note && this.props.note.notebook) {
+    if (this.props.note && this.props.note.notebook && this.props.note.tags) {
+      const tags = this.props.note.tags.map(tag => (
+        <li className="tag" key={tag.id}>{tag.name}</li>
+      ));
       return (
         <div className="note-form-page">
           <div className="note-form-header">
@@ -90,6 +93,7 @@ export default class NoteForm extends React.Component {
               </div>
               <div className="note-tags">
                 <i className="fa fa-tag" />
+                <ul>{tags}</ul>
               </div>
             </div>
           </div>

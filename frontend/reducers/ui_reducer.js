@@ -5,8 +5,6 @@ import {
   CLOSE_TAGS_MODAL,
   OPEN_SIDEBAR_MODAL,
   CLOSE_SIDEBAR_MODAL,
-  SHOW_TOOLTIP,
-  HIDE_TOOLTIP,
   OPEN_DELETE_MODAL,
   CLOSE_DELETE_MODAL,
   TOGGLE_NOTEBOOKS_DROPDOWN,
@@ -19,7 +17,6 @@ import {
 const defaultState = {
   notebooksModalIsOpen: false,
   tagsModalIsOpen: false,
-  tooltipHidden: true,
   delteModalIsOpen: false,
   deleteEntityType: null,
   deleteEntity: null,
@@ -44,12 +41,6 @@ const UIReducer = (oldState = defaultState, action) => {
       return newState;
     case CLOSE_TAGS_MODAL:
       newState.tagsModalIsOpen = false;
-      return newState;
-    case SHOW_TOOLTIP:
-      newState.tooltipHidden = false;
-      return newState;
-    case HIDE_TOOLTIP:
-      newState.tooltipHidden = true;
       return newState;
     case OPEN_DELETE_MODAL:
       newState.deleteModalIsOpen = true;

@@ -10,9 +10,6 @@ export default class SidebarNav extends React.Component {
   render() {
     const { notebooksModalIsOpen, tagsModalIsOpen, sidebarModalIsOpen } = this.props;
     const sidebarNavClasses = ['sidebar-nav'];
-    if (this.props.tooltipHidden) {
-      sidebarNavClasses.push('fixed');
-    }
     return (
       <div className={sidebarNavClasses.join(' ')}>
         <div>

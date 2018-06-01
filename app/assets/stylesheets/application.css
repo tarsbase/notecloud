@@ -17,10 +17,7 @@
 
 body {
   font-family: 'Helvetica', sans-serif;
-}
-
-body::-webkit-scrollbar {
-  display: none;
+  overflow: hidden;
 }
 
 .main-nav {
@@ -47,12 +44,9 @@ body::-webkit-scrollbar {
 }
 
 .notes-index-container {
-  height: 100%;
+  height: 100vh;
   width: 250px;
-}
-
-.left-margin {
-  margin-left: 75px;
+  overflow: auto;
 }
 
 .sidebar-header {
@@ -388,10 +382,6 @@ body::-webkit-scrollbar {
   max-height: 98%;
 }
 
-.sidebar-modal-list::-webkit-scrollbar {
-  display: none;
-}
-
 .hide {
   display: none;
 }
@@ -574,4 +564,9 @@ body::-webkit-scrollbar {
 
 .tag-trash:hover {
   cursor: pointer;
+}
+
+.note-tags {
+  display: flex;
+  flex-direction: row;
 }

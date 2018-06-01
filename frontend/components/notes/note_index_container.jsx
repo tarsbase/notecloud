@@ -9,7 +9,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     notes: Object.values(state.notes),
     deleteModalIsOpen: state.ui.deleteModalIsOpen,
-    tooltipHidden: state.ui.tooltipHidden,
     getArg,
     headerTitle
   };
