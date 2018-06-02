@@ -1,4 +1,4 @@
-class TaggingController < ApplicationController
+class TaggingsController < ApplicationController
   def create
     @tagging = Tagging.new(tagging_params)
     
