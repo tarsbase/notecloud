@@ -45,3 +45,4 @@ export const updateNote = note => dispatch =>
 
 export const deleteNote = id => dispatch =>
   NoteApiUtil.destroyNote(id).then(note => dispatch(removeNote(note)));
+

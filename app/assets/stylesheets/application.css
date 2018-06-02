@@ -542,6 +542,10 @@ body {
 }
 
 .tag:hover {
+  cursor: pointer;
+}
+
+.tag-list-item .tag:hover {
   background-color: #2dbe60;  
 }
 
@@ -569,4 +573,12 @@ body {
 .note-tags {
   display: flex;
   flex-direction: row;
+}
+
+.tag-list {
+  margin-left: 10px;
+}
+
+.new-tag {
+  border: none;
 }

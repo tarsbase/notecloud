@@ -49,4 +49,7 @@ a, a:hover, a:active, a:visited, a:focus {
     text-decoration:none;
 }
 
+input:focus {
+	outline: none;
+}
 

@@ -11,7 +11,7 @@ class Api::NotebooksController < ApplicationController
   end
 
   def show 
-    @notebook = current_user.notebooks.find(params[:id]).includes(:notes)
+    @notebook = current_user.notebooks.includes(:notes).find(params[:id])
 
     if @notebook 
       render :show

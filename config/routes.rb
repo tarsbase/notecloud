@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :tags, only: [:create, :index, :show, :update, :destroy] do 
     resources :notes, only: [:index]
   end 
+  resources :taggings, only: [:create]
   resource :sessions, only: [:create, :destroy]
   end 
 end

@@ -1,8 +1,9 @@
 import {
   getAllNotes,
   getNotesByNotebookId,
-  getNotesByTagId
+  getNotesByTagId,
 } from '../actions/note_actions';
+import { getAllNotebooks } from '../actions/notebook_actions';
 
 export const noteIndexSelector = (ownProps, state) => {
   let getArg;

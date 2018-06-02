@@ -93,7 +93,8 @@ export default class NoteForm extends React.Component {
               </div>
               <div className="note-tags">
                 <i className="fa fa-tag" />
-                <ul>{tags}</ul>
+                <ul className="tag-list">{tags}</ul>
+                <input type="text" className="new-tag" placeholder="New Tag..."/>
               </div>
             </div>
           </div>
