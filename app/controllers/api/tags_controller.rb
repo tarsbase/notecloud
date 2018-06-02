@@ -18,13 +18,20 @@ class Api::TagsController < ApplicationController
   end
 
   def create
-    @tag = Tag.new(tag_params)
-    @tag.user_id = current_user.id
-
-    if @tag.save! 
+    name = params[:tag][:name]
+    @tag = Tag.where('lower(name) = ?', name.downcase).first
+    if  @tag
       render :show
     else 
-      render json: @tag.errors.full_messages, status: 422
+      @tag = Tag.new(tag_params)  
+      @tag.user_id = current_user.id
+    
+
+      if @tag.save! 
+        render :show
+      else 
+        render json: @tag.errors.full_messages, status: 422
+      end 
     end 
   end
 
