@@ -75,6 +75,7 @@ export default class NoteForm extends React.Component {
         const note = Object.assign({}, this.state.note);
         const tag = Object.assign({}, this.state.tag);
         this.props.tagNote(tag, note);
+        this.setState({tag: { name: ''}});
       }
     }
   }

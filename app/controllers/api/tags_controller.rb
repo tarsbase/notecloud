@@ -62,14 +62,9 @@ class Api::TagsController < ApplicationController
 
   def tag_note 
     name = params[:tag][:name]
-    name = name.downcase
-    @tag = current_user.tags.find_by('lower(name) = ?', name)
-    debugger
-    unless @tag 
-      @tag = Tag.new(tag_params)
-      @tag.user_id = current_user.id
-      render json: @tag.errors.full_messages, status: 422 unless @tag.save!
-    end 
+    @tag = current_user.tags.find_by('lower(name) = ?', name.downcase) || Tag.new(tag_params)
+    @tag.user_id = current_user.id unless @tag.user_id
+    render json: @tag.errors.full_messages, status: 422 unless @tag.save!
     @note = Note.find(params[:note][:id])
     tagging = Tagging.new(tag_id: @tag.id, note_id: @note.id)
     render json: tagging.errors.full_messages, status: 422 unless tagging.save!
