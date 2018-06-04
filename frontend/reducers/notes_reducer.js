@@ -3,6 +3,7 @@ import {
   RECEIVE_NOTE,
   REMOVE_NOTE
 } from '../actions/note_actions';
+import { RECEIVE_TAG_NOTE } from '../actions/tag_actions';
 
 const NotesReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
@@ -11,6 +12,7 @@ const NotesReducer = (oldState = {}, action) => {
     case RECEIVE_ALL_NOTES:
       return action.notes;
     case RECEIVE_NOTE:
+    case RECEIVE_TAG_NOTE:
       newState[action.note.id] = action.note;
       return newState;
     case REMOVE_NOTE:

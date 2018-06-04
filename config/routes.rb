@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   end 
   resources :taggings, only: [:create]
   resource :sessions, only: [:create, :destroy]
+  post '/tag-note',  to: 'tags#tag_note'
   end 
 end

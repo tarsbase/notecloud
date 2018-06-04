@@ -1,7 +1,8 @@
 import {
   RECEIVE_ALL_TAGS,
   RECEIVE_TAG,
-  REMOVE_TAG
+  REMOVE_TAG,
+  RECEIVE_TAG_NOTE
 } from '../actions/tag_actions';
 
 const TagReducer = (oldState = {}, action) => {
@@ -11,6 +12,7 @@ const TagReducer = (oldState = {}, action) => {
     case RECEIVE_ALL_TAGS:
       return action.tags;
     case RECEIVE_TAG:
+    case RECEIVE_TAG_NOTE:
       newState[action.tag.id] = action.tag;
       return newState;
     case REMOVE_TAG:

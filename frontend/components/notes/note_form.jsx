@@ -5,18 +5,21 @@ export default class NoteForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      note: this.props.note
+      note: this.props.note,
+      tag: {name: ''}
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
+    this.handleKeypress = this.handleKeypress.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.note !== this.state.note) {
       this.setState({
-        note: nextProps.note
+        note: nextProps.note,
+        tag: { name: '' }
       });
     }
   }
@@ -43,10 +46,10 @@ export default class NoteForm extends React.Component {
     this.props.action(note);
   }
 
-  handleChange(field) {
+  handleChange(entity, field) {
     return e =>
       this.setState({
-        note: Object.assign({}, this.state.note, {
+        [entity]: Object.assign({}, this.state.note, {
           [field]: e.target.value
         })
       });
@@ -64,6 +67,16 @@ export default class NoteForm extends React.Component {
   openDropdown(e) {
     e.preventDefault();
     this.props.toggleNotebooksDropdown();
+  }
+
+  handleKeypress(e) {
+    if (e.key === 'Enter') {
+      if (this.state.note.id) {
+        const note = Object.assign({}, this.state.note);
+        const tag = Object.assign({}, this.state.tag);
+        this.props.tagNote(tag, note);
+      }
+    }
   }
 
   render() {
@@ -100,6 +113,8 @@ export default class NoteForm extends React.Component {
                   type="text"
                   className="new-tag"
                   placeholder="New Tag..."
+                  value={this.state.tag.name}
+                  onChange={this.handleChange('tag', 'name')}
                   onKeyPress={this.handleKeypress}
                 />
               </div>
@@ -116,7 +131,7 @@ export default class NoteForm extends React.Component {
                 className="note-form-input note-title-input"
                 value={this.state.note.title}
                 placeholder="Title Your Note"
-                onChange={this.handleChange('title')}
+                onChange={this.handleChange('note', 'title')}
               />
             </div>
             <div className="form-group">
@@ -124,7 +139,7 @@ export default class NoteForm extends React.Component {
                 className="note-form-input note-body-input"
                 value={this.state.note.body}
                 placeholder="Start Writing"
-                onChange={this.handleChange('body')}
+                onChange={this.handleChange('note', 'body')}
               />
             </div>
           </form>
