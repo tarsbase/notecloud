@@ -49,7 +49,7 @@ export default class NoteForm extends React.Component {
   handleChange(entity, field) {
     return e =>
       this.setState({
-        [entity]: Object.assign({}, this.state.note, {
+        [entity]: Object.assign({}, this.state[entity], {
           [field]: e.target.value
         })
       });

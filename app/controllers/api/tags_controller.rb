@@ -2,13 +2,13 @@ class Api::TagsController < ApplicationController
   before_action :require_login
 
   def index
-    @tags = current_user.tags
+    @tags = current_user.tags.includes(:taggings)
     # debugger
     render :index
   end
 
   def show
-    @tag = current_user.tags.find(params[:id]).includes(:notes)
+    @tag = current_user.tags.includes(:notes).find(params[:id])
     
     if @tag 
       render :show
@@ -62,12 +62,15 @@ class Api::TagsController < ApplicationController
 
   def tag_note 
     name = params[:tag][:name]
-    @tag = current_user.tags.find_by('lower(name) = ?', name.downcase)
+    name = name.downcase
+    @tag = current_user.tags.find_by('lower(name) = ?', name)
+    debugger
     unless @tag 
       @tag = Tag.new(tag_params)
+      @tag.user_id = current_user.id
       render json: @tag.errors.full_messages, status: 422 unless @tag.save!
     end 
-    @note = params[:note]
+    @note = Note.find(params[:note][:id])
     tagging = Tagging.new(tag_id: @tag.id, note_id: @note.id)
     render json: tagging.errors.full_messages, status: 422 unless tagging.save!
     render 'api/tags/tag_note'
@@ -78,4 +81,5 @@ class Api::TagsController < ApplicationController
   def tag_params
     params.require(:tag).permit(:name)
   end 
+
 end
