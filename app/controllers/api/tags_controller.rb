@@ -1,5 +1,6 @@
 class Api::TagsController < ApplicationController
   before_action :require_login
+  helper_method :params
 
   def index
     @tags = current_user.tags.includes(:taggings)
@@ -59,17 +60,6 @@ class Api::TagsController < ApplicationController
       render json: ["Tag does not exist"], status: 404
     end 
   end
-
-  def tag_note 
-    name = params[:tag][:name]
-    @tag = current_user.tags.find_by('lower(name) = ?', name.downcase) || Tag.new(tag_params)
-    @tag.user_id = current_user.id unless @tag.user_id
-    render json: @tag.errors.full_messages, status: 422 unless @tag.save!
-    @note = Note.find(params[:note][:id])
-    tagging = Tagging.new(tag_id: @tag.id, note_id: @note.id)
-    render json: tagging.errors.full_messages, status: 422 unless tagging.save!
-    render 'api/tags/tag_note'
-  end 
 
   private 
 

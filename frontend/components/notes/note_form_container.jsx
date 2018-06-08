@@ -7,7 +7,8 @@ import {
   toggleNotebooksDropdown
 } from '../../actions/ui_actions';
 import { updateNote, getNote } from '../../actions/note_actions';
-import { createTag, tagNote } from '../../actions/tag_actions';
+import { createTag } from '../../actions/tag_actions';
+import { tagNote } from '../../actions/tagging_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const note = selectState(state, ownProps);

@@ -25,7 +25,7 @@ const receivetagNote = res => ({
   type: RECEIVE_TAG_NOTE,
   tag: res.tag,
   note: res.note
-})
+});
 
 export const getAllTags = () => dispatch =>
   TagApiUtil.fetchAllTags().then(tags => dispatch(receiveAllTags(tags)));

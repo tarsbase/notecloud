@@ -35,10 +35,3 @@ export const deleteTag = id => (
   })
 );
 
-export const tagNote = (tag, note) => (
-  $.ajax({
-    method: 'POST',
-    url: `api/tag-note`,
-    data: { tag, note }
-  })
-);
