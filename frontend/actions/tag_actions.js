@@ -44,5 +44,4 @@ export const updateTag = tag => dispatch =>
 export const deleteTag = id => dispatch =>
   TagApiUtil.deleteTag(id).then(tag => dispatch(removeTag(tag)));
 
-export const tagNote = (tag, note) => dispatch =>
-  TagApiUtil.tagNote(tag, note).then(res => dispatch(tagNote(res)));
+

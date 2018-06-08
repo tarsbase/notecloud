@@ -15,7 +15,7 @@ class Note < ApplicationRecord
   validates :title, :body, presence: true
 
   belongs_to :notebook
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
   def last_update 

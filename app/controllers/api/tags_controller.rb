@@ -4,7 +4,6 @@ class Api::TagsController < ApplicationController
 
   def index
     @tags = current_user.tags.includes(:taggings)
-    # debugger
     render :index
   end
 

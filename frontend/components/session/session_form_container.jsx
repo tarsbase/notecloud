@@ -2,14 +2,10 @@ import { connect } from 'react-redux';
 import SessionForm from './session_form';
 import { login, signup, clearErrors } from '../../actions/session_actions';
 import { withRouter } from 'react-router-dom';
+import { sessionFormSelector } from '../../selectors/session_form_selectors';
 
 const mapStateToProps = (state, ownProps) => {
-  const formType = ownProps.location.pathname === '/login' ? 'login' : 'signup';
-  return {
-    loggedIn: Boolean(state.session.currentUser),
-    errors: state.errors.session,
-    formType
-  };
+  return sessionFormSelector(state, ownProps);
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -11,7 +11,6 @@ class Api::TaggingsController < ApplicationController
     @note = Note.find(params[:note][:id])
     tagging = Tagging.new(tag_id: @tag.id, note_id: @note.id)
     render json: tagging.errors.full_messages, status: 422 unless tagging.save!
-    @response = { tag: @tag, note: @note }
     render 'api/notes/show'
   end 
 

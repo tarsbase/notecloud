@@ -23,17 +23,74 @@ body {
 .main-nav {
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 20px 100px;
+  border-bottom: 1px solid #eee;
 }
 
 .main-logo {
   font-size: 24px;
   color: #2dbe60;
+  font-family: Times, serif;
 }
 
 .session-links > a:last-child {
   margin-left: 40px;
 }
+
+.session-links > a {
+  font-size: 14px;
+}
+
+.session-links > a:hover {
+  color: #2dbe60;
+}
+
+/* Session Form */
+
+.session-form-page {
+  background: #f3f3f3;
+  height: 100vh;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.session-form-title {
+  margin-bottom: 40px;
+  font-size: 32px;
+  font-family: Times, serif;
+  color: #6a6a6a;
+}
+
+.session-form-container {
+  background: #fff;
+  width: 300px;
+  text-align: center;
+  padding: 30px;
+  margin: auto;
+  border: 1px solid #dedede;
+}
+
+.session-btn {
+  width: 100%;
+}
+
+.session-link-msg {
+  margin: 20px 0 10px 0;
+  color: #6a6a6a;
+  font-size: 0.91666667rem;
+}
+
+.session-form-link {
+  color: #2dbe60;
+}
+
+.session-form-link:hover {
+  color: #209c4b;
+}
+
+/* .session-form {
+  margin: 30px;
+} */
 
 /* Sidebar */
 
