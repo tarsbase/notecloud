@@ -6,7 +6,7 @@ export default class NoteForm extends React.Component {
     super(props);
     this.state = {
       note: this.props.note,
-      tag: {name: ''}
+      tag: { name: '' }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -75,18 +75,33 @@ export default class NoteForm extends React.Component {
         const note = Object.assign({}, this.state.note);
         const tag = Object.assign({}, this.state.tag);
         this.props.tagNote(tag, note);
-        this.setState({tag: { name: ''}});
+      } else {
+        this.setState({
+          note: Object.assign({}, this.state.note, {
+            tags: this.state.note.tags.concat(this.state.tag)
+          })
+        });
       }
+      this.setState({ tag: { name: '' } });
     }
   }
 
   render() {
     if (this.props.note && this.props.note.notebook && this.props.note.tags) {
-      const tags = this.props.note.tags.map(tag => (
-        <li className="tag" key={tag.id}>
-          {tag.name}
-        </li>
-      ));
+      let noteTags;
+      if (this.props.note.id) {
+        noteTags = this.props.note.tags;
+      } else {
+        noteTags = this.state.note.tags;
+      }
+      const tags = noteTags.map(tag => {
+        const key = tag.id ? tag.id : tag.name;
+        return (
+          <li className="tag" key={key}>
+            {tag.name}
+          </li>
+        );
+      });
       return (
         <div className="note-form-page">
           <div className="note-form-header">
