@@ -28,8 +28,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'pry-rails'
-
 gem 'rails_12factor'
 
 gem 'seed_dump'
@@ -54,6 +52,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   gem 'factory_bot_rails'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'pry-rails'
 end
 
 group :development do
