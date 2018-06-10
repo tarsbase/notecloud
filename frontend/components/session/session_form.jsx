@@ -19,9 +19,9 @@ export default class SessionForm extends React.Component {
   }
 
   render() {
-    const { pageTitle, linkTitle, linkAdverb, linkPath } = this.props;
+    const { pageTitle, linkTitle, linkAdverb, linkPath, containerClass } = this.props;
     return (
-      <div className="session-form-page">
+      <div className={containerClass}>
         <h1 className="session-form-title">{pageTitle}</h1>
         <div className="session-form-container">
           <form className="session-form" onSubmit={this.handleSubmit}>

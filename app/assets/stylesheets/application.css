@@ -45,6 +45,75 @@ body {
   color: #2dbe60;
 }
 
+.main-content {
+  margin: 100px 100px 0 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.main-content-right {
+  width: 400px;
+}
+
+.divider {
+  width: 1px;
+  background-color: #f3f3f3;
+  margin: 0 20px;
+}
+
+/* Footer */
+
+.footer {
+  margin-top: 100px;
+  height: 60px;
+  border-top: 1px solid #e1e3df;
+  text-align: center;
+  padding: 20px 0;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.footer-links li a img {
+  width: 24px;
+}
+
+.footer-links li {
+  margin: 15px;
+}
+
+/* Slideshow */
+
+.slideshow-container {
+  height: 200px;
+  max-width: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slideshow-text {
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 60px;
+  position: absolute;
+}
+
+.animate-text {
+  top: 0;
+  transition: all 1s ease-in;
+}
+
+.show-text {
+  top: 200px;
+}
+
 /* Session Form */
 
 .session-form-page {
@@ -52,6 +121,20 @@ body {
   height: 100vh;
   text-align: center;
   padding-top: 100px;
+}
+
+.main-form-container {
+  text-align: center;
+}
+
+.main-form-container .session-form-title {
+  color: black;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 24px;
+}
+
+.main-form-container .session-link-msg {
+  color: black;
 }
 
 .session-form-title {
