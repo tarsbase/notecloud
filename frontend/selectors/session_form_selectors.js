@@ -3,6 +3,7 @@ export const sessionFormSelector = (state, ownProps) => {
   let linkTitle;
   let linkAdverb;
   let linkPath;
+  let linkMsg;
   let containerClass;
   if (ownProps.location.pathname === '/login') {
     pageTitle = 'Sign In';
@@ -18,10 +19,14 @@ export const sessionFormSelector = (state, ownProps) => {
   if (ownProps.location.pathname === '/') {
     containerClass = 'main-form-container';
     pageTitle = 'Sign up for free!';
+    linkMsg = 'Just checking it out?';
+    linkTitle = 'Try our demo';
+    linkPath = '/';
   } else {
     containerClass = 'session-form-page';
+    linkMsg = `${linkAdverb} have an account?`;
   }
   const loggedIn = Boolean(state.session.errors);
   const errors = state.session.errors;
-  return { pageTitle, linkTitle, linkAdverb, containerClass, linkPath, loggedIn, errors };
+  return { pageTitle, linkTitle, linkMsg, containerClass, linkPath, loggedIn, errors };
 };
