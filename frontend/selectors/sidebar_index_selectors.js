@@ -1,4 +1,3 @@
-import queryString from 'query-string';
 import {
   getAllNotebooks,
   getSearchNotebooks,
@@ -7,6 +6,7 @@ import {
 } from '../actions/notebook_actions';
 import { getAllTags, createTag, deleteTag } from '../actions/tag_actions';
 import { closeNotebooksModal, closeTagsModal } from '../actions/ui_actions';
+const queryString = require('query-string');
 
 export const sidebarIndexSelector = (state, ownProps) => {
   let entities;
