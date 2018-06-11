@@ -5,6 +5,13 @@ export const fetchAllNotebooks = () => (
   })
 );
 
+export const fetchSearchNotebooks = searchTerm => (
+  $.ajax({
+    method: 'GET',
+    url: `api/notebooks?search=${searchTerm}`
+  })
+);
+
 export const fetchNotebook = id => (
   $.ajax({
     method: 'GET',

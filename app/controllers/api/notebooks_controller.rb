@@ -23,7 +23,11 @@ class Api::NotebooksController < ApplicationController
   end 
 
   def index 
-    @notebooks = current_user.notebooks
+    if params[:search]
+      @notebooks = current_user.notebooks.where('name like ?', params[:search])
+    else 
+      @notebooks = current_user.notebooks
+    end 
     render :index
   end 
 

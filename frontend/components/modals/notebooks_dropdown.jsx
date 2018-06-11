@@ -4,7 +4,7 @@ import NotebookIndexItem from '../notebooks/notebook_index_item';
 export default class NotebooksDropdown extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -16,13 +16,13 @@ export default class NotebooksDropdown extends React.Component {
     document.removeEventListener('mousedown', this.handleClick, false);
   }
 
-  handleClick(e) {
-    if (this.node.contains(e.target)) {
-      return;
-    } else {
-      this.handleClickOutside();
-    }
-  }
+  // handleClick(e) {
+  //   if (this.node.contains(e.target)) {
+  //     return;
+  //   } else {
+  //     this.handleClickOutside();
+  //   }
+  // }
 
   handleClickOutside() {
     this.props.closeNotebooksDropdown();

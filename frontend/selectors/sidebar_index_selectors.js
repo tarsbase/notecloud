@@ -1,5 +1,7 @@
+import queryString from 'query-string';
 import {
   getAllNotebooks,
+  getSearchNotebooks,
   createNotebook,
   deleteNotebook
 } from '../actions/notebook_actions';
@@ -12,12 +14,19 @@ export const sidebarIndexSelector = (state, ownProps) => {
   let createAction;
   let closeModal;
   let modalIsOpen;
+  let fetchActionArg;
   if (ownProps.type === 'notebooks') {
     if (state) {
       entities = Object.values(state.notebooks);
       modalIsOpen = state.ui.notebooksModalIsOpen;
     }
-    fetchAction = getAllNotebooks;
+    if (ownProps.location.search) {
+      fetchAction = getSearchNotebooks;
+      fetchActionArg = queryString.parse(location.search);
+    } else {
+      fetchAction = getAllNotebooks;
+      fetchActionArg = null;
+    }
     createAction = createNotebook;
     closeModal = closeNotebooksModal;
   } else {
@@ -29,5 +38,12 @@ export const sidebarIndexSelector = (state, ownProps) => {
     createAction = createTag;
     closeModal = closeTagsModal;
   }
-  return { entities, fetchAction, createAction, closeModal, modalIsOpen };
+  return {
+    entities,
+    fetchAction,
+    fetchActionArg,
+    createAction,
+    closeModal,
+    modalIsOpen
+  };
 };

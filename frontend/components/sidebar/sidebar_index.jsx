@@ -1,6 +1,7 @@
 import React from 'react';
 import NotebookIndexItem from '../notebooks/notebook_index_item';
 import TagIndexItem from '../tags/tag_index_item';
+import SearchForm from '../search/search_form';
 
 export default class SidebarIndex extends React.Component {
   constructor(props) {
@@ -13,13 +14,14 @@ export default class SidebarIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.modalIsOpen && nextProps.modalIsOpen) {
-      this.props.fetchAction();
+    if ((!this.props.modalIsOpen && nextProps.modalIsOpen)) {
+      nextProps.fetchAction(nextProps.fetchActionArg);
     }
   }
 
   componentDidMount() {
-    this.props.fetchAction();
+    // console.log(this.props);
+    this.props.fetchAction(this.props.fetchActionArg);
   }
 
   openModal(e) {
@@ -76,11 +78,13 @@ export default class SidebarIndex extends React.Component {
     } else {
       modalClasses.push('hide-fs-modal');
     }
-    return (
-      <div className="sidebar-index">
+    return <div className="sidebar-index">
         <div className="sidebar-header">
-          <h1>{this.props.type.toUpperCase()}</h1>
-          <i className="fa fa-plus sidebar-plus" onClick={this.openModal} />
+          <div className="sidebar-top-header">
+            <h1>{this.props.type.toUpperCase()}</h1>
+            <i className="fa fa-plus sidebar-plus" onClick={this.openModal} />
+          </div>
+          <SearchForm type={this.props.type} />
         </div>
         <ul className="sidebar-index-list">{entities}</ul>
         <div className={modalClasses.join(' ')}>
@@ -89,31 +93,18 @@ export default class SidebarIndex extends React.Component {
               <div className="fa fa-book fa-2x" />
               <div>CREATE {singularName}</div>
             </div>
-            <input
-              className="fs-modal-input"
-              type="text"
-              value={this.state.entityName}
-              placeholder={`Title your ${singularName.toLowerCase()}`}
-              onChange={this.handleChange()}
-            />
+            <input className="fs-modal-input" type="text" value={this.state.entityName} placeholder={`Title your ${singularName.toLowerCase()}`} onChange={this.handleChange()} />
             <div className="fs-modal-btns">
-              <div
-                className="btn btn-cancel fs-modal-btn"
-                onClick={this.closeModal}
-              >
+              <div className="btn btn-cancel fs-modal-btn" onClick={this.closeModal}>
                 Cancel
               </div>
               <div className="empty-space" />
-              <div
-                className="btn btn-success fs-modal-btn"
-                onClick={this.handleClick}
-              >
+              <div className="btn btn-success fs-modal-btn" onClick={this.handleClick}>
                 Create {singularName.toLowerCase()}
               </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      </div>;
   }
 }

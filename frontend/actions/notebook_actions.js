@@ -24,6 +24,11 @@ export const getAllNotebooks = () => dispatch =>
     dispatch(receiveAllNotebooks(notebooks))
   );
 
+export const getSearchNotebooks = searchTerm => dispatch =>
+  NotebookApiUtil.fetchSearchNotebooks(searchTerm).then(notebooks =>
+    dispatch(receiveAllNotebooks(notebooks))
+  );
+
 export const getNotebook = id => dispatch =>
   NotebookApiUtil.fetchNotebook(id).then(notebook =>
     dispatch(receiveNotebook(notebook))
