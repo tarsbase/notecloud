@@ -11,9 +11,11 @@ export const sidebarIndexSelector = (state, ownProps) => {
   let fetchAction;
   let createAction;
   let closeModal;
+  let modalIsOpen;
   if (ownProps.type === 'notebooks') {
     if (state) {
       entities = Object.values(state.notebooks);
+      modalIsOpen = state.ui.notebooksModalIsOpen;
     }
     fetchAction = getAllNotebooks;
     createAction = createNotebook;
@@ -21,10 +23,11 @@ export const sidebarIndexSelector = (state, ownProps) => {
   } else {
     if (state) {
       entities = Object.values(state.tags);
+      modalIsOpen = state.ui.tagsModalIsOpen;
     }
     fetchAction = getAllTags;
     createAction = createTag;
     closeModal = closeTagsModal;
   }
-  return { entities, fetchAction, createAction, closeModal };
+  return { entities, fetchAction, createAction, closeModal, modalIsOpen };
 };

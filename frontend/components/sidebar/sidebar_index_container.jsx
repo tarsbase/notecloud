@@ -4,10 +4,11 @@ import { sidebarIndexSelector } from '../../selectors/sidebar_index_selectors';
 import { openDeleteModal } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const { entities } = sidebarIndexSelector(state, ownProps);
+  const { entities, modalIsOpen } = sidebarIndexSelector(state, ownProps);
   return {
     type: ownProps.type,
-    entities
+    entities,
+    modalIsOpen
   };
 };
 

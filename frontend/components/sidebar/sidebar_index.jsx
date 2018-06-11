@@ -12,6 +12,12 @@ export default class SidebarIndex extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.modalIsOpen && nextProps.modalIsOpen) {
+      this.props.fetchAction();
+    }
+  }
+
   componentDidMount() {
     this.props.fetchAction();
   }
