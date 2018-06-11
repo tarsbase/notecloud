@@ -1,4 +1,6 @@
 class Api::NotebooksController < ApplicationController
+  before_action :require_login
+  
   def create
     @notebook = Notebook.new(notebook_params)
     @notebook.user_id = current_user.id

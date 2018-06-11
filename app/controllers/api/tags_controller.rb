@@ -1,6 +1,5 @@
 class Api::TagsController < ApplicationController
   before_action :require_login
-  helper_method :params
 
   def index
     @tags = current_user.tags.includes(:taggings)

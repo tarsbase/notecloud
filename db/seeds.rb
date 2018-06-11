@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Notebook.destroy_all
+Notebook.where.not(name: "My Notes").destroy_all
 Note.destroy_all
 Tag.destroy_all
 Tagging.destroy_all
