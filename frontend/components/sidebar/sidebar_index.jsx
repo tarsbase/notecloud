@@ -81,7 +81,6 @@ export default class SidebarIndex extends React.Component {
             <h1>{this.props.type.toUpperCase()}</h1>
             <i className="fa fa-plus sidebar-plus" onClick={this.openModal} />
           </div>
-          <SearchForm type={this.props.type} />
         </div>
         <ul className="sidebar-index-list">{entities}</ul>
         <div className={modalClasses.join(' ')}>
