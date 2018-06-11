@@ -14,7 +14,9 @@ export default class SidebarIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if ((!this.props.modalIsOpen && nextProps.modalIsOpen)) {
+    console.log("props", this.props.fetchActionArg);
+    console.log("nextProps", nextProps.fetchActionArg);
+    if (!this.props.modalIsOpen && nextProps.modalIsOpen) {
       nextProps.fetchAction(nextProps.fetchActionArg);
     }
   }
@@ -78,12 +80,14 @@ export default class SidebarIndex extends React.Component {
     } else {
       modalClasses.push('hide-fs-modal');
     }
-    return <div className="sidebar-index">
+    return (
+      <div className="sidebar-index">
         <div className="sidebar-header">
           <div className="sidebar-top-header">
             <h1>{this.props.type.toUpperCase()}</h1>
             <i className="fa fa-plus sidebar-plus" onClick={this.openModal} />
           </div>
+          <SearchForm type={this.props.type} />
         </div>
         <ul className="sidebar-index-list">{entities}</ul>
         <div className={modalClasses.join(' ')}>
@@ -92,18 +96,31 @@ export default class SidebarIndex extends React.Component {
               <div className="fa fa-book fa-2x" />
               <div>CREATE {singularName}</div>
             </div>
-            <input className="fs-modal-input" type="text" value={this.state.entityName} placeholder={`Title your ${singularName.toLowerCase()}`} onChange={this.handleChange()} />
+            <input
+              className="fs-modal-input"
+              type="text"
+              value={this.state.entityName}
+              placeholder={`Title your ${singularName.toLowerCase()}`}
+              onChange={this.handleChange()}
+            />
             <div className="fs-modal-btns">
-              <div className="btn btn-cancel fs-modal-btn" onClick={this.closeModal}>
+              <div
+                className="btn btn-cancel fs-modal-btn"
+                onClick={this.closeModal}
+              >
                 Cancel
               </div>
               <div className="empty-space" />
-              <div className="btn btn-success fs-modal-btn" onClick={this.handleClick}>
+              <div
+                className="btn btn-success fs-modal-btn"
+                onClick={this.handleClick}
+              >
                 Create {singularName.toLowerCase()}
               </div>
             </div>
           </div>
         </div>
-      </div>;
+      </div>
+    );
   }
 }

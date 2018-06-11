@@ -136,10 +136,10 @@ export default class NoteForm extends React.Component {
               </div>
             </div>
           </div>
-          <NotebooksDropdownContainer
+          {this.props.notebooksDropdownIsOpen && <NotebooksDropdownContainer
             note={this.state.note}
             currentNotebook={this.props.note.notebook}
-          />
+          />}
           <form className="note-form">
             <div className="form-group">
               <input

@@ -13,7 +13,8 @@ import { tagNote } from '../../actions/tagging_actions';
 const mapStateToProps = (state, ownProps) => {
   const note = selectState(state, ownProps);
   return {
-    note
+    note,
+    notebooksDropdownIsOpen: state.ui.notebooksDropdownIsOpen
   };
 };
 
