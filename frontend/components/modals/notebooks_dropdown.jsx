@@ -4,6 +4,28 @@ import NotebookIndexItem from '../notebooks/notebook_index_item';
 export default class NotebooksDropdown extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClick, false);
+  }
+
+  handleClick(e) {
+    if (this.node.contains(e.target)) {
+      return;
+    } else {
+      this.handleClickOutside();
+    }
+  }
+
+  handleClickOutside() {
+    this.props.closeNotebooksDropdown();
   }
 
   render() {
@@ -26,7 +48,7 @@ export default class NotebooksDropdown extends React.Component {
       modalClasses.push('hide');
     }
     return (
-      <div className={modalClasses.join(' ')}>
+      <div className={modalClasses.join(' ')} ref={node => {this.node = node;}}>
         <ul>{notebooks}</ul>
       </div>
     );

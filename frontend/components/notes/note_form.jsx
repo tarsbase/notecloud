@@ -10,7 +10,7 @@ export default class NoteForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleTrashClick = this.handleTrashClick.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
     this.handleKeypress = this.handleKeypress.bind(this);
   }
@@ -30,7 +30,7 @@ export default class NoteForm extends React.Component {
     }
   }
 
-  handleClick(e) {
+  handleTrashClick(e) {
     e.preventDefault();
     if (this.props.note.id) {
       this.props.openDeleteModal('notes', this.state.note);
@@ -92,7 +92,7 @@ export default class NoteForm extends React.Component {
       if (this.props.note.id) {
         noteTags = this.props.note.tags;
       } else {
-        noteTags = this.state.note.tags;
+        noteTags = this.state.note.tags || [];
       }
       const tags = noteTags.map(tag => {
         const key = tag.id ? tag.id : tag.name;
@@ -112,7 +112,7 @@ export default class NoteForm extends React.Component {
                 value="Save"
                 className="btn btn-success note-form-submit"
               />
-              <i className="fa fa-trash trash" onClick={this.handleClick} />
+              <i className="fa fa-trash trash" onClick={this.handleTrashClick} />
             </div>
             <div className="note-form-bottom-header">
               <div className="note-notebook-info">
