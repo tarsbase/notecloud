@@ -14,15 +14,9 @@ export default class SidebarIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("props", this.props.fetchActionArg);
-    console.log("nextProps", nextProps.fetchActionArg);
-    if (!this.props.modalIsOpen && nextProps.modalIsOpen) {
-      nextProps.fetchAction(nextProps.fetchActionArg);
-    }
   }
 
   componentDidMount() {
-    // console.log(this.props);
     this.props.fetchAction(this.props.fetchActionArg);
   }
 

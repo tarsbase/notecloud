@@ -9,6 +9,7 @@ import {
 import { updateNote, getNote } from '../../actions/note_actions';
 import { createTag } from '../../actions/tag_actions';
 import { tagNote } from '../../actions/tagging_actions';
+import { getAllNotebooks } from '../../actions/notebook_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const note = selectState(state, ownProps);
@@ -27,7 +28,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     toggleNotebooksDropdown: () => dispatch(toggleNotebooksDropdown()),
     updateNote: note => dispatch(updateNote(note)),
     getNote: id => dispatch(getNote(id)),
-    tagNote: (tag, note) => dispatch(tagNote(tag, note))
+    tagNote: (tag, note) => dispatch(tagNote(tag, note)),
+    getAllNotebooks: () => dispatch(getAllNotebooks())
   };
 };
 
