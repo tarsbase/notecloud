@@ -9,6 +9,10 @@ export default class SessionForm extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    this.usernameInput.focus();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
@@ -63,6 +67,7 @@ export default class SessionForm extends React.Component {
           <form className="session-form" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <input
+                ref={(input) => {this.usernameInput = input;}}
                 className="form-control"
                 id="username"
                 type="text"
