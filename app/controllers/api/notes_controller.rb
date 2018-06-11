@@ -3,8 +3,21 @@ class Api::NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
-
+    
     if @note.save!
+      if params[:note][:tags]
+        tags = params[:note][:tags].to_unsafe_h
+        tag_names = tags.values.map {|tag| tag[:name]}
+        tag_names.each do |name|
+          tag = current_user.tags.find_by('lower(name) = ?', name.downcase) 
+            unless tag 
+              tag = Tag.new(name: name)
+              tag.user_id = current_user.id
+              tag.save
+            end 
+          Tagging.create(note_id: @note.id, tag_id: tag.id)
+        end 
+      end 
       render :show
     else 
       render json: @note.errors.full_messages, status: 422
@@ -60,6 +73,6 @@ class Api::NotesController < ApplicationController
   private 
 
   def note_params
-    params.require(:note).permit(:title, :body, :notebook_id, :tag_id)
+    params.require(:note).permit(:title, :body, :notebook_id)
   end
 end
