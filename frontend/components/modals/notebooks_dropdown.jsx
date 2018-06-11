@@ -5,16 +5,16 @@ export default class NotebooksDropdown extends React.Component {
   constructor(props) {
     super(props);
     // this.handleClick = this.handleClick.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
+    // this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClick, false);
-  }
+  // componentDidMount() {
+  //   document.addEventListener('mousedown', this.handleClick, false);
+  // }
 
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClick, false);
-  }
+  // componentWillUnmount() {
+  //   document.removeEventListener('mousedown', this.handleClick, false);
+  // }
 
   // handleClick(e) {
   //   if (this.node.contains(e.target)) {
@@ -24,9 +24,9 @@ export default class NotebooksDropdown extends React.Component {
   //   }
   // }
 
-  handleClickOutside() {
-    this.props.closeNotebooksDropdown();
-  }
+  // handleClickOutside() {
+  //   this.props.closeNotebooksDropdown();
+  // }
 
   render() {
     const notebooks = this.props.notebooks.map(notebook => (
