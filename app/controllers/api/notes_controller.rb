@@ -6,7 +6,7 @@ class Api::NotesController < ApplicationController
     
     if @note.save!
       if params[:note][:tags]
-        tags = params[:note][:tags].to_unsafe_h
+        tags = params.require(:note).permit(tags: {}).to_h[:tags]
         tag_names = tags.values.map {|tag| tag[:name]}
         tag_names.each do |name|
           tag = current_user.tags.find_by('lower(name) = ?', name.downcase) 
