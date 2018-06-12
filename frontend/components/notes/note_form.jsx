@@ -67,7 +67,11 @@ export default class NoteForm extends React.Component {
 
   openDropdown(e) {
     e.preventDefault();
-    this.props.toggleNotebooksDropdown();
+    if (this.props.notebooksDropdownIsOpen) {
+      this.props.closeNotebooksDropdown();
+    } else {
+      this.props.openNotebooksDropdown();
+    }
   }
 
   handleKeypress(e) {

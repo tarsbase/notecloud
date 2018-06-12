@@ -17,7 +17,8 @@ export default class NotebooksDropdown extends React.Component {
   }
 
   handleClick(e) {
-    if (this.node.contains(e.target)) {
+    console.log(e.target);
+    if (this.node.contains(e.target) || e.target.classList.contains('fa-angle-down')) {
       return;
     } else {
       this.handleClickOutside();
