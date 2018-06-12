@@ -457,6 +457,11 @@ body {
   left: 40px;
 }
 
+.logout-btn + .tooltip-text {
+  top: 0;
+  left: 48px;
+}
+
 .hide-tooltip {
   visibility: hidden;
   opacity: 0;

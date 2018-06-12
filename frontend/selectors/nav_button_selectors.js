@@ -18,7 +18,7 @@ export const navButtonSelector = ownProps => {
       ['fa-plus-circle', 'fa-2x', 'new-note-link'].forEach(selector =>
         classes.push(selector)
       );
-      type = "New Note";
+      type = 'New Note';
       linkPath = '/notes';
       if (ownProps.notebooksModalIsOpen) {
         action = closeNotebooksModal;
@@ -64,8 +64,9 @@ export const navButtonSelector = ownProps => {
       type = 'Tags';
       break;
     case 'logout':
-      classes.push('fa-sign-out');
-      classes.push('nav-icon');
+      ['fa-sign-out', 'nav-icon', 'logout-btn'].forEach(selector =>
+        classes.push(selector)
+      );
       type = 'Logout';
       action = logout;
       linkPath = '/login';
