@@ -4,7 +4,12 @@ import {
   createNotebook,
   deleteNotebook
 } from '../actions/notebook_actions';
-import { getAllTags, createTag, deleteTag } from '../actions/tag_actions';
+import {
+  getAllTags,
+  getSearchTags,
+  createTag,
+  deleteTag
+} from '../actions/tag_actions';
 import { closeNotebooksModal, closeTagsModal } from '../actions/ui_actions';
 const queryString = require('query-string');
 
@@ -35,7 +40,14 @@ export const sidebarIndexSelector = (state, ownProps) => {
       entities = Object.values(state.tags);
       modalIsOpen = state.ui.tagsModalIsOpen;
     }
-    fetchAction = getAllTags;
+    if (ownProps.location.search) {
+      fetchAction = getSearchTags;
+      const parsed = queryString.parse(ownProps.location.search);
+      fetchActionArg = parsed.search;
+    } else {
+      fetchAction = getAllTags;
+      fetchActionArg = null;
+    }
     createAction = createTag;
     closeModal = closeTagsModal;
   }

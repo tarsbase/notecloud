@@ -2,7 +2,7 @@ class Api::TagsController < ApplicationController
   before_action :require_login
 
   def index
-    @tags = current_user.tags.includes(:taggings)
+    @tags = current_user.tags.includes(:notes)
     render :index
   end
 

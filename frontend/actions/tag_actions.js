@@ -30,6 +30,11 @@ const receivetagNote = res => ({
 export const getAllTags = () => dispatch =>
   TagApiUtil.fetchAllTags().then(tags => dispatch(receiveAllTags(tags)));
 
+export const getSearchTags = searchTerm => dispatch =>
+  TagApiUtil.fetchSearchTags(searchTerm).then(tags =>
+    dispatch(receiveAllTags(tags))
+  );
+
 export const getTag = id => dispatch =>
   TagApiUtil.fetchTag(id).then(tag => dispatch(receiveTag(tag)));
 
@@ -43,5 +48,3 @@ export const updateTag = tag => dispatch =>
 
 export const deleteTag = id => dispatch =>
   TagApiUtil.deleteTag(id).then(tag => dispatch(removeTag(tag)));
-
-

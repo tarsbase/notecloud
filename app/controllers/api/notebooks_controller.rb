@@ -24,10 +24,9 @@ class Api::NotebooksController < ApplicationController
 
   def index 
     if params[:search]
-      @notebooks = current_user.notebooks.where("lower(name) LIKE ?", "%#{params[:search].downcase}%")
-      # debugger
+      @notebooks = current_user.notebooks.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").includes(:notes)
     else 
-      @notebooks = current_user.notebooks
+      @notebooks = current_user.notebooks.includes(:notes)
     end 
     render :index
   end 
