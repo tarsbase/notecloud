@@ -192,7 +192,8 @@ body {
 
 .notes-index-container {
   height: 100vh;
-  width: 250px;
+  width: 350px;
+  min-width: 250px;
   overflow: auto;
 }
 
@@ -304,11 +305,11 @@ body {
 }
 
 .note-form-page {
-  width: 70%;
   border-left: 1px solid #ececec;
   height: 100vh;
-  position: fixed;
-  left: 325px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .note-form {
@@ -418,7 +419,7 @@ body {
 /* Sidebar Nav */
 
 .sidebar-nav {
-  width: 75px;
+  min-width: 75px;
   height: 100vh;
   border-right: 1px solid #ececec;
   background-color: #f8f8f8;
