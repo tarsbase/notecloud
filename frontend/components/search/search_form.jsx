@@ -27,7 +27,7 @@ class SearchForm extends React.Component {
         onChange={this.handleChange}
         onKeyPress={this.handleKeyPress}
         placeholder={`Find a ${this.props.type.slice(0, this.props.type.length - 1)}`}
-        className="search-bar"
+        className="form-control search-bar"
       />
     );
   }

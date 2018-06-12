@@ -14,9 +14,10 @@ export default class SidebarIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log('this', this.props.fetchActionArg);
-    // console.log('next', nextProps.fetchActionArg);
-    if (this.props.fetchActionArg !== nextProps.fetchActionArg) {
+    if (
+      (!this.props.modalIsOpen && nextProps.modalIsOpen) ||
+      this.props.fetchActionArg !== nextProps.fetchActionArg
+    ) {
       nextProps.fetchAction(nextProps.fetchActionArg);
     }
   }
@@ -86,7 +87,7 @@ export default class SidebarIndex extends React.Component {
             <h1>{this.props.type.toUpperCase()}</h1>
             <i className="fa fa-plus sidebar-plus" onClick={this.openModal} />
           </div>
-          <SearchForm type={this.props.type}/>
+          <SearchForm type={this.props.type} />
         </div>
         <ul className="sidebar-index-list">{entities}</ul>
         <div className={modalClasses.join(' ')}>

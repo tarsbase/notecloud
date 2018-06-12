@@ -57,10 +57,10 @@ export default class Notes extends React.Component {
         <SidebarNavContainer />
         <NoteIndexContainer />
         <div className={notebookClasses.join(' ')} onClick={this.handleClick}>
-          {this.props.notebooksModalIsOpen && <SidebarIndexContainer type="notebooks" />}
+          <SidebarIndexContainer type="notebooks" />
         </div>
         <div className={tagClasses.join(' ')} onClick={this.handleClick}>
-          {this.props.tagsModalIsOpen && <SidebarIndexContainer type="tags" />}
+          <SidebarIndexContainer type="tags" />
         </div>
         <NoteFormContainer />
         <DeleteModalContainer deleteEntityType={deleteEntityType} />
