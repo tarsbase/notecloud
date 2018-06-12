@@ -7,7 +7,7 @@ import {
   CLOSE_SIDEBAR_MODAL,
   OPEN_DELETE_MODAL,
   CLOSE_DELETE_MODAL,
-  OPEN_NOTEBOOKS_DROPDOWN,
+  TOGGLE_NOTEBOOKS_DROPDOWN,
   CLOSE_NOTEBOOKS_DROPDOWN,
   SET_CURRENT_NOTEBOOK,
   OPEN_CREATE_MODAL,
@@ -52,8 +52,8 @@ const UIReducer = (oldState = defaultState, action) => {
       newState.deleteEntity = null;
       newState.deleteEntityType = null;
       return newState;
-    case OPEN_NOTEBOOKS_DROPDOWN:
-      newState.notebooksDropdownIsOpen = true;
+    case TOGGLE_NOTEBOOKS_DROPDOWN:
+      newState.notebooksDropdownIsOpen = !newState.notebooksDropdownIsOpen;
       return newState;
     case CLOSE_NOTEBOOKS_DROPDOWN:
       newState.notebooksDropdownIsOpen = false;

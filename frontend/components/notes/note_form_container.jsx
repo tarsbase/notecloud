@@ -4,8 +4,7 @@ import NoteForm from './note_form';
 import { selectState, selectAction } from '../../selectors/note_form_selectors';
 import {
   openDeleteModal,
-  openNotebooksDropdown,
-  closeNotebooksDropdown
+  toggleNotebooksDropdown
 } from '../../actions/ui_actions';
 import { updateNote, getNote } from '../../actions/note_actions';
 import { createTag } from '../../actions/tag_actions';
@@ -26,8 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     action: note => dispatch(action(note)),
     openDeleteModal: (entityType, entity) =>
       dispatch(openDeleteModal(entityType, entity)),
-    openNotebooksDropdown: () => dispatch(openNotebooksDropdown()),
-    closeNotebooksDropdown: () => dispatch(closeNotebooksDropdown()),
+    toggleNotebooksDropdown: () => dispatch(toggleNotebooksDropdown()),
     updateNote: note => dispatch(updateNote(note)),
     getNote: id => dispatch(getNote(id)),
     tagNote: (tag, note) => dispatch(tagNote(tag, note)),
