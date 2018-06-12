@@ -22,7 +22,8 @@ export const sidebarIndexSelector = (state, ownProps) => {
     }
     if (ownProps.location.search) {
       fetchAction = getSearchNotebooks;
-      fetchActionArg = queryString.parse(location.search);
+      const parsed = queryString.parse(ownProps.location.search);
+      fetchActionArg = parsed.search;
     } else {
       fetchAction = getAllNotebooks;
       fetchActionArg = null;

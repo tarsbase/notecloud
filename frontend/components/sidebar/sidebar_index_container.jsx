@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     ownProps
   );
   return {
-    fetchAction: () => dispatch(fetchAction()),
+    fetchAction: fetchActionArg => dispatch(fetchAction(fetchActionArg)),
     createAction: entityName => dispatch(createAction(entityName)),
     closeModal: () => dispatch(closeModal()),
     openDeleteModal: (entityType, entity) =>
