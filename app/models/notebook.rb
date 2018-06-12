@@ -12,6 +12,6 @@
 class Notebook < ApplicationRecord
   validates :name, presence: true
 
-  has_many :notes, dependent: :destroy
+  has_many :notes, dependent: :delete_all
   belongs_to :user
 end
