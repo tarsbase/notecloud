@@ -2,7 +2,11 @@ class Api::TagsController < ApplicationController
   before_action :require_login
 
   def index
-    @tags = current_user.tags.includes(:notes)
+    if params[:search] 
+      @tags = current_user.tags.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").includes(:notes)
+    else 
+      @tags = current_user.tags.includes(:notes)
+    end 
     render :index
   end
 
