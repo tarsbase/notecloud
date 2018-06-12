@@ -14,7 +14,9 @@ export const noteIndexSelector = (ownProps, state) => {
     getArg = ownProps.match.params.notebookId;
     getAction = getNotesByNotebookId;
     if (state) {
-      headerTitle = state.notebooks[ownProps.match.params.notebookId].name;
+      if (state.notebooks[ownProps.match.params.notebookId]) {
+        headerTitle = state.notebooks[ownProps.match.params.notebookId].name;
+      } 
     }
   } else if (ownProps.match.params.tagId) {
     getArg = ownProps.match.params.tagId;
