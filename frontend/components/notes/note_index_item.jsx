@@ -16,7 +16,11 @@ class NoteIndexItem extends React.Component {
     const { note } = this.props;
     let linkPath;
     if (this.props.match.params.notebookId) {
-      linkPath = `/notebooks/${this.props.match.params.notebookId}/notes/${note.id}`;
+      linkPath = `/notebooks/${this.props.match.params.notebookId}/notes/${
+        note.id
+      }`;
+    } else if (this.props.match.params.tagId) {
+      linkPath = `/tags/${this.props.match.params.tagId}/notes/${note.id}`;
     } else {
       linkPath = `/notes/${note.id}`;
     }

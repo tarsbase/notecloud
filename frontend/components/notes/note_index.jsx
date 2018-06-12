@@ -13,7 +13,7 @@ export default class NoteIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllNotebooks();
+    this.props.getRelatedAction(this.props.getArg);
     this.props.getAction(this.props.getArg);
   }
 

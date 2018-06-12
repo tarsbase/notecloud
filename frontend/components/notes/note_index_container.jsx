@@ -16,12 +16,12 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const { getAction, getNotebookAction } = noteIndexSelector(ownProps);
+  const { getAction, getRelatedAction } = noteIndexSelector(ownProps);
   return {
     getAction: id => dispatch(getAction(id)),
     openDeleteModal: (entityType, entity) =>
       dispatch(openDeleteModal(entityType, entity)),
-    getAllNotebooks: () => dispatch(getAllNotebooks())
+    getRelatedAction: id => dispatch(getRelatedAction(id))
   };
 };
 
