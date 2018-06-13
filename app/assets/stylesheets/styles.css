@@ -140,6 +140,7 @@ body {
 
 .session-btn {
   width: 100%;
+  margin-top: 10px;
 }
 
 .session-link-msg {
@@ -154,6 +155,10 @@ body {
 
 .session-form-link:hover {
   color: #209c4b;
+}
+
+.errors {
+  color: rgb(255, 0, 0);
 }
 
 /*  Search Bar */

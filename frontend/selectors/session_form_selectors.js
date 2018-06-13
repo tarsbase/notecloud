@@ -27,6 +27,6 @@ export const sessionFormSelector = (state, ownProps) => {
     linkMsg = `${linkAdverb} have an account?`;
   }
   const loggedIn = Boolean(state.session.errors);
-  const errors = state.session.errors;
+  const errors = state.errors.session;
   return { pageTitle, linkTitle, linkMsg, containerClass, linkPath, loggedIn, errors };
 };

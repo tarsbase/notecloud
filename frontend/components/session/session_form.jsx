@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default class SessionForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', password: '' };
+    this.state = { user: { username: '', password: '' }, errorMsg: '' };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -15,41 +15,53 @@ export default class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.formAction(user);
+    this.props.clearErrors();
+    this.setState({errorMsg: ''});
+    if (this.state.user.username === '' || this.state.user.password === '') {
+      this.setState({ errorMsg: 'Required data is missing' });
+    } else {
+      const user = Object.assign({}, this.state.user);
+      this.props.formAction(user);
+    }
   }
 
   handleClick(e) {
-    console.log('Heelo');
     if (this.props.linkPath === '/') {
       e.preventDefault();
-      this.setState({ username: '', password: '' });
+      this.setState({ note: { username: '', password: '' } });
       const guestUser = ['Guest', '123456'];
       const guestName = guestUser[0].split('');
       const guestPass = guestUser[1].split('');
       const setFields = () => {
         if (guestName.length > 0) {
           this.setState({
-            username: this.state.username.concat(guestName.shift())
+            user: {
+              username: this.state.user.username.concat(guestName.shift())
+            }
           });
         } else if (guestPass.length > 0) {
           this.setState({
-            password: this.state.password.concat(guestPass.shift())
+            user: {
+              password: this.state.user.password.concat(guestPass.shift())
+            }
           });
         } else {
           clearInterval(interval);
-          const user = Object.assign({}, this.state);
+          const user = Object.assign({}, this.state.user);
           this.props.formAction(user);
         }
       };
       const interval = setInterval(setFields, 100);
-    } else {
-      return;
     }
   }
 
   update(fieldName) {
-    return e => this.setState({ [fieldName]: e.target.value });
+    return e =>
+      this.setState({
+        user: Object.assign({}, this.state.user, {
+          [fieldName]: e.target.value
+        })
+      });
   }
 
   render() {
@@ -60,7 +72,11 @@ export default class SessionForm extends React.Component {
       linkPath,
       containerClass
     } = this.props;
-
+    const errors = this.props.errors.map(err => (
+      <li className="errors" key={err}>
+        {err}
+      </li>
+    ));
     return (
       <div className={containerClass}>
         <h1 className="session-form-title">{pageTitle}</h1>
@@ -89,6 +105,8 @@ export default class SessionForm extends React.Component {
                 onChange={this.update('password')}
               />
             </div>
+            {errors}
+            <li className="errors">{this.state.errorMsg}</li>
             <input
               type="submit"
               className="btn btn-success session-btn"
