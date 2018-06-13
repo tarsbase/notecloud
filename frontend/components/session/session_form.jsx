@@ -9,6 +9,12 @@ export default class SessionForm extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.linkPath !== nextProps.linkPath) {
+      this.props.clearErrors();
+    }
+  }
+
   componentDidMount() {
     this.usernameInput.focus();
   }
@@ -16,7 +22,7 @@ export default class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.clearErrors();
-    this.setState({errorMsg: ''});
+    this.setState({ errorMsg: '' });
     if (this.state.user.username === '' || this.state.user.password === '') {
       this.setState({ errorMsg: 'Required data is missing' });
     } else {
@@ -28,22 +34,24 @@ export default class SessionForm extends React.Component {
   handleClick(e) {
     if (this.props.linkPath === '/') {
       e.preventDefault();
-      this.setState({ note: { username: '', password: '' } });
+      this.setState({ user: { username: '', password: '' } });
       const guestUser = ['Guest', '123456'];
       const guestName = guestUser[0].split('');
       const guestPass = guestUser[1].split('');
       const setFields = () => {
         if (guestName.length > 0) {
           this.setState({
-            user: {
+            user: Object.assign({}, this.state.user, {
               username: this.state.user.username.concat(guestName.shift())
-            }
+            })
           });
         } else if (guestPass.length > 0) {
           this.setState({
-            user: {
-              password: this.state.user.password.concat(guestPass.shift())
-            }
+            user: Object.assign({}, this.state.user, {
+              password: this.state.user.password.concat(
+                guestPass.shift()
+              )
+            })
           });
         } else {
           clearInterval(interval);
@@ -91,7 +99,7 @@ export default class SessionForm extends React.Component {
                 id="username"
                 type="text"
                 placeholder="Username"
-                value={this.state.username}
+                value={this.state.user.username}
                 onChange={this.update('username')}
               />
             </div>
@@ -101,7 +109,7 @@ export default class SessionForm extends React.Component {
                 id="password"
                 type="password"
                 placeholder="Password"
-                value={this.state.password}
+                value={this.state.user.password}
                 onChange={this.update('password')}
               />
             </div>
