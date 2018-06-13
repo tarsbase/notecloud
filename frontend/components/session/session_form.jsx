@@ -60,6 +60,7 @@ export default class SessionForm extends React.Component {
       linkPath,
       containerClass
     } = this.props;
+
     return (
       <div className={containerClass}>
         <h1 className="session-form-title">{pageTitle}</h1>
@@ -67,7 +68,9 @@ export default class SessionForm extends React.Component {
           <form className="session-form" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <input
-                ref={(input) => {this.usernameInput = input;}}
+                ref={input => {
+                  this.usernameInput = input;
+                }}
                 className="form-control"
                 id="username"
                 type="text"

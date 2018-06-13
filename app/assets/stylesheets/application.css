@@ -737,6 +737,8 @@ body {
 .note-tags {
   display: flex;
   flex-direction: row;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .tag-list {
