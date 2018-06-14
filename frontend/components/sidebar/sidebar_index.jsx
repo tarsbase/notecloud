@@ -6,11 +6,13 @@ import SearchForm from '../search/search_form';
 export default class SidebarIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { modalIsOpen: false, entityName: '' };
+    this.state = { modalIsOpen: false, entityName: '', showTooltip: false };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.showTooltip = this.showTooltip.bind(this);
+    this.hideTooltip = this.hideTooltip.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,6 +30,7 @@ export default class SidebarIndex extends React.Component {
 
   openModal(e) {
     e.preventDefault();
+    this.hideTooltip();
     this.setState({ modalIsOpen: true });
   }
 
@@ -50,7 +53,24 @@ export default class SidebarIndex extends React.Component {
     return e => this.setState({ ['entityName']: e.target.value });
   }
 
+  showTooltip() {
+    this.timeout = setTimeout(() => {
+      this.setState({ showTooltip: true });
+    }, 1000);
+  }
+
+  hideTooltip() {
+    clearTimeout(this.timeout);
+    this.setState({ showTooltip: false });
+  }
+
   render() {
+    const tooltipClasses = ['tooltip-text'];
+    if (this.state.showTooltip) {
+      tooltipClasses.push('show-tooltip');
+    } else {
+      tooltipClasses.push('hide-tooltip');
+    }
     let entities;
     if (this.props.type === 'notebooks') {
       entities = this.props.entities.map(entity => (
@@ -85,7 +105,15 @@ export default class SidebarIndex extends React.Component {
         <div className="sidebar-header">
           <div className="sidebar-top-header">
             <h1>{this.props.type.toUpperCase()}</h1>
-            <i className="fa fa-plus sidebar-plus" onClick={this.openModal} />
+            <i
+              className="fa fa-plus sidebar-plus"
+              onClick={this.openModal}
+              onMouseEnter={this.showTooltip}
+              onMouseLeave={this.hideTooltip}
+            />
+            <div className={tooltipClasses.join(' ')}>
+              Create a {this.props.type.slice(0, this.props.type.length - 1)}
+            </div>
           </div>
           <SearchForm type={this.props.type} />
         </div>

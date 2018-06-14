@@ -1,5 +1,3 @@
-
-
 body {
   font-family: 'Helvetica', sans-serif;
   overflow: hidden;
@@ -163,14 +161,14 @@ body {
 
 /*  Search Bar */
 
-  .search-bar {
-    margin-top: 20px;
-    width: 100%;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    height: 28px;
-  }
+.search-bar {
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  height: 28px;
+}
 
 /* Sidebar */
 
@@ -451,6 +449,12 @@ body {
 .logout-btn + .tooltip-text {
   top: 0;
   left: 48px;
+}
+
+.sidebar-plus + .tooltip-text {
+  top: 45px;
+  width: fit-content;
+  left: 140px;
 }
 
 .hide-tooltip {

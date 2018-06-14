@@ -31,7 +31,11 @@ export default class MainSlideshow extends React.Component {
         clearInterval(interval);
       }
     };
-    
+    this.setState({ animate: true });
+    this.setState({ text: textArray.shift() });
+    setTimeout(() => {
+      this.setState({ animate: false });
+    }, 1800);
     const interval = setInterval(setText, 2000);
   }
 
