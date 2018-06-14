@@ -18,24 +18,23 @@ export default class MainSlideshow extends React.Component {
       'Unlock your creativity.',
       "Get Notecloud, your brain's hard drive."
     ];
+    const nextSlide = () => {
+      this.setState({ animate: true });
+      this.setState({ text: textArray.shift() });
+      if (textArray.length > 0) {
+        setTimeout(() => {
+          this.setState({ animate: false });
+        }, 1800);
+      }
+    };
     const setText = () => {
       if (textArray.length > 0) {
-        this.setState({ animate: true });
-        this.setState({ text: textArray.shift() });
-        if (textArray.length > 0) {
-          setTimeout(() => {
-            this.setState({ animate: false });
-          }, 1800);
-        }
+      nextSlide();
       } else {
         clearInterval(interval);
       }
     };
-    this.setState({ animate: true });
-    this.setState({ text: textArray.shift() });
-    setTimeout(() => {
-      this.setState({ animate: false });
-    }, 1800);
+    nextSlide();
     const interval = setInterval(setText, 2000);
   }
 
