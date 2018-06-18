@@ -16,4 +16,8 @@ Notes can be organized in notebooks.
 
 <img src="https://res.cloudinary.com/brainzilla/image/upload/v1528810078/notecloud_notebooks.png"/>
 
+### Tags 
+
+Tags can be created and linked to notes in a many to many realtionshsip
+
 
