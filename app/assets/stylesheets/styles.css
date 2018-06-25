@@ -351,6 +351,10 @@ body {
   cursor: pointer;
 }
 
+.dropzone {
+  border: none;
+}
+
 .note-form-input {
   border: none;
   width: 100%;

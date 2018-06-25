@@ -1,18 +1,21 @@
 import React from 'react';
 import NotebooksDropdownContainer from '../modals/notebooks_dropdown_container';
+import Dropzone from 'react-dropzone';
 
 export default class NoteForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       note: this.props.note,
-      tag: { name: '' }
+      tag: { name: '' },
+      files: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleTrashClick = this.handleTrashClick.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
     this.handleKeypress = this.handleKeypress.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,11 +52,11 @@ export default class NoteForm extends React.Component {
 
   handleChange(entity, field) {
     return e =>
-      this.setState({
-        [entity]: Object.assign({}, this.state[entity], {
-          [field]: e.target.value
-        })
-      });
+    this.setState({
+      [entity]: Object.assign({}, this.state[entity], {
+        [field]: e.target.value
+      })
+    });
   }
 
   handleDelete(e) {
@@ -87,6 +90,10 @@ export default class NoteForm extends React.Component {
     }
   }
 
+  handleDrop(files) {
+    this.setState({ files: files});
+  }
+
   render() {
     if (this.props.note && this.props.note.notebook && this.props.note.tags) {
       let noteTags;
@@ -103,16 +110,10 @@ export default class NoteForm extends React.Component {
           </li>
         );
       });
-      return (
-        <div className="note-form-page">
+      return <div className="note-form-page">
           <div className="note-form-header">
             <div className="note-form-top-header">
-              <input
-                type="button"
-                onClick={this.handleSubmit}
-                value="Save"
-                className="btn btn-success note-form-submit"
-              />
+              <input type="button" onClick={this.handleSubmit} value="Save" className="btn btn-success note-form-submit" />
               <i className="fa fa-trash trash" onClick={this.handleTrashClick} />
             </div>
             <div className="note-form-bottom-header">
@@ -126,42 +127,22 @@ export default class NoteForm extends React.Component {
               <div className="note-tags">
                 <i className="fa fa-tag" />
                 <ul className="tag-list">{tags}</ul>
-                <input
-                  type="text"
-                  className="new-tag"
-                  placeholder="New Tag..."
-                  value={this.state.tag.name}
-                  onChange={this.handleChange('tag', 'name')}
-                  onKeyPress={this.handleKeypress}
-                />
+                <input type="text" className="new-tag" placeholder="New Tag..." value={this.state.tag.name} onChange={this.handleChange('tag', 'name')} onKeyPress={this.handleKeypress} />
               </div>
             </div>
           </div>
-          {this.props.notebooksDropdownIsOpen && <NotebooksDropdownContainer
-            note={this.state.note}
-            currentNotebook={this.props.note.notebook}
-          />}
+          {this.props.notebooksDropdownIsOpen && <NotebooksDropdownContainer note={this.state.note} currentNotebook={this.props.note.notebook} />}
           <form className="note-form">
             <div className="form-group">
-              <input
-                type="text"
-                className="note-form-input note-title-input"
-                value={this.state.note.title}
-                placeholder="Title Your Note"
-                onChange={this.handleChange('note', 'title')}
-              />
+              <input type="text" className="note-form-input note-title-input" value={this.state.note.title} placeholder="Title Your Note" onChange={this.handleChange('note', 'title')} />
             </div>
             <div className="form-group">
-              <textarea
-                className="note-form-input note-body-input"
-                value={this.state.note.body}
-                placeholder="Start Writing"
-                onChange={this.handleChange('note', 'body')}
-              />
+              <Dropzone className="dropzone" disableClick={true} onDrop={this.handleDrop}>
+                <textarea className="note-form-input note-body-input" value={this.state.note.body} placeholder="Start Writing" onChange={this.handleChange('note', 'body')} />
+              </Dropzone>
             </div>
           </form>
-        </div>
-      );
+        </div>;
     } else {
       return <div />;
     }

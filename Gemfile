@@ -43,6 +43,8 @@ gem 'faker'
 
 gem 'figaro'
 
+gem 'cloudinary'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
