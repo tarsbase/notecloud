@@ -523,16 +523,16 @@ body {
 
 .hide-sidebar-modal {
   width: 0px;
-  transition: all 0.4s ease-out;
+  transition: all 0.6s ease-out;
 }
 
 .open-sidebar-modal {
   width: 100%;
-  transition: all 1s ease-in;
+  transition: all 0.6s ease-in;
 }
 
 .sidebar-index {
-  width: 250px;
+  width: 300px;
   height: 100vh;
   background-color: white;
   border-right: 1px solid #ececec;
