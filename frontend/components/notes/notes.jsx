@@ -4,6 +4,7 @@ import NoteFormContainer from './note_form_container';
 import SidebarNavContainer from '../nav/sidebar_nav_container';
 import SidebarIndexContainer from '../sidebar/sidebar_index_container';
 import DeleteModalContainer from '../modals/delete_modal_container';
+import BannerModalContainer from '../modals/banner_modal_container';
 
 export default class Notes extends React.Component {
   constructor(props) {
@@ -64,6 +65,7 @@ export default class Notes extends React.Component {
         </div>
         <NoteFormContainer />
         <DeleteModalContainer deleteEntityType={deleteEntityType} />
+        <BannerModalContainer/>
       </div>
     );
   }

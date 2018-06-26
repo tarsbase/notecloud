@@ -1,4 +1,5 @@
 import * as NoteApiUtil from '../util/note_api_util';
+import { openBannerModal } from '../actions/ui_actions';
 
 export const RECEIVE_NOTE = 'RECEIVE_NOTE';
 export const RECEIVE_ALL_NOTES = 'RECEIVE_ALL_NOTES';
@@ -39,8 +40,14 @@ export const createNote = note => dispatch =>
   NoteApiUtil.createNote(note).then(newNote => dispatch(receiveNote(newNote)));
 
 export const updateNote = note => dispatch =>
-  NoteApiUtil.updateNote(note).then(updatedNote =>
-    dispatch(receiveNote(updatedNote))
+  NoteApiUtil.updateNote(note).then(updatedNote => {
+    dispatch(receiveNote(updatedNote));
+    if (note.notebook.name !== updatedNote.notebook.name) {
+      dispatch(openBannerModal(`Note has been moved to ${updatedNote.notebook.name}` ));
+    } else {
+      dispatch(openBannerModal('Note has been updated'));
+    }
+  }
   );
 
 export const deleteNote = id => dispatch =>

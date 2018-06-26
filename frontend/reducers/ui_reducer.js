@@ -3,15 +3,13 @@ import {
   CLOSE_NOTEBOOKS_MODAL,
   OPEN_TAGS_MODAL,
   CLOSE_TAGS_MODAL,
-  OPEN_SIDEBAR_MODAL,
-  CLOSE_SIDEBAR_MODAL,
   OPEN_DELETE_MODAL,
   CLOSE_DELETE_MODAL,
   TOGGLE_NOTEBOOKS_DROPDOWN,
   CLOSE_NOTEBOOKS_DROPDOWN,
   SET_CURRENT_NOTEBOOK,
-  OPEN_CREATE_MODAL,
-  CLOSE_CREATE_MODAL
+  OPEN_BANNER_MODAL,
+  CLOSE_BANNER_MODAL
 } from '../actions/ui_actions';
 
 const defaultState = {
@@ -21,7 +19,9 @@ const defaultState = {
   deleteEntityType: null,
   deleteEntity: null,
   notebooksDropdownIsOpen: false,
-  currentNotebook: null
+  currentNotebook: null,
+  bannerModalIsOpen: false,
+  bannerModalMsg: ''
 };
 
 const UIReducer = (oldState = defaultState, action) => {
@@ -60,6 +60,14 @@ const UIReducer = (oldState = defaultState, action) => {
       return newState;
     case SET_CURRENT_NOTEBOOK:
       newState.currentNotebook = action.notebook;
+      return newState;
+    case OPEN_BANNER_MODAL:
+      newState.bannerModalIsOpen = true;
+      newState.bannerModalMsg = action.msg;
+      return newState;
+    case CLOSE_BANNER_MODAL:
+      newState.bannerModalIsOpen = false;
+      newState.bannerModalMsg = '';
       return newState;
     default:
       return oldState;

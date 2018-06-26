@@ -9,6 +9,8 @@ export const CLOSE_DELETE_MODAL = 'CLOSE_DELETE_MODAL';
 export const TOGGLE_NOTEBOOKS_DROPDOWN = 'TOGGLE_NOTEBOOKS_DROPDOWN';
 export const CLOSE_NOTEBOOKS_DROPDOWN = 'CLOSE_NOTEBOOKS_DROPDOWN';
 export const SET_CURRENT_NOTEBOOK = 'SET_CURRENT_NOTEBOOK';
+export const OPEN_BANNER_MODAL = 'OPEN_BANNER_MODAL';
+export const CLOSE_BANNER_MODAL = 'CLOSE_BANNER_MODAL'; 
 
 
 export const openNotebooksModal = () => ({
@@ -56,4 +58,13 @@ export const closeNotebooksDropdown = () => ({
 export const setCurrentNotebook = (notebook) => ({
   type: SET_CURRENT_NOTEBOOK,
   notebook
+});
+
+export const openBannerModal = msg => ({
+  type: OPEN_BANNER_MODAL,
+  msg
+});
+
+export const closeBannerModal = () => ({
+  type: CLOSE_BANNER_MODAL
 });

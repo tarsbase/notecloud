@@ -700,7 +700,7 @@ body {
   border: 1px solid #d1d1d1;
   border-radius: 4px;
   background-color: #f8f8f8;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .tag:hover {
@@ -746,3 +746,20 @@ body {
 .new-tag {
   border: none;
 }
+
+
+/* Banner Modal */
+
+.banner-modal {
+  position: fixed;
+  color: white;
+  left: 47%;
+  top: 25px;
+  text-align: center;
+  background-color: #1aba52;
+  min-width: 400px;
+  height: 40px;
+  border-radius: 4px;
+  padding: 10px;
+}
+
