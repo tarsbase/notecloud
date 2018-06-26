@@ -7,15 +7,14 @@ export default class NoteForm extends React.Component {
     super(props);
     this.state = {
       note: this.props.note,
-      tag: { name: '' },
-      files: ''
+      tag: { name: '' }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleTrashClick = this.handleTrashClick.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
     this.handleKeypress = this.handleKeypress.bind(this);
-    this.handleDrop = this.handleDrop.bind(this);
+    // this.handleDrop = this.handleDrop.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,7 +38,7 @@ export default class NoteForm extends React.Component {
     if (this.props.note.id) {
       this.props.openDeleteModal('notes', this.state.note);
     } else {
-      this.setState({ note: { title: '', body: '' } });
+      this.setState({ note: { title: '', body: '', images: [] } });
     }
   }
 
@@ -90,11 +89,13 @@ export default class NoteForm extends React.Component {
     }
   }
 
-  handleDrop(files) {
-    this.setState({ files: files});
-  }
+  // handleDrop(files) {
+  //   const previews = files.map(file => file.preview);
+  //   this.setState({ note: Object.assign({}, this.state.note, {images: previews, files: files})});
+  // }
 
   render() {
+    const images = this.state.note.images.map(url => <img src={url} key={url}/>);
     if (this.props.note && this.props.note.notebook && this.props.note.tags) {
       let noteTags;
       if (this.props.note.id) {
@@ -138,6 +139,7 @@ export default class NoteForm extends React.Component {
             </div>
             <div className="form-group">
               <Dropzone className="dropzone" disableClick={true} onDrop={this.handleDrop}>
+                {images}
                 <textarea className="note-form-input note-body-input" value={this.state.note.body} placeholder="Start Writing" onChange={this.handleChange('note', 'body')} />
               </Dropzone>
             </div>

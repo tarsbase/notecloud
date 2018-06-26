@@ -3,6 +3,10 @@ class Api::NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
+
+    if params[:note][:files]
+      puts files
+    end 
     
     if @note.save!
       if params[:note][:tags]

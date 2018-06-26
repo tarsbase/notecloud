@@ -12,11 +12,12 @@
 
 class Note < ApplicationRecord
   include ActionView::Helpers::DateHelper
-  validates :title, :body, presence: true
+  validates :title, presence: true
 
   belongs_to :notebook
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :note_images
 
   def last_update 
     time_ago_in_words(self.updated_at).upcase
