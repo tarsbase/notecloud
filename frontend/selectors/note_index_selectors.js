@@ -8,11 +8,11 @@ import { getAllNotebooks, getNotebook } from '../actions/notebook_actions';
 import { getTag } from '../actions/tag_actions';
 
 export const noteIndexSelector = (ownProps, state) => {
+  let notes;
   let getArg;
   let headerTitle;
   let getAction;
   let getRelatedAction;
-  let getNotebookAction;
   if (ownProps.match.params.notebookId) {
     getArg = ownProps.match.params.notebookId;
     getAction = getNotesByNotebookId;
@@ -37,5 +37,12 @@ export const noteIndexSelector = (ownProps, state) => {
     getAction = getAllNotes;
     getRelatedAction = (id) => ({type: ''});
   }
-  return { getArg, headerTitle, getAction, getRelatedAction };
+  if (state) {
+    notes = Object.values(state.notes).sort((a,b) => {
+      const aDate = new Date(a.updated_at);
+      const bDate = new Date(b.updated_at);
+      return bDate - aDate;
+    });
+  }
+  return { getArg, headerTitle, getAction, getRelatedAction, notes };
 };

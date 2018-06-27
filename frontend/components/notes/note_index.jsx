@@ -20,11 +20,6 @@ export default class NoteIndex extends React.Component {
   render() {
     const noteIndexClasses = ['notes-index-container'];
     const notes = this.props.notes
-      .sort((a, b) => {
-        const aDate = new Date(a.updated_at);
-        const bDate = new Date(b.updated_at);
-        return bDate - aDate;
-      })
       .map(note => (
         <NoteIndexItem
           key={note.id}

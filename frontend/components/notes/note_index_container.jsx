@@ -6,12 +6,12 @@ import { getAllNotebooks } from '../../actions/notebook_actions';
 import { noteIndexSelector } from '../../selectors/note_index_selectors';
 
 const mapStateToProps = (state, ownProps) => {
-  const { getArg, headerTitle } = noteIndexSelector(ownProps, state);
+  const { getArg, headerTitle, notes } = noteIndexSelector(ownProps, state);
   return {
-    notes: Object.values(state.notes),
     deleteModalIsOpen: state.ui.deleteModalIsOpen,
     getArg,
-    headerTitle
+    headerTitle,
+    notes
   };
 };
 
