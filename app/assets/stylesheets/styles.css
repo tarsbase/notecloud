@@ -753,7 +753,7 @@ body {
 .banner-modal {
   position: fixed;
   color: white;
-  left: 47%;
+  left: 50%;
   top: 25px;
   text-align: center;
   background-color: #1aba52;
@@ -761,5 +761,7 @@ body {
   height: 40px;
   border-radius: 4px;
   padding: 10px;
+  z-index: 2;
+  margin-left: -200px;
 }
 

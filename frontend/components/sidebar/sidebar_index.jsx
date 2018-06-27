@@ -43,6 +43,10 @@ export default class SidebarIndex extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
+    if (!this.state.entityName) {
+      this.props.openBannerModal('Title cannot be blank');
+      return;
+    } 
     const entity = { name: this.state.entityName };
     this.props.createAction(entity);
     this.closeModal();
