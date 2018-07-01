@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   const { getArg, headerTitle, notes } = noteIndexSelector(ownProps, state);
   return {
     deleteModalIsOpen: state.ui.deleteModalIsOpen,
+    noteCount: state.ui.noteCount,
     getArg,
     headerTitle,
     notes

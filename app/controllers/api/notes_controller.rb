@@ -36,7 +36,7 @@ class Api::NotesController < ApplicationController
         .notes.includes([:notebook, :tags])
         .order(updated_at: :desc)
         .page params[:page]
-      @note_count = current_user.notebooks.find(params[:notebook_id]).count
+      @note_count = current_user.notebooks.find(params[:notebook_id]).notes.count
     elsif params[:tag_id]
       @notes = current_user.tags
         .includes([:notes, :taggings])
@@ -45,7 +45,7 @@ class Api::NotesController < ApplicationController
         .includes([:notebook, :tags])
         .order(updated_at: :desc)
         .page params[:page]
-      @note_count = current_user.tags.find(params[:tag_id]).count
+      @note_count = current_user.tags.find(params[:tag_id]).notes.count
     else 
       @notes = current_user.notes
         .includes([:notebook, :tags])

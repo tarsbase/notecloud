@@ -43,13 +43,13 @@ export default class NoteIndex extends React.Component {
           openDeleteModal={this.props.openDeleteModal}
         />
       ));
-    const noteMsg = notes.length === 1 ? 'note' : 'notes';
+    const noteMsg = this.props.noteCount === 1 ? 'note' : 'notes';
     return (
       <div className={noteIndexClasses.join(' ')} onScroll={this.handleScroll}>
         <div className="sidebar-header">
           <h1>{this.props.headerTitle}</h1>
           <h3>
-            {notes.length} {noteMsg}
+            {this.props.noteCount} {noteMsg}
           </h3>
         </div>
         <ul>{notes}</ul>

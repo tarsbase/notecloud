@@ -14,6 +14,11 @@ import {
   HIDE_LOADING_SPINNER
 } from '../actions/ui_actions';
 
+import { 
+  RECEIVE_NOTES_AND_CONCAT,
+  RECEIVE_NOTES_AND_REPLACE
+} from '../actions/note_actions';
+
 const defaultState = {
   notebooksModalIsOpen: false,
   tagsModalIsOpen: false,
@@ -24,7 +29,8 @@ const defaultState = {
   currentNotebook: null,
   bannerModalIsOpen: false,
   bannerModalMsg: '',
-  loadingSpinnerIsVisible: false
+  loadingSpinnerIsVisible: false,
+  noteCount: 0
 };
 
 const UIReducer = (oldState = defaultState, action) => {
@@ -77,6 +83,10 @@ const UIReducer = (oldState = defaultState, action) => {
       return newState;
     case HIDE_LOADING_SPINNER:
       newState.loadingSpinnerIsVisible = false;
+      return newState;
+    case RECEIVE_NOTES_AND_CONCAT:
+    case RECEIVE_NOTES_AND_REPLACE:
+      newState.noteCount = action.notes.note_count;
       return newState;
     default:
       return oldState;
