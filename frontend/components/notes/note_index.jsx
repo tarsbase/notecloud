@@ -23,7 +23,7 @@ export default class NoteIndex extends React.Component {
 
   handleScroll(e) {
     const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-    if (bottom) { 
+    if (bottom && this.props.noteCount > this.props.notes.length) { 
       this.fetchNextPage();
      }
   }
