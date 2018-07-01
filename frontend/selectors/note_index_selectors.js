@@ -1,20 +1,25 @@
 import {
   getNotesAndConcat,
+  getNotesAndReplace,
   getNotesByNotebookIdAndConcat,
+  getNotesByNotebookIdAndReplace,
   getNotesByTagIdAndConcat,
+  getNotesByTagIdAndReplace
 } from '../actions/note_actions';
-import { getAllNotebooks, getNotebook } from '../actions/notebook_actions';
+import { getNotebook } from '../actions/notebook_actions';
 import { getTag } from '../actions/tag_actions';
 
 export const noteIndexSelector = (ownProps, state) => {
   let notes;
   let getArg;
   let headerTitle;
-  let getAction;
+  let getAndReplace;
+  let getAndConcat;
   let getRelatedAction;
   if (ownProps.match.params.notebookId) {
     getArg = ownProps.match.params.notebookId;
-    getAction = getNotesByNotebookIdAndConcat;
+    getAndConcat = getNotesByNotebookIdAndConcat;
+    getAndReplace = getNotesByNotebookIdAndReplace;
     getRelatedAction = getNotebook;
     if (state) {
       if (state.notebooks[ownProps.match.params.notebookId]) {
@@ -23,7 +28,8 @@ export const noteIndexSelector = (ownProps, state) => {
     }
   } else if (ownProps.match.params.tagId) {
     getArg = ownProps.match.params.tagId;
-    getAction = getNotesByTagIdAndConcat;
+    getAndConcat = getNotesByTagIdAndConcat;
+    getAndReplace = getNotesByTagIdAndReplace;
     getRelatedAction = getTag;
     if (state) {
       if (state.tags[ownProps.match.params.tagId]) {
@@ -33,7 +39,8 @@ export const noteIndexSelector = (ownProps, state) => {
   } else {
     getArg = null;
     headerTitle = 'NOTES';
-    getAction = getNotesAndConcat;
+    getAndConcat = getNotesAndConcat;
+    getAndReplace = getNotesAndReplace;
     getRelatedAction = (id) => ({type: ''});
   }
   if (state) {
@@ -43,5 +50,5 @@ export const noteIndexSelector = (ownProps, state) => {
       return bDate - aDate;
     });
   }
-  return { getArg, headerTitle, getAction, getRelatedAction, notes };
+  return { getArg, headerTitle, getAndConcat, getRelatedAction, notes, getAndReplace };
 };
