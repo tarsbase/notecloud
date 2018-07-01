@@ -1,8 +1,7 @@
 import {
-  getAllNotes,
-  getNotesByNotebookId,
-  getNotesByTagId,
-  getNote,
+  getNotesAndConcat,
+  getNotesByNotebookIdAndConcat,
+  getNotesByTagIdAndConcat,
 } from '../actions/note_actions';
 import { getAllNotebooks, getNotebook } from '../actions/notebook_actions';
 import { getTag } from '../actions/tag_actions';
@@ -15,7 +14,7 @@ export const noteIndexSelector = (ownProps, state) => {
   let getRelatedAction;
   if (ownProps.match.params.notebookId) {
     getArg = ownProps.match.params.notebookId;
-    getAction = getNotesByNotebookId;
+    getAction = getNotesByNotebookIdAndConcat;
     getRelatedAction = getNotebook;
     if (state) {
       if (state.notebooks[ownProps.match.params.notebookId]) {
@@ -24,7 +23,7 @@ export const noteIndexSelector = (ownProps, state) => {
     }
   } else if (ownProps.match.params.tagId) {
     getArg = ownProps.match.params.tagId;
-    getAction = getNotesByTagId;
+    getAction = getNotesByTagIdAndConcat;
     getRelatedAction = getTag;
     if (state) {
       if (state.tags[ownProps.match.params.tagId]) {
@@ -34,7 +33,7 @@ export const noteIndexSelector = (ownProps, state) => {
   } else {
     getArg = null;
     headerTitle = 'NOTES';
-    getAction = getAllNotes;
+    getAction = getNotesAndConcat;
     getRelatedAction = (id) => ({type: ''});
   }
   if (state) {

@@ -765,3 +765,10 @@ body {
   margin-left: -200px;
 }
 
+/* Loading Spinner */
+
+.loading-spinner {
+  color: #2dbe60; 
+  margin-left: 102px;
+  margin-bottom: 10px;
+}

@@ -19,7 +19,7 @@ Tagging.destroy_all
   notebook.save!
 end 
 
-15.times do 
+35.times do 
   note = Note.new(
     title: Faker::StarWars.planet,
     body: Faker::StarWars.quote,

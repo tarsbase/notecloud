@@ -9,7 +9,9 @@ import {
   CLOSE_NOTEBOOKS_DROPDOWN,
   SET_CURRENT_NOTEBOOK,
   OPEN_BANNER_MODAL,
-  CLOSE_BANNER_MODAL
+  CLOSE_BANNER_MODAL,
+  SHOW_LOADING_SPINNER,
+  HIDE_LOADING_SPINNER
 } from '../actions/ui_actions';
 
 const defaultState = {
@@ -21,7 +23,8 @@ const defaultState = {
   notebooksDropdownIsOpen: false,
   currentNotebook: null,
   bannerModalIsOpen: false,
-  bannerModalMsg: ''
+  bannerModalMsg: '',
+  loadingSpinnerIsVisible: false
 };
 
 const UIReducer = (oldState = defaultState, action) => {
@@ -68,6 +71,12 @@ const UIReducer = (oldState = defaultState, action) => {
     case CLOSE_BANNER_MODAL:
       newState.bannerModalIsOpen = false;
       newState.bannerModalMsg = '';
+      return newState;
+    case SHOW_LOADING_SPINNER:
+      newState.loadingSpinnerIsVisible = true;
+      return newState;
+    case HIDE_LOADING_SPINNER:
+      newState.loadingSpinnerIsVisible = false;
       return newState;
     default:
       return oldState;

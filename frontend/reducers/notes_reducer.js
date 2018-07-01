@@ -1,5 +1,5 @@
 import {
-  RECEIVE_ALL_NOTES,
+  RECEIVE_NOTES_AND_CONCAT,
   RECEIVE_NOTE,
   REMOVE_NOTE
 } from '../actions/note_actions';
@@ -9,8 +9,8 @@ const NotesReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   const newState = { ...oldState };
   switch (action.type) {
-    case RECEIVE_ALL_NOTES:
-      return action.notes;
+    case RECEIVE_NOTES_AND_CONCAT:
+      return Object.assign({}, newState, action.notes);
     case RECEIVE_NOTE:
     case RECEIVE_TAG_NOTE:
       newState[action.note.id] = action.note;

@@ -30,11 +30,25 @@ class Api::NotesController < ApplicationController
 
   def index 
     if params[:notebook_id] 
-      @notes = current_user.notebooks.includes([:notes]).find(params[:notebook_id]).notes.includes([:notebook, :tags])
+      @notes = current_user.notebooks
+        .includes([:notes])
+        .find(params[:notebook_id])
+        .notes.includes([:notebook, :tags])
+        .order(updated_at: :desc)
+        .page params[:page]
     elsif params[:tag_id]
-      @notes = current_user.tags.includes([:notes, :taggings]).find(params[:tag_id]).notes.includes([:notebook, :tags])
+      @notes = current_user.tags
+        .includes([:notes, :taggings])
+        .find(params[:tag_id])
+        .notes
+        .includes([:notebook, :tags])
+        .order(updated_at: :desc)
+        .page params[:page]
     else 
-      @notes = current_user.notes.includes([:notebook, :tags])
+      @notes = current_user.notes
+        .includes([:notebook, :tags])
+        .order(updated_at: :desc)
+        .page params[:page]
     end 
     render :index
   end 

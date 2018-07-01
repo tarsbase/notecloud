@@ -2,8 +2,6 @@ export const OPEN_NOTEBOOKS_MODAL = 'OPEN_NOTEBOOKS_MODAL';
 export const CLOSE_NOTEBOOKS_MODAL = 'CLOSE_NOTEBOOKS_MODAL';
 export const OPEN_TAGS_MODAL = 'OPEN_TAGS_MODAL';
 export const CLOSE_TAGS_MODAL = 'CLOSE_TAGS_MODAL';
-export const SHOW_TOOLTIP = 'SHOW_TOOLTIP';
-export const HIDE_TOOLTIP = 'HIDE_TOOLTIP';
 export const OPEN_DELETE_MODAL = 'OPEN_DELETE_MODAL';
 export const CLOSE_DELETE_MODAL = 'CLOSE_DELETE_MODAL';
 export const TOGGLE_NOTEBOOKS_DROPDOWN = 'TOGGLE_NOTEBOOKS_DROPDOWN';
@@ -11,8 +9,9 @@ export const CLOSE_NOTEBOOKS_DROPDOWN = 'CLOSE_NOTEBOOKS_DROPDOWN';
 export const SET_CURRENT_NOTEBOOK = 'SET_CURRENT_NOTEBOOK';
 export const OPEN_BANNER_MODAL = 'OPEN_BANNER_MODAL';
 export const CLOSE_BANNER_MODAL = 'CLOSE_BANNER_MODAL'; 
-
-
+export const SHOW_LOADING_SPINNER = 'SHOW_LOADING_SPINNER';
+export const HIDE_LOADING_SPINNER = 'HIDE_LOADING_SPINNER';
+ 
 export const openNotebooksModal = () => ({
   type: OPEN_NOTEBOOKS_MODAL
 });
@@ -27,14 +26,6 @@ export const openTagsModal = () => ({
 
 export const closeTagsModal = () => ({
   type: CLOSE_TAGS_MODAL
-});
-
-export const showTooltip = () => ({
-  type: SHOW_TOOLTIP
-});
-
-export const hideTooltip = () => ({
-  type: HIDE_TOOLTIP
 });
 
 export const openDeleteModal = (entityType, entity) => ({
@@ -67,4 +58,12 @@ export const openBannerModal = msg => ({
 
 export const closeBannerModal = () => ({
   type: CLOSE_BANNER_MODAL
+});
+
+export const showLoadingSpinner = () => ({
+  type: SHOW_LOADING_SPINNER
+});
+
+export const hideLoadingSpinner = () => ({
+  type: HIDE_LOADING_SPINNER
 });

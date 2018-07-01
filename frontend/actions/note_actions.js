@@ -2,7 +2,8 @@ import * as NoteApiUtil from '../util/note_api_util';
 import { openBannerModal } from '../actions/ui_actions';
 
 export const RECEIVE_NOTE = 'RECEIVE_NOTE';
-export const RECEIVE_ALL_NOTES = 'RECEIVE_ALL_NOTES';
+export const RECEIVE_NOTES_AND_CONCAT = 'RECEIVE_NOTES_AND_CONCAT';
+export const RECEIVE_NOTES_AND_REPLACE = 'RECEIVE_NOTES_AND_REPLACE';
 export const REMOVE_NOTE = 'REMOVE_NOTE';
 
 export const receiveNote = note => ({
@@ -10,8 +11,13 @@ export const receiveNote = note => ({
   note
 });
 
-const receiveAllNotes = notes => ({
-  type: RECEIVE_ALL_NOTES,
+const receiveNotesAndConcat = notes => ({
+  type: RECEIVE_NOTES_AND_CONCAT,
+  notes
+});
+
+const receiveNotesAndReplace = notes => ({
+  type: RECEIVE_NOTES_AND_REPLACE,
   notes
 });
 
@@ -20,20 +26,38 @@ const removeNote = note => ({
   note
 });
 
-export const getAllNotes = () => dispatch =>
-  NoteApiUtil.fetchAllNotes().then(notes => dispatch(receiveAllNotes(notes)));
+export const getNotesAndConcat = page => dispatch => {
+  NoteApiUtil.fetchNotes(page).then(notes => {
+    dispatch(receiveNotesAndConcat(notes));
+  });
+};
+
+export const getNotesAndReplace = page => dispatch =>
+  NoteApiUtil.fetchNotes(page).then(notes =>
+    dispatch(receiveNotesAndReplace(notes))
+  );
 
 export const getNote = id => dispatch =>
   NoteApiUtil.fetchNote(id).then(note => dispatch(receiveNote(note)));
 
-export const getNotesByNotebookId = notebookId => dispatch =>
-  NoteApiUtil.fetchNotesByNotebook(notebookId).then(notes =>
-    dispatch(receiveAllNotes(notes))
+export const getNotesByNotebookIdAndConcat = (page, notebookId) => dispatch =>
+  NoteApiUtil.fetchNotesByNotebook(page, notebookId).then(notes =>
+    dispatch(receiveNotesAndConcat(notes))
   );
 
-export const getNotesByTagId = tagId => dispatch =>
-  NoteApiUtil.fetchNotesByTag(tagId).then(notes =>
-    dispatch(receiveAllNotes(notes))
+export const getNotesByNotebookIdAndReplace = (page, notebookId) => dispatch =>
+  NoteApiUtil.fetchNotesByNotebook(page, notebookId).then(notes =>
+    dispatch(receiveNotesAndReplace(notes))
+  );
+
+export const getNotesByTagIdAndConcat = (page, tagId) => dispatch =>
+  NoteApiUtil.fetchNotesByTag(page, tagId).then(notes =>
+    dispatch(receiveNotesAndConcat(notes))
+  );
+
+export const getNotesByTagIdAndReplace = (page, tagId) => dispatch =>
+  NoteApiUtil.fetchNotesByTag(page, tagId).then(notes =>
+    dispatch(receiveNotesAndReplace(notes))
   );
 
 export const createNote = note => dispatch =>
@@ -43,13 +67,13 @@ export const updateNote = note => dispatch =>
   NoteApiUtil.updateNote(note).then(updatedNote => {
     dispatch(receiveNote(updatedNote));
     if (note.notebook.name !== updatedNote.notebook.name) {
-      dispatch(openBannerModal(`Note has been moved to ${updatedNote.notebook.name}` ));
+      dispatch(
+        openBannerModal(`Note has been moved to ${updatedNote.notebook.name}`)
+      );
     } else {
       dispatch(openBannerModal('Note has been updated'));
     }
-  }
-  );
+  });
 
 export const deleteNote = id => dispatch =>
   NoteApiUtil.destroyNote(id).then(note => dispatch(removeNote(note)));
-
