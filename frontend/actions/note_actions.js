@@ -1,5 +1,9 @@
 import * as NoteApiUtil from '../util/note_api_util';
-import { openBannerModal } from '../actions/ui_actions';
+import {
+  openBannerModal,
+  showLoadingSpinner,
+  hideLoadingSpinner
+} from '../actions/ui_actions';
 
 export const RECEIVE_NOTE = 'RECEIVE_NOTE';
 export const RECEIVE_NOTES_AND_CONCAT = 'RECEIVE_NOTES_AND_CONCAT';
@@ -27,15 +31,19 @@ const removeNote = note => ({
 });
 
 export const getNotesAndConcat = page => dispatch => {
+  if (page > 1) {
+    dispatch(showLoadingSpinner());
+  }
   NoteApiUtil.fetchNotes(page).then(notes => {
     dispatch(receiveNotesAndConcat(notes));
+    dispatch(hideLoadingSpinner());
   });
 };
 
 export const getNotesAndReplace = page => dispatch =>
-  NoteApiUtil.fetchNotes(page).then(notes =>
-    dispatch(receiveNotesAndReplace(notes))
-  );
+  NoteApiUtil.fetchNotes(page).then(notes => {
+    dispatch(receiveNotesAndReplace(notes));
+  });
 
 export const getNote = id => dispatch =>
   NoteApiUtil.fetchNote(id).then(note => dispatch(receiveNote(note)));

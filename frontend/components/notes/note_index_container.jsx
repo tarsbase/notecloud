@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import NoteIndex from './note_index';
 import { withRouter } from 'react-router-dom';
 import {
-  openDeleteModal
+  openDeleteModal,
+  showLoadingSpinner
 } from '../../actions/ui_actions';
 import { noteIndexSelector } from '../../selectors/note_index_selectors';
 
@@ -24,7 +25,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getAndReplace: (pageNum, id) => dispatch(getAndReplace(pageNum, id)),
     openDeleteModal: (entityType, entity) =>
       dispatch(openDeleteModal(entityType, entity)),
-    getRelatedAction: id => dispatch(getRelatedAction(id))
+    getRelatedAction: id => dispatch(getRelatedAction(id)),
+    showLoadingSpinner: () => dispatch(showLoadingSpinner)
   };
 };
 
