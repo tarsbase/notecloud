@@ -85,52 +85,27 @@ export default class SessionForm extends React.Component {
         {err}
       </li>
     ));
-    return (
-      <div className={containerClass}>
+    return <div className={containerClass}>
         <h1 className="session-form-title">{pageTitle}</h1>
         <div className="session-form-container">
           <form className="session-form" onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <input
-                ref={input => {
+              <input ref={input => {
                   this.usernameInput = input;
-                }}
-                className="form-control"
-                id="username"
-                type="text"
-                placeholder="Username"
-                value={this.state.user.username}
-                onChange={this.update('username')}
-              />
+                }} className="form-control" id="username" type="text" placeholder="Username" value={this.state.user.username} onChange={this.update('username')} />
             </div>
             <div className="form-group">
-              <input
-                className="form-control"
-                id="password"
-                type="password"
-                placeholder="Password"
-                value={this.state.user.password}
-                onChange={this.update('password')}
-              />
+              <input className="form-control" id="password" type="password" placeholder="Password" value={this.state.user.password} onChange={this.update('password')} />
             </div>
             {errors}
             <li className="errors">{this.state.errorMsg}</li>
-            <input
-              type="submit"
-              className="btn btn-success session-btn"
-              value={pageTitle}
-            />
+            <input type="submit" className="btn btn-success session-btn" value={pageTitle} />
           </form>
         </div>
-        <div className="session-link-msg">{linkMsg}</div>
-        <Link
-          className="session-form-link"
-          to={linkPath}
-          onClick={this.handleClick}
-        >
-          {linkTitle}
-        </Link>
-      </div>
-    );
+          <div className="session-link-msg">{linkMsg}</div>
+          <Link className="session-form-link" to={linkPath} onClick={this.handleClick}>
+            {linkTitle}
+          </Link>
+      </div>;
   }
 }
