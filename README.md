@@ -32,7 +32,7 @@ A tag is only created if one does not already exist with that name and if the no
 
 Users can search notebooks and tags via the search bar in the coresponding index component. 
 
-<img src="https://res.cloudinary.com/brainzilla/image/upload/v1530719311/notebooks-search_x7uhmf.gif"/>
+<img src="https://res.cloudinary.com/brainzilla/image/upload/v1530720855/notebooks-search-large_oupmnt.gif"/>
 
 The controllers index method performs a case insensitive search if the search param is present and returns the corresponding collection.
 
@@ -50,5 +50,5 @@ def index
 
 Notes are loaded 25 at a time with the next batch being fetched when the user scrolls to the bottom of the list. When this occurs a loading spinner appears when loading begins and the disappears when the response is received. 
 
-<img src="https://res.cloudinary.com/brainzilla/image/upload/v1530720027/infintie-scroll_ydjv2j.gif"/>
+<img src="https://res.cloudinary.com/brainzilla/image/upload/v1530720926/infinite-scroll-large.gif_ytvwke.gif"/>
 
