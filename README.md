@@ -8,23 +8,23 @@ Notecloud is a lightweight Evernote clone built using Ruby on Rails and React.js
 
   Users can create, read, update and delete notes.
 
-<img src="https://res.cloudinary.com/brainzilla/image/upload/v1528809424/notecloud_note_form.png" width="480px"/>
+<img src="https://res.cloudinary.com/brainzilla/image/upload/v1528809424/notecloud_note_form.png"/>
 
 ### Notebooks 
 
 Notes can be organized in notebooks. 
 
-<img src="https://res.cloudinary.com/brainzilla/image/upload/v1528810078/notecloud_notebooks.png" width="480px"/>
+<img src="https://res.cloudinary.com/brainzilla/image/upload/v1528810078/notecloud_notebooks.png"/>
 
 ### Tags 
 
 Tags can be created and linked to notes in a many to many realtionshsip. Tags can be created by clicking on the create tag button. 
 
-<img src="https://res.cloudinary.com/brainzilla/image/upload/v1530718853/new-tag-create-1_mso0xj.gif"/>
+<img src="https://res.cloudinary.com/brainzilla/image/upload/v1530720475/new-tag-create-1-large_f3jqjb.gif"/>
 
 And also by typing the name of the tag in the input field on the note form. 
 
-<img src="https://res.cloudinary.com/brainzilla/image/upload/v1530718856/new-tag-create-2_kmejks.gif"/>
+<img src="https://res.cloudinary.com/brainzilla/image/upload/v1530720627/new-tag-create-2-large.gif_nlpadz.gif"/>
 
 A tag is only created if one does not already exist with that name and if the note form input is used a tagging association is created. 
 
