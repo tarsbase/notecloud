@@ -36,7 +36,9 @@ export const getNotesAndConcat = page => dispatch => {
   }
   NoteApiUtil.fetchNotes(page).then(notes => {
     dispatch(receiveNotesAndConcat(notes));
-    dispatch(hideLoadingSpinner());
+    if (page > 1) {
+      dispatch(hideLoadingSpinner());
+    }
   });
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactQuill from 'react-quill';
 import { Link, withRouter } from 'react-router-dom';
 
 class NoteIndexItem extends React.Component {
@@ -32,6 +33,8 @@ class NoteIndexItem extends React.Component {
             <i
               className="fa fa-trash list-item-trash"
               onClick={this.handleClick}
+              onMouseEnter={this.showTooltip}
+              onMouseLeave={this.hideTooltip}
             />
           </div>
           <div className="note-list-item-info note-updated">

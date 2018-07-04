@@ -387,6 +387,7 @@ body {
   width: 100%;
   vertical-align: 0%;
   resize: none;
+  line-height: 24px;
 }
 
 .note-form-submit {
@@ -458,7 +459,13 @@ body {
 .sidebar-plus + .tooltip-text {
   top: 45px;
   width: fit-content;
-  left: 140px;
+  left: 185px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.list-item-trash + .tooltip-text {
+  top: 50px;
 }
 
 .hide-tooltip {
@@ -747,7 +754,6 @@ body {
   border: none;
 }
 
-
 /* Banner Modal */
 
 .banner-modal {
@@ -768,7 +774,7 @@ body {
 /* Loading Spinner */
 
 .loading-spinner {
-  color: #2dbe60; 
+  color: #2dbe60;
   margin-left: 102px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }

@@ -142,7 +142,7 @@ export default class NoteForm extends React.Component {
                   onKeyPress={this.handleKeypress}
                 />
               </div>
-            </div>
+              </div>
           </div>
           {this.props.notebooksDropdownIsOpen && (
             <NotebooksDropdownContainer
@@ -163,8 +163,8 @@ export default class NoteForm extends React.Component {
             <div className="form-group">
               <textarea
                 className="note-form-input note-body-input"
-                value={this.state.note.body}
                 placeholder="Start Writing"
+                value={this.state.note.body}
                 onChange={this.handleChange('note', 'body')}
               />
             </div>
@@ -176,3 +176,5 @@ export default class NoteForm extends React.Component {
     }
   }
 }
+
+

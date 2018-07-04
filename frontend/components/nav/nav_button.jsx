@@ -5,7 +5,6 @@ export default class NavButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = { showTooltip: false };
-    // this.timeout = null;
     this.handleClick = this.handleClick.bind(this);
     this.showTooltip = this.showTooltip.bind(this);
     this.hideTooltip = this.hideTooltip.bind(this);
