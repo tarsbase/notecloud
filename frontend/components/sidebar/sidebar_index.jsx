@@ -60,7 +60,7 @@ export default class SidebarIndex extends React.Component {
   showTooltip() {
     this.timeout = setTimeout(() => {
       this.setState({ showTooltip: true });
-    }, 1000);
+    }, 500);
   }
 
   hideTooltip() {
