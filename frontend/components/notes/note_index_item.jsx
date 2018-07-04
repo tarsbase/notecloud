@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactQuill from 'react-quill';
 import { Link, withRouter } from 'react-router-dom';
 
 class NoteIndexItem extends React.Component {
