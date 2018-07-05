@@ -42,6 +42,7 @@ export default class NoteIndex extends React.Component {
           key={note.id}
           note={note}
           openDeleteModal={this.props.openDeleteModal}
+          updateNote={this.props.updateNote}
         />
       ));
     const noteMsg = this.props.noteCount === 1 ? 'note' : 'notes';

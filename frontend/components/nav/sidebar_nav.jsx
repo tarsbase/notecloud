@@ -8,7 +8,7 @@ export default class SidebarNav extends React.Component {
   }
 
   render() {
-    const { notebooksModalIsOpen, tagsModalIsOpen, sidebarModalIsOpen } = this.props;
+    const { notebooksModalIsOpen, tagsModalIsOpen, shortcutsModalIsOpen } = this.props;
     const sidebarNavClasses = ['sidebar-nav'];
     return (
       <div className={sidebarNavClasses.join(' ')}>
@@ -21,9 +21,14 @@ export default class SidebarNav extends React.Component {
         </div>
         <div className="main-sub-nav">
           <NavButtonContainer
+            type="shortcuts"
+            shortcutsModalIsOpen={shortcutsModalIsOpen}
+            />
+            <NavButtonContainer
             type="notes"
             notebooksModalIsOpen={notebooksModalIsOpen}
             tagsModalIsOpen={tagsModalIsOpen}
+            shortcutsModalIsOpen={shortcutsModalIsOpen}
           />
           <NavButtonContainer
             type="notebooks"

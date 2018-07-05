@@ -2,6 +2,8 @@ export const OPEN_NOTEBOOKS_MODAL = 'OPEN_NOTEBOOKS_MODAL';
 export const CLOSE_NOTEBOOKS_MODAL = 'CLOSE_NOTEBOOKS_MODAL';
 export const OPEN_TAGS_MODAL = 'OPEN_TAGS_MODAL';
 export const CLOSE_TAGS_MODAL = 'CLOSE_TAGS_MODAL';
+export const OPEN_SHORTCUTS_MODAL = 'OPEN_SHORTCUTS_MODAL';
+export const CLOSE_SHORTCUTS_MODAL = 'CLOSE_SHORTCUTS_MODAL';
 export const OPEN_DELETE_MODAL = 'OPEN_DELETE_MODAL';
 export const CLOSE_DELETE_MODAL = 'CLOSE_DELETE_MODAL';
 export const TOGGLE_NOTEBOOKS_DROPDOWN = 'TOGGLE_NOTEBOOKS_DROPDOWN';
@@ -26,6 +28,14 @@ export const openTagsModal = () => ({
 
 export const closeTagsModal = () => ({
   type: CLOSE_TAGS_MODAL
+});
+
+export const openShortcutsModal = () => ({
+  type: OPEN_SHORTCUTS_MODAL
+});
+
+export const closeShortcutsModal = () => ({
+  type: CLOSE_SHORTCUTS_MODAL
 });
 
 export const openDeleteModal = (entityType, entity) => ({

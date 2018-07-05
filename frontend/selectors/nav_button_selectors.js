@@ -3,8 +3,8 @@ import {
   closeNotebooksModal,
   openTagsModal,
   closeTagsModal,
-  openSidebarModal,
-  closeSidebarModal
+  openShortcutsModal,
+  closeShortcutsModal
 } from '../actions/ui_actions';
 import { logout } from '../actions/session_actions';
 
@@ -27,6 +27,18 @@ export const navButtonSelector = ownProps => {
         action = closeTagsModal;
       }
       break;
+    case 'shortcuts':
+      classes.push('fa-star');
+      classes.push('nav-icon');
+      if (ownProps.shortcutsModalIsOpen) {
+        action = closeShortcutsModal;
+        linkPath = `/notes`;
+      } else {
+        action = openShortcutsModal;
+        linkPath = `/shortcuts`;
+      }
+      type = 'shortcuts';
+      break;
     case 'notes':
       classes.push('fa-sticky-note');
       classes.push('nav-icon');
@@ -36,6 +48,9 @@ export const navButtonSelector = ownProps => {
       }
       if (ownProps.tagsModalIsOpen) {
         action = closeTagsModal;
+      }
+      if (ownProps.shortcutsModalIsOpen) {
+        action = closeShortcutsModal;
       }
       type = 'Notes';
       break;

@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => {
     currentUser: state.session.currentUser,
     notebooksModalIsOpen: state.ui.notebooksModalIsOpen,
     tagsModalIsOpen: state.ui.tagsModalIsOpen,
+    shortcutsModalIsOpen: state.ui.shortcutsModalIsOpen,
     deleteEntityType: state.ui.deleteEntityType
   };
 };

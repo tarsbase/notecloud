@@ -237,11 +237,12 @@ body {
   cursor: pointer;
 }
 
-.list-item-trash {
+.list-item-btn {
   color: white;
+  margin-left: 10px;
 }
 
-.list-item-trash:hover {
+.list-item-btn:hover {
   cursor: pointer;
 }
 

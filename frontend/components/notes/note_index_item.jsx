@@ -9,7 +9,14 @@ class NoteIndexItem extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    this.props.openDeleteModal('notes', this.props.note);
+    if (e.target.classList.contains('fa-trash')) {
+      this.props.openDeleteModal('notes', this.props.note);
+    } else {
+      console.log('star');
+      const note = this.props.note;
+      note.shortcut = true;
+      this.props.updateNote(note);
+    }
   }
 
   render() {
@@ -24,17 +31,16 @@ class NoteIndexItem extends React.Component {
     } else {
       linkPath = `/notes/${note.id}`;
     }
-    return (
-      <Link to={linkPath}>
+    return <Link to={linkPath}>
         <li className="note-list-item list-item">
           <div className="list-item-header">
-            <div className="note-list-item-info note-title">{note.title}</div>
-            <i
-              className="fa fa-trash list-item-trash"
-              onClick={this.handleClick}
-              onMouseEnter={this.showTooltip}
-              onMouseLeave={this.hideTooltip}
-            />
+            <div className="note-list-item-info note-title">
+              {note.title}
+            </div>
+            <div>
+              <i className="fa fa-star list-item-btn" onClick={this.handleClick}/>
+              <i className="fa fa-trash list-item-btn" onClick={this.handleClick} />
+            </div>
           </div>
           <div className="note-list-item-info note-updated">
             {note.last_updated} AGO
@@ -43,8 +49,7 @@ class NoteIndexItem extends React.Component {
             {note.body.slice(0, 150)}
           </div>
         </li>
-      </Link>
-    );
+      </Link>;
   }
 }
 

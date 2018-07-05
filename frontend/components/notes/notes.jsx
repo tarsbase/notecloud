@@ -39,10 +39,12 @@ export default class Notes extends React.Component {
     const {
       notebooksModalIsOpen,
       tagsModalIsOpen,
+      shortcutsModalIsOpen,
       deleteEntityType
     } = this.props;
     const notebookClasses = ['sidebar-modal', 'notebooks-modal'];
     const tagClasses = ['sidebar-modal'];
+    const shortcutClasses = ['sidebar-modal'];
     if (notebooksModalIsOpen) {
       notebookClasses.push('open-sidebar-modal');
     } else {
@@ -53,10 +55,18 @@ export default class Notes extends React.Component {
     } else {
       tagClasses.push('hide-sidebar-modal');
     }
+    if (shortcutsModalIsOpen) {
+      shortcutClasses.push('open-sidebar-modal');
+    } else {
+      shortcutClasses.push('hide-sidebar-modal');
+    }
     return (
       <div className="notes-page">
         <SidebarNavContainer />
         <NoteIndexContainer />
+        <div className={shortcutClasses.join(' ')}>
+          <SidebarIndexContainer type='shortcuts'/>
+        </div>
         <div className={notebookClasses.join(' ')} onClick={this.handleClick}>
           <SidebarIndexContainer type="notebooks" />
         </div>

@@ -3,6 +3,8 @@ import {
   CLOSE_NOTEBOOKS_MODAL,
   OPEN_TAGS_MODAL,
   CLOSE_TAGS_MODAL,
+  OPEN_SHORTCUTS_MODAL,
+  CLOSE_SHORTCUTS_MODAL,
   OPEN_DELETE_MODAL,
   CLOSE_DELETE_MODAL,
   TOGGLE_NOTEBOOKS_DROPDOWN,
@@ -22,6 +24,7 @@ import {
 const defaultState = {
   notebooksModalIsOpen: false,
   tagsModalIsOpen: false,
+  shortcutsModalIsOpen: false,
   delteModalIsOpen: false,
   deleteEntityType: null,
   deleteEntity: null,
@@ -39,6 +42,7 @@ const UIReducer = (oldState = defaultState, action) => {
   switch (action.type) {
     case OPEN_NOTEBOOKS_MODAL:
       newState.tagsModalIsOpen = false;
+      newState.shortcutsModalIsOpen = false;
       newState.notebooksModalIsOpen = true;
       return newState;
     case CLOSE_NOTEBOOKS_MODAL:
@@ -46,10 +50,19 @@ const UIReducer = (oldState = defaultState, action) => {
       return newState;
     case OPEN_TAGS_MODAL:
       newState.notebooksModalIsOpen = false;
+      newState.shortcutsModalIsOpen = false;
       newState.tagsModalIsOpen = true;
       return newState;
     case CLOSE_TAGS_MODAL:
       newState.tagsModalIsOpen = false;
+      return newState;
+    case OPEN_SHORTCUTS_MODAL:
+      newState.notebooksModalIsOpen = false;
+      newState.tagsModalIsOpen = false;
+      newState.shortcutsModalIsOpen = true;
+      return newState;
+    case CLOSE_SHORTCUTS_MODAL: 
+      newState.shortcutsModalIsOpen = false;
       return newState;
     case OPEN_DELETE_MODAL:
       newState.deleteModalIsOpen = true;

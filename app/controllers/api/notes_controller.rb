@@ -68,8 +68,10 @@ class Api::NotesController < ApplicationController
 
   def update
     @note = current_user.notes.find(params[:id])
-
-    if @note 
+    if @note
+      if params[:note][:shortcut] == 'true' 
+        @note.shortcut = true
+      end 
       if @note.update_attributes(note_params)
         render :show
       else 
@@ -94,6 +96,6 @@ class Api::NotesController < ApplicationController
   private 
 
   def note_params
-    params.require(:note).permit(:title, :body, :notebook_id)
+    params.require(:note).permit(:title, :body, :notebook_id, :shortcut)
   end
 end

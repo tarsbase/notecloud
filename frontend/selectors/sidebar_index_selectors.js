@@ -1,14 +1,12 @@
 import {
   getAllNotebooks,
   getSearchNotebooks,
-  createNotebook,
-  deleteNotebook
+  createNotebook
 } from '../actions/notebook_actions';
 import {
   getAllTags,
   getSearchTags,
-  createTag,
-  deleteTag
+  createTag
 } from '../actions/tag_actions';
 import { closeNotebooksModal, closeTagsModal } from '../actions/ui_actions';
 const queryString = require('query-string');
@@ -35,7 +33,7 @@ export const sidebarIndexSelector = (state, ownProps) => {
     }
     createAction = createNotebook;
     closeModal = closeNotebooksModal;
-  } else {
+  } else if (ownProps.type === 'tags'){
     if (state) {
       entities = Object.values(state.tags);
       modalIsOpen = state.ui.tagsModalIsOpen;
@@ -50,6 +48,9 @@ export const sidebarIndexSelector = (state, ownProps) => {
     }
     createAction = createTag;
     closeModal = closeTagsModal;
+  } else {
+    entities = [];
+    fetchAction = () => ({type: ''});
   }
   return {
     entities,
