@@ -21,15 +21,18 @@ export default class Notes extends React.Component {
   handleClick(e) {
     const {
       notebooksModalIsOpen,
+      tagsModalIsOpen,
       closeNotebooksModal,
-      closeTagsModal
+      closeTagsModal,
+      closeShortcutsModal
     } = this.props;
-
     if (e.target.classList.contains('sidebar-modal')) {
       if (notebooksModalIsOpen) {
         closeNotebooksModal();
-      } else {
+      } else if (tagsModalIsOpen) {
         closeTagsModal();
+      } else {
+        closeShortcutsModal();
       }
       this.props.history.push('/notes');
     }
@@ -64,7 +67,7 @@ export default class Notes extends React.Component {
       <div className="notes-page">
         <SidebarNavContainer />
         <NoteIndexContainer />
-        <div className={shortcutClasses.join(' ')}>
+        <div className={shortcutClasses.join(' ')} onClick={this.handleClick}>
           <SidebarIndexContainer type='shortcuts'/>
         </div>
         <div className={notebookClasses.join(' ')} onClick={this.handleClick}>

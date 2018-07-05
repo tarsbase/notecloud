@@ -233,6 +233,11 @@ body {
   justify-content: space-between;
 }
 
+.star-selected {
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
 .trash:hover {
   cursor: pointer;
 }
@@ -245,6 +250,7 @@ body {
 .list-item-btn:hover {
   cursor: pointer;
 }
+
 
 .note-list-item {
   height: 100px;

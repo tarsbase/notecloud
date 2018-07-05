@@ -5,7 +5,9 @@ import {
   closeNotebooksModal,
   closeTagsModal,
   openNotebooksModal,
-  openTagsModal
+  openTagsModal,
+  closeShortcutsModal,
+  openShortcutsModal
 } from '../../actions/ui_actions';
 
 
@@ -25,10 +27,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     openModal = () => dispatch(openNotebooksModal());
   } else if (ownProps.location.pathname === '/tags') {
     openModal = () => dispatch(openTagsModal());
+  } else if (ownProps.location.pathname === '/shortcuts') {
+    openModal = () => dispatch(openShortcutsModal());
   }
   return {
     closeNotebooksModal: () => dispatch(closeNotebooksModal()),
     closeTagsModal: () => dispatch(closeTagsModal()),
+    closeShortcutsModal: () => dispatch(closeShortcutsModal()),
     openModal
   };
 };

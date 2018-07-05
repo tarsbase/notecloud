@@ -46,7 +46,7 @@ export default class SidebarIndex extends React.Component {
     if (!this.state.entityName) {
       this.props.openBannerModal('Title cannot be blank');
       return;
-    } 
+    }
     const entity = { name: this.state.entityName };
     this.props.createAction(entity);
     this.closeModal();
@@ -85,7 +85,7 @@ export default class SidebarIndex extends React.Component {
           closeNotebooksModal={this.props.closeModal}
         />
       ));
-    } else {
+    } else if (this.props.type === 'tags') {
       entities = this.props.entities.map(entity => (
         <TagIndexItem
           key={entity.id}
@@ -109,17 +109,21 @@ export default class SidebarIndex extends React.Component {
         <div className="sidebar-header">
           <div className="sidebar-top-header">
             <h1>{this.props.type.toUpperCase()}</h1>
-            <i
-              className="fa fa-plus sidebar-plus"
-              onClick={this.openModal}
-              onMouseEnter={this.showTooltip}
-              onMouseLeave={this.hideTooltip}
-            />
+            {this.props.type !== 'shortcuts' && (
+              <i
+                className="fa fa-plus sidebar-plus"
+                onClick={this.openModal}
+                onMouseEnter={this.showTooltip}
+                onMouseLeave={this.hideTooltip}
+              />
+            )}
             <div className={tooltipClasses.join(' ')}>
               Create a {this.props.type.slice(0, this.props.type.length - 1)}
             </div>
           </div>
-          <SearchForm type={this.props.type} />
+          {this.props.type !== 'shortcuts' && (
+            <SearchForm type={this.props.type} />
+          )}
         </div>
         <ul className="sidebar-index-list">{entities}</ul>
         <div className={modalClasses.join(' ')}>

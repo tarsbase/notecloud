@@ -45,8 +45,8 @@ export const noteIndexSelector = (ownProps, state) => {
   }
   if (state) {
     notes = Object.values(state.notes).sort((a,b) => {
-      const aDate = new Date(a.updated_at);
-      const bDate = new Date(b.updated_at);
+      const aDate = new Date(a.created_at);
+      const bDate = new Date(b.created_at);
       return bDate - aDate;
     });
   }

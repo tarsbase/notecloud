@@ -12,9 +12,12 @@ class NoteIndexItem extends React.Component {
     if (e.target.classList.contains('fa-trash')) {
       this.props.openDeleteModal('notes', this.props.note);
     } else {
-      console.log('star');
       const note = this.props.note;
-      note.shortcut = true;
+      if (note.shortcut) {
+        note.shortcut = false;
+      } else {
+        note.shortcut = true;
+      }
       this.props.updateNote(note);
     }
   }
@@ -31,6 +34,10 @@ class NoteIndexItem extends React.Component {
     } else {
       linkPath = `/notes/${note.id}`;
     }
+    const starClassses = ['fa', 'fa-star', 'list-item-btn'];
+    if (note.shortcut) {
+      starClassses.push('star-selected');
+    }
     return <Link to={linkPath}>
         <li className="note-list-item list-item">
           <div className="list-item-header">
@@ -38,7 +45,7 @@ class NoteIndexItem extends React.Component {
               {note.title}
             </div>
             <div>
-              <i className="fa fa-star list-item-btn" onClick={this.handleClick}/>
+              <i className={starClassses.join(' ')} onClick={this.handleClick}/>
               <i className="fa fa-trash list-item-btn" onClick={this.handleClick} />
             </div>
           </div>

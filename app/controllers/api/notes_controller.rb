@@ -71,6 +71,8 @@ class Api::NotesController < ApplicationController
     if @note
       if params[:note][:shortcut] == 'true' 
         @note.shortcut = true
+      elsif params[:note][:shortcut] == 'false'
+        @note.shortcut = false
       end 
       if @note.update_attributes(note_params)
         render :show

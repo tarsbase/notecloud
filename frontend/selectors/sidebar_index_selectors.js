@@ -49,7 +49,10 @@ export const sidebarIndexSelector = (state, ownProps) => {
     createAction = createTag;
     closeModal = closeTagsModal;
   } else {
-    entities = [];
+    if (state) {
+      entities = Object.values(state.notes);
+      modalIsOpen = state.ui.shortcutsModalIsOpen;
+    }
     fetchAction = () => ({type: ''});
   }
   return {

@@ -50,7 +50,7 @@ class NotebookIndexItem extends React.Component {
           <div className={titleClasses.join(' ')}>{notebook.name}</div>
           {!currentNotebook && (
             <div
-              className="fa fa-trash list-item-trash"
+              className="fa fa-trash list-item-btn"
               onClick={this.handleDelete}
             />
           )}
