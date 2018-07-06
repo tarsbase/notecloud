@@ -1,8 +1,8 @@
 export const fetchNotes = page => (
   $.ajax({
     method: 'GET',
-    url: 'api/notes',
-    data: {page: page}
+    url: `api/notes`,
+    data: { page }
   })
 );
 
@@ -17,7 +17,7 @@ export const fetchNotesByNotebook = (page, notebookId) => (
   $.ajax({
     method: 'GET',
     url: `api/notebooks/${notebookId}/notes`,
-    data: { page: page }
+    data: { page }
   })
 );
 
@@ -25,7 +25,15 @@ export const fetchNotesByTag = (page, tagId) => (
   $.ajax({
     method: 'GET',
     url: `api/tags/${tagId}/notes`,
-    data: { page: page }
+    data: { page }
+  })
+);
+
+export const fetchShortcutNotes = page => (
+  $.ajax({
+    method: 'GET',
+    url: `api/notes?shortcut=true`,
+    data: { page }
   })
 );
 

@@ -20,7 +20,7 @@ class Note < ApplicationRecord
   has_many :tags, through: :taggings
   has_many :note_images
 
-  def last_update 
-    time_ago_in_words(self.updated_at).upcase
+  def created 
+    time_ago_in_words(self.created_at).upcase
   end 
 end

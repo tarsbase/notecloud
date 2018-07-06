@@ -4,7 +4,9 @@ import {
   getNotesByNotebookIdAndConcat,
   getNotesByNotebookIdAndReplace,
   getNotesByTagIdAndConcat,
-  getNotesByTagIdAndReplace
+  getNotesByTagIdAndReplace,
+  getShortcutNotesAndConcat,
+  getShortcutNotesAndReplace
 } from '../actions/note_actions';
 import { getNotebook } from '../actions/notebook_actions';
 import { getTag } from '../actions/tag_actions';
@@ -36,6 +38,12 @@ export const noteIndexSelector = (ownProps, state) => {
         headerTitle = state.tags[ownProps.match.params.tagId].name;
       }
     }
+  } else if (ownProps.location.pathname === "/shortcuts") {
+    getArg = 'true';
+    getAndConcat = getShortcutNotesAndConcat;
+    getAndReplace = getShortcutNotesAndReplace;
+    getRelatedAction = () => ({type: ''});
+    headerTitle = 'SHORTCUTS';
   } else {
     getArg = null;
     headerTitle = 'NOTES';

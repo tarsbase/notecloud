@@ -50,7 +50,7 @@ class NoteIndexItem extends React.Component {
             </div>
           </div>
           <div className="note-list-item-info note-updated">
-            {note.last_updated} AGO
+            {note.created} AGO
           </div>
           <div className="note-list-item-info note-body">
             {note.body.slice(0, 150)}

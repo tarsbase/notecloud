@@ -70,6 +70,16 @@ export const getNotesByTagIdAndReplace = (page, tagId) => dispatch =>
     dispatch(receiveNotesAndReplace(notes))
   );
 
+export const getShortcutNotesAndReplace = page => dispatch =>
+  NoteApiUtil.fetchShortcutNotes(page).then(notes =>
+    dispatch(receiveNotesAndReplace(notes))
+  );
+
+export const getShortcutNotesAndConcat = page => dispatch =>
+  NoteApiUtil.fetchShortcutNotes(page).then(notes =>
+    dispatch(receiveNotesAndConcat(notes))
+  );
+
 export const createNote = note => dispatch =>
   NoteApiUtil.createNote(note).then(newNote => dispatch(receiveNote(newNote)));
 

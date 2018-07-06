@@ -34,7 +34,7 @@ class Api::NotesController < ApplicationController
         .includes([:notes])
         .find(params[:notebook_id])
         .notes.includes([:notebook, :tags])
-        .order(updated_at: :desc)
+        .order(created_at: :desc)
         .page params[:page]
       @note_count = current_user.notebooks.find(params[:notebook_id]).notes.count
     elsif params[:tag_id]
@@ -43,13 +43,15 @@ class Api::NotesController < ApplicationController
         .find(params[:tag_id])
         .notes
         .includes([:notebook, :tags])
-        .order(updated_at: :desc)
+        .order(created_at: :desc)
         .page params[:page]
       @note_count = current_user.tags.find(params[:tag_id]).notes.count
+    elsif params[:shortcut] == 'true'
+      @notes = current_user.notes.includes([:notebook, :tags]).where(shortcut: true).page params[:page]
     else 
       @notes = current_user.notes
         .includes([:notebook, :tags])
-        .order(updated_at: :desc)
+        .order(created_at: :desc)
         .page params[:page]
       @note_count = current_user.notes.count
     end 

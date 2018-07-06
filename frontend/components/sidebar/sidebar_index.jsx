@@ -1,6 +1,7 @@
 import React from 'react';
 import NotebookIndexItem from '../notebooks/notebook_index_item';
 import TagIndexItem from '../tags/tag_index_item';
+import NoteIndexItem from '../notes/note_index_item';
 import SearchForm from '../search/search_form';
 
 export default class SidebarIndex extends React.Component {
@@ -109,21 +110,17 @@ export default class SidebarIndex extends React.Component {
         <div className="sidebar-header">
           <div className="sidebar-top-header">
             <h1>{this.props.type.toUpperCase()}</h1>
-            {this.props.type !== 'shortcuts' && (
-              <i
-                className="fa fa-plus sidebar-plus"
-                onClick={this.openModal}
-                onMouseEnter={this.showTooltip}
-                onMouseLeave={this.hideTooltip}
-              />
-            )}
+            <i
+              className="fa fa-plus sidebar-plus"
+              onClick={this.openModal}
+              onMouseEnter={this.showTooltip}
+              onMouseLeave={this.hideTooltip}
+            />
             <div className={tooltipClasses.join(' ')}>
               Create a {this.props.type.slice(0, this.props.type.length - 1)}
             </div>
           </div>
-          {this.props.type !== 'shortcuts' && (
-            <SearchForm type={this.props.type} />
-          )}
+          <SearchForm type={this.props.type} />
         </div>
         <ul className="sidebar-index-list">{entities}</ul>
         <div className={modalClasses.join(' ')}>
