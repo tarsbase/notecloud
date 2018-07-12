@@ -35,6 +35,7 @@ export default class NoteIndex extends React.Component {
   }
 
   render() {
+    const { headerTitle, noteCount} = this.props;
     const noteIndexClasses = ['notes-index-container'];
     const notes = this.props.notes
       .map(note => (
@@ -49,9 +50,9 @@ export default class NoteIndex extends React.Component {
     return (
       <div className={noteIndexClasses.join(' ')} onScroll={this.handleScroll}>
         <div className="sidebar-header">
-          <h1>{this.props.headerTitle}</h1>
+          <h1>{headerTitle}</h1>
           <h3>
-            {this.props.noteCount} {noteMsg}
+            {noteCount} {noteMsg}
           </h3>
         </div>
         <ul>{notes}</ul>
