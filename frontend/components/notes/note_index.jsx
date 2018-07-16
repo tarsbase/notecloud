@@ -1,5 +1,6 @@
 import React from 'react';
 import NoteIndexItem from './note_index_item';
+import ShortcutIndexItem from './shortcut_index_item';
 import LoadingSpinnerContainer from '../spinners/loading_spinner_container';
 
 export default class NoteIndex extends React.Component {
@@ -22,11 +23,12 @@ export default class NoteIndex extends React.Component {
   }
 
   handleScroll(e) {
-    const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-    if (bottom && this.props.noteCount > this.props.notes.length) { 
+    const bottom =
+      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    if (bottom && this.props.noteCount > this.props.notes.length) {
       e.target.scrollTo(0, e.target.scrollHeight);
       this.fetchNextPage();
-     }
+    }
   }
 
   fetchNextPage() {
@@ -35,10 +37,18 @@ export default class NoteIndex extends React.Component {
   }
 
   render() {
-    const { headerTitle, noteCount} = this.props;
-    const noteIndexClasses = ['notes-index-container'];
-    const notes = this.props.notes
-      .map(note => (
+    const { headerTitle, noteCount } = this.props;
+    let noteIndexClass;
+    let notes;
+    const shortcuts = this.props.match.path === '/shortcuts';
+    if (shortcuts) {
+      notes = this.props.notes.map(note => (
+        <ShortcutIndexItem key={note.id} note={note} />
+      ));
+      noteIndexClass = 'sidebar-index';
+    } else {
+      noteIndexClass = 'notes-index-container';
+      notes = this.props.notes.map(note => (
         <NoteIndexItem
           key={note.id}
           note={note}
@@ -46,17 +56,16 @@ export default class NoteIndex extends React.Component {
           updateNote={this.props.updateNote}
         />
       ));
+    }
     const noteMsg = this.props.noteCount === 1 ? 'note' : 'notes';
     return (
-      <div className={noteIndexClasses.join(' ')} onScroll={this.handleScroll}>
+      <div className={noteIndexClass} onScroll={this.handleScroll}>
         <div className="sidebar-header">
           <h1>{headerTitle}</h1>
-          <h3>
-            {noteCount} {noteMsg}
-          </h3>
+          <h3>{!shortcuts && `${noteCount} ${noteMsg}`}</h3>
         </div>
         <ul>{notes}</ul>
-        <LoadingSpinnerContainer/>
+        <LoadingSpinnerContainer />
       </div>
     );
   }
