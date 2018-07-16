@@ -717,10 +717,6 @@ body {
   margin-right: 10px;
 }
 
-.tag:hover {
-  cursor: pointer;
-}
-
 .tag-list-item .tag:hover {
   background-color: #2dbe60;
 }
@@ -742,7 +738,7 @@ body {
   color: #606060;
 }
 
-.tag-trash:hover {
+.tag-trash:hover, .shortcut-index-item, .tag:hover {
   cursor: pointer;
 }
 
@@ -784,4 +780,34 @@ body {
   color: #2dbe60;
   margin-left: 102px;
   margin-bottom: 20px;
+}
+
+/* Shortcut Index Item */
+
+.shortcut-index-item, .shortcut-note {
+  display: flex;
+  flex-direction: row;
+}
+
+.shortcut-index-item {
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.shortcut-index-item:hover {
+  background-color: #2dbe60;
+  color: white;
+}
+
+.shortcut-note {
+  margin-left: 10px;
+  font-size: 13px;
+}
+
+.shortcut-title {
+  margin-left: 10px;
+}
+
+.fa-minus-circle {
+  color: white;
 }

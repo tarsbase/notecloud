@@ -37,13 +37,13 @@ export default class NoteIndex extends React.Component {
   }
 
   render() {
-    const { headerTitle, noteCount } = this.props;
+    const { headerTitle, noteCount, updateNote, openDeleteModal } = this.props;
     let noteIndexClass;
     let notes;
     const shortcuts = this.props.match.path === '/shortcuts';
     if (shortcuts) {
       notes = this.props.notes.map(note => (
-        <ShortcutIndexItem key={note.id} note={note} />
+        <ShortcutIndexItem key={note.id} note={note} updateNote={updateNote}/>
       ));
       noteIndexClass = 'sidebar-index';
     } else {
@@ -52,8 +52,8 @@ export default class NoteIndex extends React.Component {
         <NoteIndexItem
           key={note.id}
           note={note}
-          openDeleteModal={this.props.openDeleteModal}
-          updateNote={this.props.updateNote}
+          openDeleteModal={openDeleteModal}
+          updateNote={updateNote}
         />
       ));
     }
