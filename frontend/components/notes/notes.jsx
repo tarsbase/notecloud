@@ -68,7 +68,7 @@ export default class Notes extends React.Component {
         <SidebarNavContainer />
         <NoteIndexContainer />
         <div className={shortcutClasses.join(' ')} onClick={this.handleClick}>
-          <NoteIndexContainer />
+          {this.props.shortcutsModalIsOpen && <NoteIndexContainer />}
         </div>
         <div className={notebookClasses.join(' ')} onClick={this.handleClick}>
           <SidebarIndexContainer type="notebooks" />
@@ -78,7 +78,7 @@ export default class Notes extends React.Component {
         </div>
         <NoteFormContainer />
         <DeleteModalContainer deleteEntityType={deleteEntityType} />
-        <BannerModalContainer/>
+        <BannerModalContainer />
       </div>
     );
   }

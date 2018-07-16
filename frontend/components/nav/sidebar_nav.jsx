@@ -1,6 +1,5 @@
 import React from 'react';
 import NavButtonContainer from './nav_button_container';
-import { Link } from 'react-router-dom';
 
 export default class SidebarNav extends React.Component {
   constructor(props) {
