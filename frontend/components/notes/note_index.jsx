@@ -37,13 +37,26 @@ export default class NoteIndex extends React.Component {
   }
 
   render() {
-    const { headerTitle, noteCount, updateNote, openDeleteModal } = this.props;
+    const {
+      headerTitle,
+      noteCount,
+      updateNote,
+      openDeleteModal,
+      closeShortcutsModal,
+      removeNote
+    } = this.props;
     let noteIndexClass;
     let notes;
     const shortcuts = this.props.match.path === '/shortcuts';
     if (shortcuts) {
       notes = this.props.notes.map(note => (
-        <ShortcutIndexItem key={note.id} note={note} updateNote={updateNote}/>
+        <ShortcutIndexItem
+          key={note.id}
+          note={note}
+          updateNote={updateNote}
+          closeShortcutsModal={closeShortcutsModal}
+          removeNote={removeNote}
+        />
       ));
       noteIndexClass = 'sidebar-index';
     } else {

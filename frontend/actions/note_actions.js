@@ -3,7 +3,7 @@ import {
   openBannerModal,
   showLoadingSpinner,
   hideLoadingSpinner
-} from '../actions/ui_actions';
+} from './ui_actions';
 
 export const RECEIVE_NOTE = 'RECEIVE_NOTE';
 export const RECEIVE_NOTES_AND_CONCAT = 'RECEIVE_NOTES_AND_CONCAT';
@@ -83,15 +83,19 @@ export const getShortcutNotesAndConcat = page => dispatch =>
 export const createNote = note => dispatch =>
   NoteApiUtil.createNote(note).then(newNote => dispatch(receiveNote(newNote)));
 
-export const updateNote = note => dispatch =>
+export const updateNote = (note, remove = false) => dispatch =>
   NoteApiUtil.updateNote(note).then(updatedNote => {
-    dispatch(receiveNote(updatedNote));
-    if (note.notebook.name !== updatedNote.notebook.name) {
-      dispatch(
-        openBannerModal(`Note has been moved to ${updatedNote.notebook.name}`)
-      );
+    if (remove) {
+      dispatch(removeNote(updatedNote));
     } else {
-      dispatch(openBannerModal('Note has been updated'));
+      dispatch(receiveNote(updatedNote));
+      if (note.notebook.name !== updatedNote.notebook.name) {
+        dispatch(
+          openBannerModal(`Note has been moved to ${updatedNote.notebook.name}`)
+        );
+      } else {
+        dispatch(openBannerModal('Note has been updated'));
+      }
     }
   });
 

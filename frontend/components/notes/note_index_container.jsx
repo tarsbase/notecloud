@@ -3,9 +3,10 @@ import NoteIndex from './note_index';
 import { withRouter } from 'react-router-dom';
 import {
   openDeleteModal,
-  showLoadingSpinner
+  showLoadingSpinner,
+  closeShortcutsModal
 } from '../../actions/ui_actions';
-import { updateNote } from '../../actions/note_actions';
+import { updateNote, removeNote } from '../../actions/note_actions';
 import { noteIndexSelector } from '../../selectors/note_index_selectors';
 
 const mapStateToProps = (state, ownProps) => {
@@ -26,7 +27,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getAndReplace: (pageNum, id) => dispatch(getAndReplace(pageNum, id)),
     openDeleteModal: (entityType, entity) =>
       dispatch(openDeleteModal(entityType, entity)),
-    updateNote: note => dispatch(updateNote(note)),
+    closeShortcutsModal: () => dispatch(closeShortcutsModal()),
+    updateNote: (note, remove) => dispatch(updateNote(note, remove)),
     getRelatedAction: id => dispatch(getRelatedAction(id)),
     showLoadingSpinner: () => dispatch(showLoadingSpinner)
   };

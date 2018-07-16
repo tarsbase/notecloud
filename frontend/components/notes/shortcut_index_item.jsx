@@ -1,20 +1,29 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default class ShortcutIndexItem extends React.Component {
+class ShortcutIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.removeShortcut = this.removeShortcut.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    this.props.closeShortcutsModal();
+    this.props.history.push(`/notes/${this.props.note.id}`);
   }
 
   removeShortcut(e) {
     e.preventDefault();
+    e.stopPropagation();
     const note = this.props.note;
     note.shortcut = false;
-    this.props.updateNote(note);
+    this.props.updateNote(note, true);
   }
 
   render() {
-    return <li className="shortcut-index-item">
+    return <li className="shortcut-index-item" onClick={this.handleClick}>
       <div className="shortcut-note">
         <i className="fa fa-sticky-note"/>
         <div className="shortcut-title">{this.props.note.title}</div>
@@ -23,3 +32,5 @@ export default class ShortcutIndexItem extends React.Component {
       </li>;
   }
 }
+
+export default withRouter(ShortcutIndexItem);
