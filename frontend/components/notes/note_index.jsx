@@ -42,40 +42,22 @@ export default class NoteIndex extends React.Component {
       noteCount,
       updateNote,
       openDeleteModal,
-      closeShortcutsModal,
-      removeNote
     } = this.props;
-    let noteIndexClass;
     let notes;
-    const shortcuts = this.props.match.path === '/shortcuts';
-    if (shortcuts) {
-      notes = this.props.notes.map(note => (
-        <ShortcutIndexItem
-          key={note.id}
-          note={note}
-          updateNote={updateNote}
-          closeShortcutsModal={closeShortcutsModal}
-          removeNote={removeNote}
-        />
-      ));
-      noteIndexClass = 'sidebar-index';
-    } else {
-      noteIndexClass = 'notes-index-container';
-      notes = this.props.notes.map(note => (
-        <NoteIndexItem
-          key={note.id}
-          note={note}
-          openDeleteModal={openDeleteModal}
-          updateNote={updateNote}
-        />
-      ));
-    }
+    notes = this.props.notes.map(note => (
+      <NoteIndexItem
+        key={note.id}
+        note={note}
+        openDeleteModal={openDeleteModal}
+        updateNote={updateNote}
+      />
+    ));
     const noteMsg = this.props.noteCount === 1 ? 'note' : 'notes';
     return (
-      <div className={noteIndexClass} onScroll={this.handleScroll}>
+      <div className="notes-index-container" onScroll={this.handleScroll}>
         <div className="sidebar-header">
           <h1>{headerTitle}</h1>
-          <h3>{!shortcuts && `${noteCount} ${noteMsg}`}</h3>
+          <h3>{`${noteCount} ${noteMsg}`}</h3>
         </div>
         <ul>{notes}</ul>
         <LoadingSpinnerContainer />

@@ -38,12 +38,6 @@ export const noteIndexSelector = (ownProps, state) => {
         headerTitle = state.tags[ownProps.match.params.tagId].name;
       }
     }
-  } else if (ownProps.location.pathname === "/shortcuts") {
-    getArg = 'true';
-    getAndConcat = getShortcutNotesAndConcat;
-    getAndReplace = getShortcutNotesAndReplace;
-    getRelatedAction = () => ({type: ''});
-    headerTitle = 'SHORTCUTS';
   } else {
     getArg = null;
     headerTitle = 'NOTES';
