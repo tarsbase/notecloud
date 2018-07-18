@@ -1,3 +1,11 @@
+export const fetchNotebooks = page => (
+  $.ajax({
+    method: 'GET',
+    url: `api/notebooks`,
+    data: { page }
+  })
+);
+
 export const fetchAllNotebooks = () => (
   $.ajax({
     method: 'GET',

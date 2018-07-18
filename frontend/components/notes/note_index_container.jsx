@@ -21,10 +21,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const { getAndConcat, getRelatedAction, getAndReplace } = noteIndexSelector(ownProps);
+  const { getAction, getRelatedAction } = noteIndexSelector(ownProps);
   return {
-    getAndConcat: (pageNum, id) => dispatch(getAndConcat(pageNum, id)),
-    getAndReplace: (pageNum, id) => dispatch(getAndReplace(pageNum, id)),
+    getAction: (pageNum, id, actionType) => dispatch(getAction(pageNum, id, actionType)),
     openDeleteModal: (entityType, entity) =>
       dispatch(openDeleteModal(entityType, entity)),
     closeShortcutsModal: () => dispatch(closeShortcutsModal()),

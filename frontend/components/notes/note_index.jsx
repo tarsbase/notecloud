@@ -13,13 +13,13 @@ export default class NoteIndex extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.getArg !== nextProps.getArg) {
       this.page = 1;
-      nextProps.getAndReplace(this.page, nextProps.getArg);
+      nextProps.getAction(this.page, 'replace', nextProps.getArg);
     }
   }
 
   componentDidMount() {
     this.props.getRelatedAction(this.props.getArg);
-    this.props.getAndConcat(this.page, this.props.getArg);
+    this.props.getAction(this.page, 'concat', this.props.getArg);
   }
 
   handleScroll(e) {
@@ -33,7 +33,7 @@ export default class NoteIndex extends React.Component {
 
   fetchNextPage() {
     this.page += 1;
-    this.props.getAndConcat(this.page, this.props.getArg);
+    this.props.getAction(this.page, 'concat', this.props.getArg);
   }
 
   render() {

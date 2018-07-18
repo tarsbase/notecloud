@@ -4,7 +4,7 @@ import {
   createNotebook
 } from '../actions/notebook_actions';
 import { getAllTags, getSearchTags, createTag } from '../actions/tag_actions';
-import { getNotesAndReplace } from '../actions/note_actions';
+import { getShortcutNotesAndReplace } from '../actions/note_actions';
 import {
   closeNotebooksModal,
   closeTagsModal,
@@ -58,7 +58,7 @@ export const sidebarIndexSelector = (state, ownProps) => {
         modalIsOpen = state.ui.shortcutsModalIsOpen;
       }
       closeModal = closeShortcutsModal;
-      fetchAction = getNotesAndReplace;
+      fetchAction = () => ({type: ''});
       break;
     default:
       break;

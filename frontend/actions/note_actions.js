@@ -30,45 +30,93 @@ const removeNote = note => ({
   note
 });
 
-export const getNotesAndConcat = page => dispatch => {
-  if (page > 1) {
+export const getNotes = (page, actionType) => dispatch => {
+  if (actionType === 'concat' && page > 1) {
     dispatch(showLoadingSpinner());
   }
   NoteApiUtil.fetchNotes(page).then(notes => {
-    dispatch(receiveNotesAndConcat(notes));
-    if (page > 1) {
-      dispatch(hideLoadingSpinner());
+    if (actionType === 'replace') {
+      dispatch(receiveNotesAndReplace(notes));
+    } else {
+      dispatch(receiveNotesAndConcat(notes));
+      if (page > 1) {
+        dispatch(hideLoadingSpinner());
+      }
     }
   });
 };
 
-export const getNotesAndReplace = page => dispatch =>
-  NoteApiUtil.fetchNotes(page).then(notes => {
-    dispatch(receiveNotesAndReplace(notes));
-  });
+// export const getNotesAndConcat = page => dispatch => {
+//   if (page > 1) {
+//     dispatch(showLoadingSpinner());
+//   }
+//   NoteApiUtil.fetchNotes(page).then(notes => {
+//     dispatch(receiveNotesAndConcat(notes));
+//     if (page > 1) {
+//       dispatch(hideLoadingSpinner());
+//     }
+//   });
+// };
+
+// export const getNotesAndReplace = page => dispatch =>
+//   NoteApiUtil.fetchNotes(page).then(notes => {
+//     dispatch(receiveNotesAndReplace(notes));
+//   });
 
 export const getNote = id => dispatch =>
   NoteApiUtil.fetchNote(id).then(note => dispatch(receiveNote(note)));
 
-export const getNotesByNotebookIdAndConcat = (page, notebookId) => dispatch =>
-  NoteApiUtil.fetchNotesByNotebook(page, notebookId).then(notes =>
-    dispatch(receiveNotesAndConcat(notes))
-  );
+export const getNotesByNotebookId = (page, actionType, notebookId) => dispatch => {
+  if (actionType === 'concat' && page > 1) {
+    dispatch(showLoadingSpinner());
+  }
+  NoteApiUtil.fetchNotesByNotebook(page, notebookId).then(notes => {
+    if (actionType === 'replace') {
+      dispatch(receiveNotesAndReplace(notes));
+    } else {
+      dispatch(receiveNotesAndReplace(notes));
+      if (page > 1) {
+        dispatch(hideLoadingSpinner());
+      }
+    }
+  });
+};
 
-export const getNotesByNotebookIdAndReplace = (page, notebookId) => dispatch =>
-  NoteApiUtil.fetchNotesByNotebook(page, notebookId).then(notes =>
-    dispatch(receiveNotesAndReplace(notes))
-  );
+// export const getNotesByNotebookIdAndConcat = (page, notebookId) => dispatch =>
+//   NoteApiUtil.fetchNotesByNotebook(page, notebookId).then(notes =>
+//     dispatch(receiveNotesAndConcat(notes))
+//   );
 
-export const getNotesByTagIdAndConcat = (page, tagId) => dispatch =>
-  NoteApiUtil.fetchNotesByTag(page, tagId).then(notes =>
-    dispatch(receiveNotesAndConcat(notes))
-  );
+// export const getNotesByNotebookIdAndReplace = (page, notebookId) => dispatch =>
+//   NoteApiUtil.fetchNotesByNotebook(page, notebookId).then(notes =>
+//     dispatch(receiveNotesAndReplace(notes))
+//   );
 
-export const getNotesByTagIdAndReplace = (page, tagId) => dispatch =>
-  NoteApiUtil.fetchNotesByTag(page, tagId).then(notes =>
-    dispatch(receiveNotesAndReplace(notes))
-  );
+export const getNotesByTagId = (page, actionType, tagId) => dispatch => {
+         if (actionType === 'concat' && page > 1) {
+           dispatch(showLoadingSpinner());
+         }
+         NoteApiUtil.fetchNotesByTag(page, tagId).then(notes => {
+           if (actionType === 'replace') {
+             dispatch(receiveNotesAndReplace(notes));
+           } else {
+             dispatch(receiveNotesAndConcat(notes));
+             if (page > 1) {
+               dispatch(hideLoadingSpinner());
+             }
+           }
+         });
+       };
+
+// export const getNotesByTagIdAndConcat = (page, tagId) => dispatch =>
+//   NoteApiUtil.fetchNotesByTag(page, tagId).then(notes =>
+//     dispatch(receiveNotesAndConcat(notes))
+//   );
+
+// export const getNotesByTagIdAndReplace = (page, tagId) => dispatch =>
+//   NoteApiUtil.fetchNotesByTag(page, tagId).then(notes =>
+//     dispatch(receiveNotesAndReplace(notes))
+//   );
 
 export const getShortcutNotesAndReplace = page => dispatch =>
   NoteApiUtil.fetchShortcutNotes(page).then(notes =>
