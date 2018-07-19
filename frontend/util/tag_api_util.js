@@ -12,13 +12,6 @@ export const fetchTags = (page, searchTerm) => {
   });
 };
 
-export const fetchSearchTags = searchTerm => (
-  $.ajax({
-    method: 'GET',
-    url: `api/tags?search=${searchTerm}`
-  })
-);
-
 export const fetchTag = id => (
   $.ajax({
     method: 'GET',

@@ -8,11 +8,6 @@ export const RECEIVE_TAG_NOTE = 'RECEIVE_TAG_NOTE';
 export const RECEIVE_TAGS_AND_CONCAT = 'RECEIVE_TAGS_AND_CONCAT';
 export const RECEIVE_TAGS_AND_REPLACE = 'RECEIVE_TAGS_AND_REPLACE';
 
-const receiveAllTags = tags => ({
-  type: RECEIVE_ALL_TAGS,
-  tags
-});
-
 const receiveTagsAndConcat = tags => ({
   type: RECEIVE_TAGS_AND_CONCAT,
   tags
@@ -48,14 +43,6 @@ export const getTags = (page, actionType, searchTerm = null) => dispatch => {
     }
   });
 };
-
-export const getAllTags = () => dispatch =>
-  TagApiUtil.fetchAllTags().then(tags => dispatch(receiveAllTags(tags)));
-
-export const getSearchTags = searchTerm => dispatch =>
-  TagApiUtil.fetchSearchTags(searchTerm).then(tags =>
-    dispatch(receiveAllTags(tags))
-  );
 
 export const getTag = id => dispatch =>
   TagApiUtil.fetchTag(id).then(tag => dispatch(receiveTag(tag)));
