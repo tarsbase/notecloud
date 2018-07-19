@@ -1,15 +1,5 @@
-import {
-  getAllNotebooks,
-  getNotebooks,
-  getSearchNotebooks,
-  createNotebook
-} from '../actions/notebook_actions';
-import {
-  getAllTags,
-  getTags,
-  getSearchTags,
-  createTag
-} from '../actions/tag_actions';
+import { getNotebooks, createNotebook } from '../actions/notebook_actions';
+import { getTags, createTag } from '../actions/tag_actions';
 import { getShortcutNotes } from '../actions/note_actions';
 import {
   closeNotebooksModal,
@@ -33,11 +23,9 @@ export const sidebarIndexSelector = (state, ownProps) => {
         modalIsOpen = state.ui.notebooksModalIsOpen;
       }
       if (ownProps.location.search) {
-        // fetchAction = getSearchNotebooks;
         const parsed = queryString.parse(ownProps.location.search);
         searchTerm = parsed.search;
       } else {
-        // fetchAction = getAllNotebooks;
         searchTerm = null;
       }
       createAction = createNotebook;
@@ -50,11 +38,9 @@ export const sidebarIndexSelector = (state, ownProps) => {
         modalIsOpen = state.ui.tagsModalIsOpen;
       }
       if (ownProps.location.search) {
-        // fetchAction = getSearchTags;
         const parsed = queryString.parse(ownProps.location.search);
         searchTerm = parsed.search;
       } else {
-        // fetchAction = getAllTags;
         searchTerm = null;
       }
       createAction = createTag;

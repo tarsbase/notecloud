@@ -1,5 +1,4 @@
 import {
-  RECEIVE_ALL_TAGS,
   RECEIVE_TAG,
   REMOVE_TAG,
   RECEIVE_TAG_NOTE,
@@ -12,7 +11,6 @@ const TagReducer = (oldState = {}, action) => {
   const newState = { ...oldState };
   switch (action.type) {
     case RECEIVE_TAGS_AND_REPLACE:
-    case RECEIVE_ALL_TAGS:
       return action.tags;
     case RECEIVE_TAGS_AND_CONCAT:
       return Object.assign({}, newState, action.tags);

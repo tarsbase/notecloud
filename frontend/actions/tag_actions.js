@@ -1,7 +1,6 @@
 import * as TagApiUtil from '../util/tag_api_util';
 import { showLoadingSpinner, hideLoadingSpinner } from './ui_actions';
 
-export const RECEIVE_ALL_TAGS = 'RECEIVE_ALL_TAGS';
 export const RECEIVE_TAG = 'RECEIVE_TAG';
 export const REMOVE_TAG = 'REMOVE_TAG';
 export const RECEIVE_TAG_NOTE = 'RECEIVE_TAG_NOTE';
