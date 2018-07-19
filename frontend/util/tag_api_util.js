@@ -12,13 +12,6 @@ export const fetchTags = (page, searchTerm) => {
   });
 };
 
-export const fetchAllTags = () => (
-  $.ajax({
-    method: 'GET',
-    url: 'api/tags'
-  })
-);
-
 export const fetchSearchTags = searchTerm => (
   $.ajax({
     method: 'GET',
