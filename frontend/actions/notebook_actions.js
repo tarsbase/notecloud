@@ -5,7 +5,6 @@ export const RECEIVE_NOTEBOOK = 'RECEIVE_NOTEBOOK';
 export const REMOVE_NOTEBOOK = 'REMOVE_NOTEBOOK';
 export const RECEIVE_NOTEBOOKS_AND_REPLACE = 'RECEIVE_NOTEBOOKS_AND_REPLACE';
 export const RECEIVE_NOTEBOOKS_AND_CONCAT = 'RECEIVE_NOTEBOOKS_AND_CONCAT';
-// export const RECEIVE_ALL_NOTEBOOKS = 'RECEIVE_ALL_NOTEBOOKS';
 
 const receiveNotebook = notebook => ({
   type: RECEIVE_NOTEBOOK,
@@ -21,11 +20,6 @@ const receiveNotebooksAndConcat = notebooks => ({
   type: RECEIVE_NOTEBOOKS_AND_CONCAT,
   notebooks
 });
-
-// const receiveAllNotebooks = notebooks => ({
-//   type: RECEIVE_ALL_NOTEBOOKS,
-//   notebooks
-// });
 
 const removeNotebook = notebook => ({
   type: REMOVE_NOTEBOOK,
@@ -51,16 +45,6 @@ export const getNotebooks = (
     }
   });
 };
-
-// export const getAllNotebooks = () => dispatch =>
-//   NotebookApiUtil.fetchAllNotebooks().then(notebooks =>
-//     dispatch(receiveAllNotebooks(notebooks))
-//   );
-
-// export const getSearchNotebooks = searchTerm => dispatch =>
-//   NotebookApiUtil.fetchSearchNotebooks(searchTerm).then(notebooks =>
-//     dispatch(receiveAllNotebooks(notebooks))
-//   );
 
 export const getNotebook = id => dispatch =>
   NotebookApiUtil.fetchNotebook(id).then(notebook =>

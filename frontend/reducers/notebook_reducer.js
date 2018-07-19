@@ -1,5 +1,4 @@
 import {
-  RECEIVE_ALL_NOTEBOOKS,
   RECEIVE_NOTEBOOK,
   REMOVE_NOTEBOOK,
   RECEIVE_NOTEBOOKS_AND_CONCAT,
@@ -13,7 +12,6 @@ const NotebookReducer = (oldState = {}, action) => {
   const newState = { ...oldState };
   switch (action.type) {
     case RECEIVE_NOTEBOOKS_AND_REPLACE:
-    // case RECEIVE_ALL_NOTEBOOKS:
       return action.notebooks;
     case RECEIVE_NOTEBOOKS_AND_CONCAT:
       return Object.assign({}, newState, action.notebooks);
