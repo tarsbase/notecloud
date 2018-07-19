@@ -3,14 +3,18 @@ import SidebarIndex from './sidebar_index';
 import { withRouter } from 'react-router-dom';
 import { sidebarIndexSelector } from '../../selectors/sidebar_index_selectors';
 import { openDeleteModal, openBannerModal } from '../../actions/ui_actions';
+import { updateNote } from '../../actions/note_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
-  const { entities, modalIsOpen, fetchActionArg } = sidebarIndexSelector(state, ownProps);
+  const { entities, modalIsOpen, searchTerm } = sidebarIndexSelector(
+    state,
+    ownProps
+  );
   return {
     type: ownProps.type,
     entities,
     modalIsOpen,
-    fetchActionArg
+    searchTerm
   };
 };
 
@@ -20,15 +24,20 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     ownProps
   );
   return {
-    fetchAction: fetchActionArg => dispatch(fetchAction(fetchActionArg)),
+    fetchAction: (page, actionType, searchTerm) =>
+      dispatch(fetchAction(page, actionType, searchTerm)),
     createAction: entityName => dispatch(createAction(entityName)),
     closeModal: () => dispatch(closeModal()),
     openDeleteModal: (entityType, entity) =>
       dispatch(openDeleteModal(entityType, entity)),
-    openBannerModal: msg => dispatch(openBannerModal(msg))
+    openBannerModal: msg => dispatch(openBannerModal(msg)),
+    updateNote: (note, remove) => dispatch(updateNote(note, remove))
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(SidebarIndex)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SidebarIndex)
 );

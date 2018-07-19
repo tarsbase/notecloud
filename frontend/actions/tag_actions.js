@@ -1,13 +1,25 @@
 import * as TagApiUtil from '../util/tag_api_util';
-import { receiveNote } from './note_actions';
+import { showLoadingSpinner, hideLoadingSpinner } from './ui_actions';
 
 export const RECEIVE_ALL_TAGS = 'RECEIVE_ALL_TAGS';
 export const RECEIVE_TAG = 'RECEIVE_TAG';
 export const REMOVE_TAG = 'REMOVE_TAG';
 export const RECEIVE_TAG_NOTE = 'RECEIVE_TAG_NOTE';
+export const RECEIVE_TAGS_AND_CONCAT = 'RECEIVE_TAGS_AND_CONCAT';
+export const RECEIVE_TAGS_AND_REPLACE = 'RECEIVE_TAGS_AND_REPLACE';
 
 const receiveAllTags = tags => ({
   type: RECEIVE_ALL_TAGS,
+  tags
+});
+
+const receiveTagsAndConcat = tags => ({
+  type: RECEIVE_TAGS_AND_CONCAT,
+  tags
+});
+
+const recevieTagsAndReplace = tags => ({
+  type: RECEIVE_TAGS_AND_REPLACE,
   tags
 });
 
@@ -21,11 +33,21 @@ const removeTag = tag => ({
   tag
 });
 
-const receivetagNote = res => ({
-  type: RECEIVE_TAG_NOTE,
-  tag: res.tag,
-  note: res.note
-});
+export const getTags = (page, actionType, searchTerm = null) => dispatch => {
+  if (actionType === 'concat' && page > 1) {
+    dispatch(showLoadingSpinner());
+  } 
+  TagApiUtil.fetchTags(page, searchTerm).then(tags => {
+    if (actionType === 'replace') {
+      dispatch(recevieTagsAndReplace(tags));
+    } else {
+      dispatch(receiveTagsAndConcat(tags));
+      if (page > 1) {
+        dispatch(hideLoadingSpinner());
+      }
+    }
+  });
+};
 
 export const getAllTags = () => dispatch =>
   TagApiUtil.fetchAllTags().then(tags => dispatch(receiveAllTags(tags)));

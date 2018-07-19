@@ -8,7 +8,6 @@ import {
 } from '../../actions/ui_actions';
 import { updateNote, getNote } from '../../actions/note_actions';
 import { tagNote } from '../../actions/tagging_actions';
-import { getAllNotebooks } from '../../actions/notebook_actions';
 import { openBannerModal } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -29,7 +28,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     updateNote: note => dispatch(updateNote(note)),
     getNote: id => dispatch(getNote(id)),
     tagNote: (tag, note) => dispatch(tagNote(tag, note)),
-    getAllNotebooks: () => dispatch(getAllNotebooks()),
     openBannerModal: msg => dispatch(openBannerModal(msg))
   };
 };

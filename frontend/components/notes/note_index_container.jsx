@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     deleteModalIsOpen: state.ui.deleteModalIsOpen,
     noteCount: state.ui.noteCount,
+    shortcutsModalIsOpen: state.ui.shortcutsModalIsOpen, 
     getArg,
     headerTitle,
     notes

@@ -1,10 +1,16 @@
 import {
   getAllNotebooks,
+  getNotebooks,
   getSearchNotebooks,
   createNotebook
 } from '../actions/notebook_actions';
-import { getAllTags, getSearchTags, createTag } from '../actions/tag_actions';
-import { getShortcutNotesAndReplace } from '../actions/note_actions';
+import {
+  getAllTags,
+  getTags,
+  getSearchTags,
+  createTag
+} from '../actions/tag_actions';
+import { getShortcutNotes } from '../actions/note_actions';
 import {
   closeNotebooksModal,
   closeTagsModal,
@@ -18,47 +24,50 @@ export const sidebarIndexSelector = (state, ownProps) => {
   let createAction;
   let closeModal;
   let modalIsOpen;
-  let fetchActionArg;
+  let searchTerm;
   switch (ownProps.type) {
     case 'notebooks':
+      fetchAction = getNotebooks;
       if (state) {
         entities = Object.values(state.notebooks);
         modalIsOpen = state.ui.notebooksModalIsOpen;
       }
       if (ownProps.location.search) {
-        fetchAction = getSearchNotebooks;
+        // fetchAction = getSearchNotebooks;
         const parsed = queryString.parse(ownProps.location.search);
-        fetchActionArg = parsed.search;
+        searchTerm = parsed.search;
       } else {
-        fetchAction = getAllNotebooks;
-        fetchActionArg = null;
+        // fetchAction = getAllNotebooks;
+        searchTerm = null;
       }
       createAction = createNotebook;
       closeModal = closeNotebooksModal;
       break;
     case 'tags':
+      fetchAction = getTags;
       if (state) {
         entities = Object.values(state.tags);
         modalIsOpen = state.ui.tagsModalIsOpen;
       }
       if (ownProps.location.search) {
-        fetchAction = getSearchTags;
+        // fetchAction = getSearchTags;
         const parsed = queryString.parse(ownProps.location.search);
-        fetchActionArg = parsed.search;
+        searchTerm = parsed.search;
       } else {
-        fetchAction = getAllTags;
-        fetchActionArg = null;
+        // fetchAction = getAllTags;
+        searchTerm = null;
       }
       createAction = createTag;
       closeModal = closeTagsModal;
       break;
     case 'shortcuts':
+      fetchAction = getShortcutNotes;
+      searchTerm = null;
       if (state) {
         entities = Object.values(state.notes);
         modalIsOpen = state.ui.shortcutsModalIsOpen;
       }
       closeModal = closeShortcutsModal;
-      fetchAction = () => ({type: ''});
       break;
     default:
       break;
@@ -66,7 +75,7 @@ export const sidebarIndexSelector = (state, ownProps) => {
   return {
     entities,
     fetchAction,
-    fetchActionArg,
+    searchTerm,
     createAction,
     closeModal,
     modalIsOpen

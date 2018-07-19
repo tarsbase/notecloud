@@ -1,6 +1,5 @@
 import React from 'react';
 import NoteIndexItem from './note_index_item';
-import ShortcutIndexItem from './shortcut_index_item';
 import LoadingSpinnerContainer from '../spinners/loading_spinner_container';
 
 export default class NoteIndex extends React.Component {
@@ -11,15 +10,18 @@ export default class NoteIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.getArg !== nextProps.getArg) {
+    if (nextProps.shortcutsModalIsOpen) return;
+    if ((this.props.shortcutsModalIsOpen && !nextProps.shortcutsModalIsOpen) || this.props.getArg !== nextProps.getArg) {
       this.page = 1;
       nextProps.getAction(this.page, 'replace', nextProps.getArg);
     }
   }
 
   componentDidMount() {
-    this.props.getRelatedAction(this.props.getArg);
-    this.props.getAction(this.page, 'concat', this.props.getArg);
+    if (!this.props.shortcutsModalIsOpen) {
+      this.props.getRelatedAction(this.props.getArg);
+      this.props.getAction(this.page, 'concat', this.props.getArg);
+    }
   }
 
   handleScroll(e) {

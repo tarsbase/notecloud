@@ -1,7 +1,9 @@
 import {
   RECEIVE_ALL_NOTEBOOKS,
   RECEIVE_NOTEBOOK,
-  REMOVE_NOTEBOOK
+  REMOVE_NOTEBOOK,
+  RECEIVE_NOTEBOOKS_AND_CONCAT,
+  RECEIVE_NOTEBOOKS_AND_REPLACE
 } from '../actions/notebook_actions';
 import { RECEIVE_NOTE, REMOVE_NOTE } from '../actions/note_actions';
 
@@ -10,8 +12,11 @@ const NotebookReducer = (oldState = {}, action) => {
   let notebook;
   const newState = { ...oldState };
   switch (action.type) {
-    case RECEIVE_ALL_NOTEBOOKS:
+    case RECEIVE_NOTEBOOKS_AND_REPLACE:
+    // case RECEIVE_ALL_NOTEBOOKS:
       return action.notebooks;
+    case RECEIVE_NOTEBOOKS_AND_CONCAT:
+      return Object.assign({}, newState, action.notebooks);
     case RECEIVE_NOTEBOOK:
       newState[action.notebook.id] = action.notebook;
       return newState;

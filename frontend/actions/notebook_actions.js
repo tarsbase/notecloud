@@ -5,7 +5,7 @@ export const RECEIVE_NOTEBOOK = 'RECEIVE_NOTEBOOK';
 export const REMOVE_NOTEBOOK = 'REMOVE_NOTEBOOK';
 export const RECEIVE_NOTEBOOKS_AND_REPLACE = 'RECEIVE_NOTEBOOKS_AND_REPLACE';
 export const RECEIVE_NOTEBOOKS_AND_CONCAT = 'RECEIVE_NOTEBOOKS_AND_CONCAT';
-export const RECEIVE_ALL_NOTEBOOKS = 'RECEIVE_ALL_NOTEBOOKS';
+// export const RECEIVE_ALL_NOTEBOOKS = 'RECEIVE_ALL_NOTEBOOKS';
 
 const receiveNotebook = notebook => ({
   type: RECEIVE_NOTEBOOK,
@@ -22,21 +22,25 @@ const receiveNotebooksAndConcat = notebooks => ({
   notebooks
 });
 
-const receiveAllNotebooks = notebooks => ({
-  type: RECEIVE_ALL_NOTEBOOKS,
-  notebooks
-});
+// const receiveAllNotebooks = notebooks => ({
+//   type: RECEIVE_ALL_NOTEBOOKS,
+//   notebooks
+// });
 
 const removeNotebook = notebook => ({
   type: REMOVE_NOTEBOOK,
   notebook
 });
 
-export const getNotebooks = (page, actionType) => dispatch => {
+export const getNotebooks = (
+  page,
+  actionType,
+  searchTerm = null
+) => dispatch => {
   if (actionType === 'concat' && page > 1) {
     dispatch(showLoadingSpinner());
   }
-  NotebookApiUtil.fetchNotebooks(page).then(notebooks => {
+  NotebookApiUtil.fetchNotebooks(page, searchTerm).then(notebooks => {
     if (actionType === 'replace') {
       dispatch(receiveNotebooksAndReplace(notebooks));
     } else {
@@ -48,15 +52,15 @@ export const getNotebooks = (page, actionType) => dispatch => {
   });
 };
 
-export const getAllNotebooks = () => dispatch =>
-  NotebookApiUtil.fetchAllNotebooks().then(notebooks =>
-    dispatch(receiveAllNotebooks(notebooks))
-  );
+// export const getAllNotebooks = () => dispatch =>
+//   NotebookApiUtil.fetchAllNotebooks().then(notebooks =>
+//     dispatch(receiveAllNotebooks(notebooks))
+//   );
 
-export const getSearchNotebooks = searchTerm => dispatch =>
-  NotebookApiUtil.fetchSearchNotebooks(searchTerm).then(notebooks =>
-    dispatch(receiveAllNotebooks(notebooks))
-  );
+// export const getSearchNotebooks = searchTerm => dispatch =>
+//   NotebookApiUtil.fetchSearchNotebooks(searchTerm).then(notebooks =>
+//     dispatch(receiveAllNotebooks(notebooks))
+//   );
 
 export const getNotebook = id => dispatch =>
   NotebookApiUtil.fetchNotebook(id).then(notebook =>

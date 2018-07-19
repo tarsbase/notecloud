@@ -1,3 +1,17 @@
+export const fetchTags = (page, searchTerm) => {
+  let url;
+  if (searchTerm) {
+    url = `api/tags?search=${searchTerm}`;
+  } else {
+    url = 'api/tags';
+  }
+  return $.ajax({
+    method: 'GET',
+    url,
+    data: { page }
+  });
+};
+
 export const fetchAllTags = () => (
   $.ajax({
     method: 'GET',

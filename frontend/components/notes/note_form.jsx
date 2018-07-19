@@ -25,7 +25,6 @@ export default class NoteForm extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllNotebooks();
     if (this.props.match.params.noteId) {
       this.props.getNote(this.props.match.params.noteId);
     }

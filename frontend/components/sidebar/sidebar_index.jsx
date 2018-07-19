@@ -1,13 +1,14 @@
 import React from 'react';
 import NotebookIndexItem from '../notebooks/notebook_index_item';
 import TagIndexItem from '../tags/tag_index_item';
-import NoteIndexItem from '../notes/note_index_item';
+import ShortcutIndexItem from '../notes/shortcut_index_item';
 import SearchForm from '../search/search_form';
 
 export default class SidebarIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = { modalIsOpen: false, entityName: '', showTooltip: false };
+    this.page = 1;
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -19,14 +20,14 @@ export default class SidebarIndex extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (
       (!this.props.modalIsOpen && nextProps.modalIsOpen) ||
-      this.props.fetchActionArg !== nextProps.fetchActionArg
+      this.props.searchTerm !== nextProps.searchTerm
     ) {
-      nextProps.fetchAction(nextProps.fetchActionArg);
+      nextProps.fetchAction(this.page, 'replace', nextProps.searchTerm);
     }
   }
 
   componentDidMount() {
-    this.props.fetchAction(this.props.fetchActionArg);
+    this.props.fetchAction(this.page, 'replace', this.props.searchTerm);
   }
 
   openModal(e) {
@@ -77,24 +78,39 @@ export default class SidebarIndex extends React.Component {
       tooltipClasses.push('hide-tooltip');
     }
     let entities;
-    if (this.props.type === 'notebooks') {
-      entities = this.props.entities.map(entity => (
-        <NotebookIndexItem
-          key={entity.id}
-          notebook={entity}
-          openDeleteModal={this.props.openDeleteModal}
-          closeNotebooksModal={this.props.closeModal}
-        />
-      ));
-    } else if (this.props.type === 'tags') {
-      entities = this.props.entities.map(entity => (
-        <TagIndexItem
-          key={entity.id}
-          tag={entity}
-          openDeleteModal={this.props.openDeleteModal}
-          closeTagsModal={this.props.closeModal}
-        />
-      ));
+    switch (this.props.type) {
+      case 'notebooks':
+        entities = this.props.entities.map(entity => (
+          <NotebookIndexItem
+            key={entity.id}
+            notebook={entity}
+            openDeleteModal={this.props.openDeleteModal}
+            closeNotebooksModal={this.props.closeModal}
+          />
+        ));
+        break;
+      case 'tags':
+        entities = this.props.entities.map(entity => (
+          <TagIndexItem
+            key={entity.id}
+            tag={entity}
+            openDeleteModal={this.props.openDeleteModal}
+            closeTagsModal={this.props.closeModal}
+          />
+        ));
+        break;
+      case 'shortcuts':
+        entities = this.props.entities.map(entity => (
+          <ShortcutIndexItem
+            key={entity.id}
+            note={entity}
+            closeShortcutsModal={this.props.closeModal}
+            updateNote={this.props.updateNote}
+          />
+        ));
+        break;
+      default: 
+        break;
     }
     const singularName = this.props.type
       .toUpperCase()
