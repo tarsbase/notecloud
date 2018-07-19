@@ -12,18 +12,6 @@ export const fetchNotebooks = (page, searchTerm) => {
   });
 };
 
-export const fetchAllNotebooks = () =>
-  $.ajax({
-    method: 'GET',
-    url: `api/notebooks`
-  });
-
-export const fetchSearchNotebooks = searchTerm =>
-  $.ajax({
-    method: 'GET',
-    url: `api/notebooks?search=${searchTerm}`
-  });
-
 export const fetchNotebook = id =>
   $.ajax({
     method: 'GET',
