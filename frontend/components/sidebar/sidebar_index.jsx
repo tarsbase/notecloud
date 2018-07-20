@@ -3,6 +3,7 @@ import NotebookIndexItem from '../notebooks/notebook_index_item';
 import TagIndexItem from '../tags/tag_index_item';
 import ShortcutIndexItem from '../notes/shortcut_index_item';
 import SearchForm from '../search/search_form';
+import LoadingSpinnerContainer from '../spinners/loading_spinner_container';
 
 export default class SidebarIndex extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ export default class SidebarIndex extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.showTooltip = this.showTooltip.bind(this);
     this.hideTooltip = this.hideTooltip.bind(this);
+    this.fetchNextPage = this.fetchNextPage.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -22,12 +25,27 @@ export default class SidebarIndex extends React.Component {
       (!this.props.modalIsOpen && nextProps.modalIsOpen) ||
       this.props.searchTerm !== nextProps.searchTerm
     ) {
+      this.page = 1;
       nextProps.fetchAction(this.page, 'replace', nextProps.searchTerm);
     }
   }
 
   componentDidMount() {
     this.props.fetchAction(this.page, 'replace', this.props.searchTerm);
+  }
+
+  handleScroll(e) {
+    const bottom =
+      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    if (bottom && this.props.entityCount > this.props.entities.length) {
+      e.target.scrollTo(0, e.target.scrollHeight);
+      this.fetchNextPage();
+    }
+  }
+
+  fetchNextPage() {
+    this.page += 1;
+    this.props.fetchAction(this.page, 'concat', this.props.searchTerm);
   }
 
   openModal(e) {
@@ -109,7 +127,7 @@ export default class SidebarIndex extends React.Component {
           />
         ));
         break;
-      default: 
+      default:
         break;
     }
     const singularName = this.props.type
@@ -122,7 +140,7 @@ export default class SidebarIndex extends React.Component {
       modalClasses.push('hide-fs-modal');
     }
     return (
-      <div className="sidebar-index">
+      <div className="sidebar-index" onScroll={this.handleScroll}>
         <div className="sidebar-header">
           <div className="sidebar-top-header">
             <h1>{this.props.type.toUpperCase()}</h1>
@@ -139,6 +157,7 @@ export default class SidebarIndex extends React.Component {
           <SearchForm type={this.props.type} />
         </div>
         <ul className="sidebar-index-list">{entities}</ul>
+        <LoadingSpinnerContainer />
         <div className={modalClasses.join(' ')}>
           <div className="fs-modal-content">
             <div className="fs-modal-header">

@@ -15,12 +15,14 @@ export const sidebarIndexSelector = (state, ownProps) => {
   let closeModal;
   let modalIsOpen;
   let searchTerm;
+  let entityCount;
   switch (ownProps.type) {
     case 'notebooks':
       fetchAction = getNotebooks;
       if (state) {
         entities = Object.values(state.notebooks);
         modalIsOpen = state.ui.notebooksModalIsOpen;
+        entityCount = state.ui.notebookCount;
       }
       if (ownProps.location.search) {
         const parsed = queryString.parse(ownProps.location.search);
@@ -36,6 +38,7 @@ export const sidebarIndexSelector = (state, ownProps) => {
       if (state) {
         entities = Object.values(state.tags);
         modalIsOpen = state.ui.tagsModalIsOpen;
+        entityCount = state.ui.tagCount;
       }
       if (ownProps.location.search) {
         const parsed = queryString.parse(ownProps.location.search);
@@ -52,6 +55,7 @@ export const sidebarIndexSelector = (state, ownProps) => {
       if (state) {
         entities = Object.values(state.notes);
         modalIsOpen = state.ui.shortcutsModalIsOpen;
+        entityCount = state.ui.noteCount;
       }
       closeModal = closeShortcutsModal;
       break;
@@ -64,6 +68,7 @@ export const sidebarIndexSelector = (state, ownProps) => {
     searchTerm,
     createAction,
     closeModal,
-    modalIsOpen
+    modalIsOpen,
+    entityCount
   };
 };

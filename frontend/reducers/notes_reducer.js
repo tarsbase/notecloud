@@ -13,7 +13,7 @@ const NotesReducer = (oldState = {}, action) => {
     case RECEIVE_NOTES_AND_CONCAT:
       return Object.assign({}, newState, action.notes.notes);
     case RECEIVE_NOTES_AND_REPLACE:
-      return action.notes.notes;
+      return action.notes.notes || [];
     case RECEIVE_NOTE:
     case RECEIVE_TAG_NOTE:
       newState[action.note.id] = action.note;

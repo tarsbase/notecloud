@@ -6,7 +6,7 @@ import { openDeleteModal, openBannerModal } from '../../actions/ui_actions';
 import { updateNote } from '../../actions/note_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
-  const { entities, modalIsOpen, searchTerm } = sidebarIndexSelector(
+  const { entities, modalIsOpen, searchTerm, entityCount } = sidebarIndexSelector(
     state,
     ownProps
   );
@@ -14,7 +14,8 @@ const mapStateToProps = (state, ownProps) => {
     type: ownProps.type,
     entities,
     modalIsOpen,
-    searchTerm
+    searchTerm,
+    entityCount
   };
 };
 

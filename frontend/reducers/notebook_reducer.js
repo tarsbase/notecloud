@@ -12,9 +12,9 @@ const NotebookReducer = (oldState = {}, action) => {
   const newState = { ...oldState };
   switch (action.type) {
     case RECEIVE_NOTEBOOKS_AND_REPLACE:
-      return action.notebooks;
+      return action.notebooks.notebooks;
     case RECEIVE_NOTEBOOKS_AND_CONCAT:
-      return Object.assign({}, newState, action.notebooks);
+      return Object.assign({}, newState, action.notebooks.notebooks);
     case RECEIVE_NOTEBOOK:
       newState[action.notebook.id] = action.notebook;
       return newState;

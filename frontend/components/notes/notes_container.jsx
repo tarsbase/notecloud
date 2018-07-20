@@ -22,13 +22,15 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  let openModal = null;
+  let openModal;
   if (ownProps.location.pathname === '/notebooks') {
     openModal = () => dispatch(openNotebooksModal());
   } else if (ownProps.location.pathname === '/tags') {
     openModal = () => dispatch(openTagsModal());
   } else if (ownProps.location.pathname === '/shortcuts') {
     openModal = () => dispatch(openShortcutsModal());
+  } else {
+    openModal = () => dispatch(() => ({type: ''}));
   }
   return {
     closeNotebooksModal: () => dispatch(closeNotebooksModal()),

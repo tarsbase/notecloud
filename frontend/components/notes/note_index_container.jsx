@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'; 
 import NoteIndex from './note_index';
 import { withRouter } from 'react-router-dom';
 import {

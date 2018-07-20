@@ -3,17 +3,11 @@ class Api::TagsController < ApplicationController
 
   def index
     if params[:search] 
-      if params[:page]
-        @tags = current_user.tags.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").includes(:notes).page params[:page]  
-      else 
-        @tags = current_user.tags.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").includes(:notes)
-      end 
+      @tags = current_user.tags.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").includes(:notes).page(params[:page]).per(50)  
+      @tag_count = current_user.tags.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").count
     else 
-      if params[:page]
-        @tags = current_user.tags.includes(:notes).page params[:page]  
-      else 
-        @tags = current_user.tags.includes(:notes)
-      end 
+      @tags = current_user.tags.includes(:notes).page(params[:page]).per(50)  
+      @tag_count = current_user.tags.count
     end 
     render :index
   end

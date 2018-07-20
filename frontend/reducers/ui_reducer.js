@@ -16,10 +16,19 @@ import {
   HIDE_LOADING_SPINNER
 } from '../actions/ui_actions';
 
-import { 
+import {
   RECEIVE_NOTES_AND_CONCAT,
   RECEIVE_NOTES_AND_REPLACE
 } from '../actions/note_actions';
+import {
+  RECEIVE_NOTEBOOKS_AND_CONCAT,
+  RECEIVE_NOTEBOOKS_AND_REPLACE
+} from '../actions/notebook_actions';
+
+import {
+  RECEIVE_TAGS_AND_CONCAT,
+  RECEIVE_TAGS_AND_REPLACE
+} from '../actions/tag_actions';
 
 const defaultState = {
   notebooksModalIsOpen: false,
@@ -33,7 +42,9 @@ const defaultState = {
   bannerModalIsOpen: false,
   bannerModalMsg: '',
   loadingSpinnerIsVisible: false,
-  noteCount: 0
+  noteCount: 0,
+  notebookCount: 0,
+  tagCount: 0
 };
 
 const UIReducer = (oldState = defaultState, action) => {
@@ -61,7 +72,7 @@ const UIReducer = (oldState = defaultState, action) => {
       newState.tagsModalIsOpen = false;
       newState.shortcutsModalIsOpen = true;
       return newState;
-    case CLOSE_SHORTCUTS_MODAL: 
+    case CLOSE_SHORTCUTS_MODAL:
       newState.shortcutsModalIsOpen = false;
       return newState;
     case OPEN_DELETE_MODAL:
@@ -100,6 +111,14 @@ const UIReducer = (oldState = defaultState, action) => {
     case RECEIVE_NOTES_AND_CONCAT:
     case RECEIVE_NOTES_AND_REPLACE:
       newState.noteCount = action.notes.note_count;
+      return newState;
+    case RECEIVE_NOTEBOOKS_AND_CONCAT:
+    case RECEIVE_NOTEBOOKS_AND_REPLACE:
+      newState.notebookCount = action.notebooks.notebook_count;
+      return newState;
+    case RECEIVE_TAGS_AND_CONCAT:
+    case RECEIVE_TAGS_AND_REPLACE:
+      newState.tagCount = action.tags.tag_count
       return newState;
     default:
       return oldState;

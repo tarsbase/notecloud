@@ -11,9 +11,9 @@ Tag.destroy_all
 Tagging.destroy_all
 
 
-4.times do 
+35.times do 
   notebook = Notebook.new(
-    name: Faker::StarWars.character,
+    name: Faker::StarWars.unique.character,
     user_id: User.find_by(username: 'alex').id
   )
   notebook.save!
@@ -21,14 +21,22 @@ end
 
 35.times do 
   note = Note.new(
-    title: Faker::StarWars.planet,
+    title: Faker::StarWars.unique.planet,
     body: Faker::StarWars.quote,
     notebook_id: User.find_by(username: 'alex').notebooks.order("RANDOM()").first.id
   )
   note.save!
 end 
 
-12.times do 
+10.times do 
+  tag = Tag.new(
+    name: Faker::Seinfeld.unique.character,
+    user_id: User.find_by(username: 'alex').id
+  )
+  tag.save!
+end 
+
+10.times do 
   tag = Tag.new(
     name: Faker::StarWars.unique.specie,
     user_id: User.find_by(username: 'alex').id

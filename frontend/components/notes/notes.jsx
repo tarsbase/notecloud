@@ -13,9 +13,7 @@ export default class Notes extends React.Component {
   }
 
   componentDidMount() {
-    if (typeof this.props.openModal === 'function') {
-      this.props.openModal();
-    }
+    this.props.openModal();
   }
 
   handleClick(e) {

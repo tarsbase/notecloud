@@ -11,9 +11,9 @@ const TagReducer = (oldState = {}, action) => {
   const newState = { ...oldState };
   switch (action.type) {
     case RECEIVE_TAGS_AND_REPLACE:
-      return action.tags;
+      return action.tags.tags;
     case RECEIVE_TAGS_AND_CONCAT:
-      return Object.assign({}, newState, action.tags);
+      return Object.assign({}, newState, action.tags.tags);
     case RECEIVE_TAG:
     case RECEIVE_TAG_NOTE:
       newState[action.tag.id] = action.tag;

@@ -47,7 +47,7 @@ class Api::NotesController < ApplicationController
         .page params[:page]
       @note_count = current_user.tags.find(params[:tag_id]).notes.count
     elsif params[:shortcut] == 'true'
-      @notes = current_user.notes.includes([:notebook, :tags]).where(shortcut: true).page params[:page]
+      @notes = current_user.notes.includes([:notebook, :tags]).where(shortcut: true).page params[:page] 
       @note_count = current_user.notes.where(shortcut: true).count
     else 
       @notes = current_user.notes
