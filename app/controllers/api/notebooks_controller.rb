@@ -23,11 +23,21 @@ class Api::NotebooksController < ApplicationController
   end 
 
   def index 
+    page = params[:page].to_i
+    limit = 25
+    offset = (page - 1) * limit
     if params[:search]
-      @notebooks = current_user.notebooks.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").includes(:notes).page params[:page]  
-      @notebook_count = current_user.notebooks.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").count
+      @notebooks = current_user.notebooks
+                                .where("lower(name) LIKE ?", "%#{params[:search]
+                                .downcase}%").includes(:notes)
+                                .limit(limit)
+                                .offset(offset)
+      @notebook_count = current_user.notebooks
+                                    .where("lower(name) LIKE ?", "%#{params[:search]
+                                    .downcase}%")
+                                    .count
     else 
-      @notebooks = current_user.notebooks.includes(:notes).page params[:page]  
+      @notebooks = current_user.notebooks.includes(:notes).limit(limit).offset(offset)
       @notebook_count = current_user.notebooks.count
     end 
     render :index

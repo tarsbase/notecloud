@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
   );
   return {
     type: ownProps.type,
+    loadingSpinnerIsVisible: state.ui.loadingSpinnerIsVisible,
     entities,
     modalIsOpen,
     searchTerm,

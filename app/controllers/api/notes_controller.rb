@@ -52,6 +52,8 @@ class Api::NotesController < ApplicationController
         .offset(offset)
       @note_count = current_user.tags.find(params[:tag_id]).notes.count
     elsif params[:shortcut] == 'true'
+      limit = 50 
+      offset = (page - 1) * limit
       @notes = current_user.notes
         .includes([:notebook, :tags])
         .where(shortcut: true)

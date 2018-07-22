@@ -37,7 +37,11 @@ export default class SidebarIndex extends React.Component {
   handleScroll(e) {
     const bottom =
       e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-    if (bottom && this.props.entityCount > this.props.entities.length) {
+    if (
+      bottom &&
+      this.props.entityCount > this.props.entities.length &&
+      !this.props.loadingSpinnerIsVisible
+    ) {
       e.target.scrollTo(0, e.target.scrollHeight);
       this.fetchNextPage();
     }
