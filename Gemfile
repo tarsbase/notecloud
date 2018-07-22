@@ -37,8 +37,6 @@ gem 'font-awesome-rails'
 
 gem 'jquery-rails'
 
-gem 'kaminari'
-
 gem 'faker'
 
 gem 'figaro'
