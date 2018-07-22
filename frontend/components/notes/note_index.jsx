@@ -58,7 +58,6 @@ export default class NoteIndex extends React.Component {
       />
     ));
     const noteMsg = this.props.noteCount === 1 ? 'note' : 'notes';
-    console.log('Note Length', notes.length);
     return (
       <div className="notes-index-container" onScroll={this.handleScroll}>
         <div className="sidebar-header">

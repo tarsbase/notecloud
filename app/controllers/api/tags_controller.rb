@@ -2,11 +2,18 @@ class Api::TagsController < ApplicationController
   before_action :require_login
 
   def index
+    page = params[:page].to_i
+    limit = 50
+    offset = (page - 1) * limit
     if params[:search] 
-      @tags = current_user.tags.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").includes(:notes).page(params[:page]).per(50)  
+      @tags = current_user.tags
+                          .where("lower(name) LIKE ?", "%#{params[:search].downcase}%")
+                          .includes(:notes)
+                          .limit(limit)        
+                          .offset(offset)
       @tag_count = current_user.tags.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").count
     else 
-      @tags = current_user.tags.includes(:notes).page(params[:page]).per(50)  
+      @tags = current_user.tags.includes(:notes).limit(limit).offset(offset)
       @tag_count = current_user.tags.count
     end 
     render :index

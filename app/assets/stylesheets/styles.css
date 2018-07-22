@@ -553,6 +553,10 @@ body {
   overflow: auto;
 }
 
+.sidebar-index-list {
+  margin-bottom: 15px;
+}
+
 .sidebar-modal-list {
   overflow: auto;
   max-height: 98%;
@@ -686,7 +690,7 @@ body {
 
 .notebooks-dropdown {
   background: white;
-  height: 470px;
+  max-height: 800px;
   width: 365px;
   position: absolute;
   z-index: 1;
@@ -695,6 +699,7 @@ body {
     6px 8px 15px rgba(0, 0, 0, 0.04);
   top: 94px;
   left: 365px;
+  overflow: auto;
 }
 
 .selected-notebook,

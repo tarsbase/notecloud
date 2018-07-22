@@ -4,8 +4,10 @@ import NotebookIndexItem from '../notebooks/notebook_index_item';
 export default class NotebooksDropdown extends React.Component {
   constructor(props) {
     super(props);
+    this.page = 1;
     this.handleClick = this.handleClick.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
+    // this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
@@ -17,7 +19,10 @@ export default class NotebooksDropdown extends React.Component {
   }
 
   handleClick(e) {
-    if (this.node.contains(e.target) || e.target.classList.contains('fa-angle-down')) {
+    if (
+      this.node.contains(e.target) ||
+      e.target.classList.contains('fa-angle-down')
+    ) {
       return;
     } else {
       this.handleClickOutside();
@@ -27,6 +32,24 @@ export default class NotebooksDropdown extends React.Component {
   handleClickOutside() {
     this.props.closeNotebooksDropdown();
   }
+
+  // handleScroll(e) {
+  //   const bottom =
+  //     e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+  //   if (
+  //     bottom &&
+  //     this.props.notebookCount > this.props.notebooks.length &&
+  //     !this.props.loadingSpinnerIsVisible
+  //   ) {
+  //     e.target.scrollTo(0, e.target.scrollHeight);
+  //     this.fetchNextPage();
+  //   }
+  // }
+
+  // fetchNextPage() {
+  //   this.page += 1;
+  //   this.props.getAction(this.page, 'concat', this.props.getArg);
+  // }
 
   render() {
     const notebooks = this.props.notebooks.map(notebook => (
@@ -48,7 +71,12 @@ export default class NotebooksDropdown extends React.Component {
       modalClasses.push('hide');
     }
     return (
-      <div className={modalClasses.join(' ')} ref={node => {this.node = node;}}>
+      <div
+        className={modalClasses.join(' ')}
+        ref={node => {
+          this.node = node;
+        }}
+      >
         <ul>{notebooks}</ul>
       </div>
     );
