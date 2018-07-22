@@ -29,13 +29,17 @@ class Api::NotesController < ApplicationController
   end 
 
   def index 
+    page = params[:page].to_i
+    limit = 25
+    offset = (page - 1) * limit
     if params[:notebook_id] 
       @notes = current_user.notebooks
         .includes([:notes])
         .find(params[:notebook_id])
         .notes.includes([:notebook, :tags])
         .order(created_at: :desc)
-        .page params[:page]
+        .limit(limit)
+        .offset(offset)
       @note_count = current_user.notebooks.find(params[:notebook_id]).notes.count
     elsif params[:tag_id]
       @notes = current_user.tags
@@ -44,16 +48,23 @@ class Api::NotesController < ApplicationController
         .notes
         .includes([:notebook, :tags])
         .order(created_at: :desc)
-        .page params[:page]
+        .limit(limit)
+        .offset(offset)
       @note_count = current_user.tags.find(params[:tag_id]).notes.count
     elsif params[:shortcut] == 'true'
-      @notes = current_user.notes.includes([:notebook, :tags]).where(shortcut: true).page params[:page] 
+      @notes = current_user.notes
+        .includes([:notebook, :tags])
+        .where(shortcut: true)
+        .order(created_at: :desc)
+        .limit(limit)
+        .offset(offset)
       @note_count = current_user.notes.where(shortcut: true).count
     else 
       @notes = current_user.notes
         .includes([:notebook, :tags])
         .order(created_at: :desc)
-        .page params[:page]
+        .limit(limit)
+        .offset(offset)
       @note_count = current_user.notes.count
     end 
     render :index

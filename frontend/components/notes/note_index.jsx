@@ -7,11 +7,15 @@ export default class NoteIndex extends React.Component {
     super(props);
     this.page = 1;
     this.handleScroll = this.handleScroll.bind(this);
+    this.fetchNextPage = this.fetchNextPage.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.shortcutsModalIsOpen) return;
-    if ((this.props.shortcutsModalIsOpen && !nextProps.shortcutsModalIsOpen) || this.props.getArg !== nextProps.getArg) {
+    if (
+      (this.props.shortcutsModalIsOpen && !nextProps.shortcutsModalIsOpen) ||
+      this.props.getArg !== nextProps.getArg
+    ) {
       this.page = 1;
       nextProps.getAction(this.page, 'replace', nextProps.getArg);
     }
@@ -27,7 +31,11 @@ export default class NoteIndex extends React.Component {
   handleScroll(e) {
     const bottom =
       e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-    if (bottom && this.props.noteCount > this.props.notes.length) {
+    if (
+      bottom &&
+      this.props.noteCount > this.props.notes.length &&
+      !this.props.loadingSpinnerIsVisible
+    ) {
       e.target.scrollTo(0, e.target.scrollHeight);
       this.fetchNextPage();
     }
@@ -39,12 +47,7 @@ export default class NoteIndex extends React.Component {
   }
 
   render() {
-    const {
-      headerTitle,
-      noteCount,
-      updateNote,
-      openDeleteModal,
-    } = this.props;
+    const { headerTitle, noteCount, updateNote, openDeleteModal } = this.props;
     let notes;
     notes = this.props.notes.map(note => (
       <NoteIndexItem
@@ -55,6 +58,7 @@ export default class NoteIndex extends React.Component {
       />
     ));
     const noteMsg = this.props.noteCount === 1 ? 'note' : 'notes';
+    console.log('Note Length', notes.length);
     return (
       <div className="notes-index-container" onScroll={this.handleScroll}>
         <div className="sidebar-header">

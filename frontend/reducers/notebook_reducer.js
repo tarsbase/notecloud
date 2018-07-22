@@ -29,9 +29,11 @@ const NotebookReducer = (oldState = {}, action) => {
       return newState;
     case REMOVE_NOTE:
       notebook = newState[action.note.notebook.id];
-      const index = notebook.notes.indexOf(action.note.id);
-      if (index > -1) {
-        notebook.notes.splice(index, 1);
+      if (notebook) {
+        const index = notebook.notes.indexOf(action.note.id);
+        if (index > -1) {
+          notebook.notes.splice(index, 1);
+        }
       }
       return newState;
     default:

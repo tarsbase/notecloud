@@ -23,7 +23,18 @@ end
   note = Note.new(
     title: Faker::StarWars.unique.planet,
     body: Faker::StarWars.quote,
-    notebook_id: User.find_by(username: 'alex').notebooks.order("RANDOM()").first.id
+    notebook_id: User.find_by(username: 'alex').notebooks.order("RANDOM()").first.id,
+    shortcut: true
+  )
+  note.save!
+end 
+
+35.times do 
+  note = Note.new(
+    title: Faker::RickAndMorty.unique.character,
+    body: Faker::RickAndMorty.quote,
+    notebook_id: User.find_by(username: 'alex').notebooks.order("RANDOM()").first.id,
+    shortcut: true
   )
   note.save!
 end 
