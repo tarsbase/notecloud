@@ -1,6 +1,7 @@
 import React from 'react';
 import NoteIndexItem from './note_index_item';
 import LoadingSpinnerContainer from '../spinners/loading_spinner_container';
+import { isEqual } from 'lodash/lang';
 
 export default class NoteIndex extends React.Component {
   constructor(props) {
@@ -14,17 +15,16 @@ export default class NoteIndex extends React.Component {
     if (nextProps.shortcutsModalIsOpen) return;
     if (
       (this.props.shortcutsModalIsOpen && !nextProps.shortcutsModalIsOpen) ||
-      this.props.getArg !== nextProps.getArg
+      !isEqual(this.props.getOptions, nextProps.getOptions)
     ) {
       this.page = 1;
-      nextProps.getAction(this.page, 'replace', nextProps.getArg);
+      nextProps.getAction(this.page, 'replace', nextProps.getOptions);
     }
   }
 
   componentDidMount() {
     if (!this.props.shortcutsModalIsOpen) {
-      this.props.getRelatedAction(this.props.getArg);
-      this.props.getAction(this.page, 'concat', this.props.getArg);
+      this.props.getAction(this.page, 'concat', this.props.getOptions);
     }
   }
 
@@ -43,7 +43,7 @@ export default class NoteIndex extends React.Component {
 
   fetchNextPage() {
     this.page += 1;
-    this.props.getAction(this.page, 'concat', this.props.getArg);
+    this.props.getAction(this.page, 'concat', this.props.getOptions);
   }
 
   render() {

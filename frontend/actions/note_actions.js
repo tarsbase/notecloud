@@ -2,7 +2,8 @@ import * as NoteApiUtil from '../util/note_api_util';
 import {
   openBannerModal,
   showLoadingSpinner,
-  hideLoadingSpinner
+  hideLoadingSpinner,
+  openShortcutsModal
 } from './ui_actions';
 
 export const RECEIVE_NOTE = 'RECEIVE_NOTE';
@@ -30,11 +31,29 @@ const removeNote = note => ({
   note
 });
 
-export const getNotes = (page, actionType) => dispatch => {
+export const getNotes = (page, actionType, opts) => dispatch => {
+  const defaultOpts = {
+    searchTerm: null,
+    notebookId: null,
+    tagId: null,
+    shortcuts: false
+  };
+  opts = Object.assign({}, defaultOpts, opts);
+  let url;
+  if (opts.notebookId) {
+    url = `api/notebooks/${opts.notebookId}/notes`;
+  } else if (opts.tagId) {
+    url = `api/tags/${opts.tagId}/notes`;
+  } else if (opts.shortcuts) {
+    url = `api/notes?shortcut=true`;
+  } else {
+    url = `api/notes`;
+  }
+  if (opts.searchTerm) url += `?search=${opts.searchTerm}`;
   if (actionType === 'concat' && page > 1) {
     dispatch(showLoadingSpinner());
   }
-  NoteApiUtil.fetchNotes(page).then(notes => {
+  NoteApiUtil.fetchNotes(page, url).then(notes => {
     if (actionType === 'replace') {
       dispatch(receiveNotesAndReplace(notes));
     } else {
@@ -85,11 +104,15 @@ export const getNotesByTagId = (page, actionType, tagId) => dispatch => {
   });
 };
 
-export const getShortcutNotes = (page, actionType) => dispatch => {
+export const getShortcutNotes = (
+  page,
+  actionType,
+  searchTerm = null
+) => dispatch => {
   if (actionType === 'concat' && page > 1) {
     dispatch(showLoadingSpinner());
   }
-  NoteApiUtil.fetchShortcutNotes(page).then(notes => {
+  NoteApiUtil.fetchShortcutNotes(page, searchTerm).then(notes => {
     if (actionType === 'replace') {
       dispatch(receiveNotesAndReplace(notes));
     } else {

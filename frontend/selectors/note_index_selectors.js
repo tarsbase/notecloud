@@ -1,20 +1,17 @@
 import {
   getNotes,
-  getNotesByNotebookId,
-  getNotesByTagId,
 } from '../actions/note_actions';
 import { getNotebook } from '../actions/notebook_actions';
 import { getTag } from '../actions/tag_actions';
 
 export const noteIndexSelector = (ownProps, state) => {
   let notes;
-  let getArg;
   let headerTitle;
-  let getAction;
   let getRelatedAction;
+  const getAction = getNotes;
+  const getOptions = {};
   if (ownProps.match.params.notebookId) {
-    getArg = ownProps.match.params.notebookId;
-    getAction = getNotesByNotebookId;
+    getOptions.notebookId = ownProps.match.params.notebookId;
     getRelatedAction = getNotebook;
     if (state) {
       if (state.notebooks[ownProps.match.params.notebookId]) {
@@ -22,8 +19,7 @@ export const noteIndexSelector = (ownProps, state) => {
       } 
     }
   } else if (ownProps.match.params.tagId) {
-    getArg = ownProps.match.params.tagId;
-    getAction = getNotesByTagId;
+    getOptions.tagId = ownProps.match.params.tagId;
     getRelatedAction = getTag;
     if (state) {
       if (state.tags[ownProps.match.params.tagId]) {
@@ -31,9 +27,7 @@ export const noteIndexSelector = (ownProps, state) => {
       }
     }
   } else {
-    getArg = null;
     headerTitle = 'NOTES';
-    getAction = getNotes;
     getRelatedAction = (id) => ({type: ''});
   }
   if (state) {
@@ -43,5 +37,5 @@ export const noteIndexSelector = (ownProps, state) => {
       return bDate - aDate;
     });
   }
-  return { getArg, headerTitle, getAction, getRelatedAction, notes };
+  return { headerTitle, getAction, getOptions, getRelatedAction, notes };
 };

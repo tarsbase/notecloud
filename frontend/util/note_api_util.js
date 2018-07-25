@@ -1,10 +1,10 @@
-export const fetchNotes = page => (
-  $.ajax({
+export const fetchNotes = (page, url) => {
+  return $.ajax({
     method: 'GET',
-    url: `api/notes`,
-    data: { page }
-  })
-);
+    data: { page },
+    url
+  });
+};
 
 export const fetchNote = id => (
   $.ajax({
@@ -29,13 +29,19 @@ export const fetchNotesByTag = (page, tagId) => (
   })
 );
 
-export const fetchShortcutNotes = page => (
-  $.ajax({
+export const fetchShortcutNotes = (page, searchTerm) => {
+  let url;
+  if (searchTerm) {
+    url = `api/notes?shortcut=true?search=${searchTerm}`;
+  } else {
+    url = `api/notes?shortcut=true`;
+  }
+  return $.ajax({
     method: 'GET',
-    url: `api/notes?shortcut=true`,
-    data: { page }
-  })
-);
+    data: { page },
+    url
+  });
+};
 
 export const createNote = note => (
   $.ajax({

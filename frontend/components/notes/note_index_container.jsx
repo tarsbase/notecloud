@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'; 
+import { connect } from 'react-redux';
 import NoteIndex from './note_index';
 import { withRouter } from 'react-router-dom';
 import {
@@ -10,22 +10,23 @@ import { updateNote } from '../../actions/note_actions';
 import { noteIndexSelector } from '../../selectors/note_index_selectors';
 
 const mapStateToProps = (state, ownProps) => {
-  const { getArg, headerTitle, notes } = noteIndexSelector(ownProps, state);
+  const { headerTitle, notes, getOptions } = noteIndexSelector(ownProps, state);
   return {
     deleteModalIsOpen: state.ui.deleteModalIsOpen,
     noteCount: state.ui.noteCount,
-    shortcutsModalIsOpen: state.ui.shortcutsModalIsOpen, 
+    shortcutsModalIsOpen: state.ui.shortcutsModalIsOpen,
     loadingSpinnerIsVisible: state.ui.loadingSpinnerIsVisible,
-    getArg,
     headerTitle,
-    notes
+    notes,
+    getOptions
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { getAction, getRelatedAction } = noteIndexSelector(ownProps);
   return {
-    getAction: (pageNum, id, actionType) => dispatch(getAction(pageNum, id, actionType)),
+    getAction: (page, actionType, getOptions) =>
+      dispatch(getAction(page, actionType, getOptions)),
     openDeleteModal: (entityType, entity) =>
       dispatch(openDeleteModal(entityType, entity)),
     closeShortcutsModal: () => dispatch(closeShortcutsModal()),

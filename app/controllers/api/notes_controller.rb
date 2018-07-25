@@ -54,13 +54,24 @@ class Api::NotesController < ApplicationController
     elsif params[:shortcut] == 'true'
       limit = 50 
       offset = (page - 1) * limit
-      @notes = current_user.notes
-        .includes([:notebook, :tags])
-        .where(shortcut: true)
-        .order(created_at: :desc)
-        .limit(limit)
-        .offset(offset)
-      @note_count = current_user.notes.where(shortcut: true).count
+      if params[:search]
+        debugger
+        @notes = current_user.notes
+                             .where("lower(title) LIKE ? AND shortcut = 'true'", "%#{params[:search].downcase}%")
+                             .order(created_at: :desc)
+                             .limit(limit)
+                             .offset(offset) 
+        @note_count = current_user.notes
+                                  .where("lower(title) LIKE ? AND shortcut = 'true'", "%#{params[:search].downcase}%")
+                                  .count                             
+      else                       
+        @notes = current_user.notes
+          .includes([:notebook, :tags])
+          .where(shortcut: true)
+          .order(created_at: :desc)        .limit(limit)
+          .offset(offset)
+        @note_count = current_user.notes.where(shortcut: true).count
+      end  
     else 
       @notes = current_user.notes
         .includes([:notebook, :tags])

@@ -23,8 +23,11 @@ export default class SidebarIndex extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (
       (!this.props.modalIsOpen && nextProps.modalIsOpen) ||
-      this.props.searchTerm !== nextProps.searchTerm
+      (this.props.searchTerm !== nextProps.searchTerm && nextProps.modalIsOpen)
     ) {
+      console.log("TYPE", this.props.type);
+      console.log("THIS SEARCH", this.props.searchTerm);
+      console.log("NEXT SEARCH", nextProps.searchTerm);
       this.page = 1;
       nextProps.fetchAction(this.page, 'replace', nextProps.searchTerm);
     }
@@ -148,12 +151,12 @@ export default class SidebarIndex extends React.Component {
         <div className="sidebar-header">
           <div className="sidebar-top-header">
             <h1>{this.props.type.toUpperCase()}</h1>
-            <i
+            {this.props.type !== 'shortcuts' && (<i
               className="fa fa-plus sidebar-plus"
               onClick={this.openModal}
               onMouseEnter={this.showTooltip}
               onMouseLeave={this.hideTooltip}
-            />
+            />)}
             <div className={tooltipClasses.join(' ')}>
               Create a {this.props.type.slice(0, this.props.type.length - 1)}
             </div>
