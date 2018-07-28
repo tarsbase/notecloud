@@ -20,7 +20,11 @@ export const sidebarIndexSelector = (state, ownProps) => {
     case 'notebooks':
       fetchAction = getNotebooks;
       if (state) {
-        entities = Object.values(state.notebooks);
+        entities = Object.values(state.notebooks).sort((a,b) => {
+          const aDate = new Date(a.updated_at);
+          const bDate = new Date(b.updated_at);
+          return bDate - aDate;
+        });
         modalIsOpen = state.ui.notebooksModalIsOpen;
         entityCount = state.ui.notebookCount;
       }

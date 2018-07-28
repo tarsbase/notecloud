@@ -29,7 +29,9 @@ class Api::NotebooksController < ApplicationController
     if params[:search]
       @notebooks = current_user.notebooks
                                 .where("lower(name) LIKE ?", "%#{params[:search]
-                                .downcase}%").includes(:notes)
+                                .downcase}%")
+                                .includes(:notes)
+                                .order(updated_at: :desc)
                                 .limit(limit)
                                 .offset(offset)
       @notebook_count = current_user.notebooks
@@ -37,7 +39,11 @@ class Api::NotebooksController < ApplicationController
                                     .downcase}%")
                                     .count
     else 
-      @notebooks = current_user.notebooks.includes(:notes).limit(limit).offset(offset)
+      @notebooks = current_user.notebooks
+                               .includes(:notes)
+                               .order(updated_at: :desc)
+                               .limit(limit)
+                               .offset(offset)
       @notebook_count = current_user.notebooks.count
     end 
     render :index
