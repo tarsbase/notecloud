@@ -13,6 +13,7 @@ export const OPEN_BANNER_MODAL = 'OPEN_BANNER_MODAL';
 export const CLOSE_BANNER_MODAL = 'CLOSE_BANNER_MODAL'; 
 export const SHOW_LOADING_SPINNER = 'SHOW_LOADING_SPINNER';
 export const HIDE_LOADING_SPINNER = 'HIDE_LOADING_SPINNER';
+
  
 export const openNotebooksModal = () => ({
   type: OPEN_NOTEBOOKS_MODAL
@@ -77,3 +78,4 @@ export const showLoadingSpinner = () => ({
 export const hideLoadingSpinner = () => ({
   type: HIDE_LOADING_SPINNER
 });
+

@@ -50,14 +50,20 @@ export const sidebarIndexSelector = (state, ownProps) => {
     default:
       break;
   }
-  if (ownProps.location.search) {
-    const parsed = queryString.parse(ownProps.location.search);
-    getOptions.searchTerm = parsed.search;
-  } 
+  // if (ownProps.location.search) {
+  //   const parsed = queryString.parse(ownProps.location.search);
+  //   getOptions.searchTerm = parsed.search;
+  // } 
+  let searchEntity;
+  if (state) {
+    getOptions.searchTerm = state.search.searchTerm;
+    searchEntity = state.search.searchEntity;
+  }
   return {
     entities,
     fetchAction,
     getOptions,
+    searchEntity,
     createAction,
     closeModal,
     modalIsOpen,

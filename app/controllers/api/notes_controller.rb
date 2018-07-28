@@ -55,7 +55,6 @@ class Api::NotesController < ApplicationController
       limit = 50 
       offset = (page - 1) * limit
       if params[:search]
-        debugger
         @notes = current_user.notes
                              .where("lower(title) LIKE ? AND shortcut = 'true'", "%#{params[:search].downcase}%")
                              .order(created_at: :desc)

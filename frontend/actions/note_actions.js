@@ -49,7 +49,7 @@ export const getNotes = (page, actionType, opts) => dispatch => {
   } else {
     url = `api/notes`;
   }
-  if (opts.searchTerm) url += `?search=${opts.searchTerm}`;
+  if (opts.searchTerm) url += `&search=${opts.searchTerm}`;
   if (actionType === 'concat' && page > 1) {
     dispatch(showLoadingSpinner());
   }

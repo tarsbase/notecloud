@@ -15,7 +15,8 @@ class SearchForm extends React.Component {
 
   handleKeyPress(e) {
     if (e.key === 'Enter') {
-      this.props.history.push(`/${this.props.type}?search=${this.state.searchTerm}`);
+      // this.props.history.push(`/${this.props.types}?search=${this.state.searchTerm}`);
+      this.props.setSearchTerm(this.state.searchTerm, this.props.type);
     }
   }
 

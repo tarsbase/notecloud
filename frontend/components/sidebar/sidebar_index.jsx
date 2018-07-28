@@ -4,7 +4,6 @@ import TagIndexItem from '../tags/tag_index_item';
 import ShortcutIndexItem from '../notes/shortcut_index_item';
 import SearchForm from '../search/search_form';
 import LoadingSpinnerContainer from '../spinners/loading_spinner_container';
-import { isEqual } from 'lodash/lang';
 
 export default class SidebarIndex extends React.Component {
   constructor(props) {
@@ -24,7 +23,7 @@ export default class SidebarIndex extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (
       (!this.props.modalIsOpen && nextProps.modalIsOpen) ||
-      !isEqual(this.props.getOptions, nextProps.getOptions)
+      (nextProps.getOptions.searchTerm && nextProps.type === nextProps.searchEntity)
     ) {
       this.page = 1;
       nextProps.fetchAction(this.page, 'replace', nextProps.getOptions);
@@ -161,7 +160,7 @@ export default class SidebarIndex extends React.Component {
               Create a {this.props.type.slice(0, this.props.type.length - 1)}
             </div>
           </div>
-          <SearchForm type={this.props.type} />
+          <SearchForm type={this.props.type}  setSearchTerm={this.props.setSearchTerm}/>
         </div>
         <ul className="sidebar-index-list">{entities}</ul>
         <LoadingSpinnerContainer />

@@ -5,6 +5,7 @@ import NotesReducer from './notes_reducer';
 import UIReducer from './ui_reducer';
 import NotebookReducer from './notebook_reducer';
 import TagReducer from './tag_reducer';
+import SearchReducer from './search_reducer';
 
 const rootReducer = combineReducers({
   session: SessionReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   notes: NotesReducer,
   ui: UIReducer,
   tags: TagReducer,
-  notebooks: NotebookReducer
+  notebooks: NotebookReducer,
+  search: SearchReducer
 });
 
 export default rootReducer;
