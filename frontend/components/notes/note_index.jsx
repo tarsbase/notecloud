@@ -23,8 +23,13 @@ export default class NoteIndex extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.shortcutsModalIsOpen) {
-      this.props.getAction(this.page, 'concat', this.props.getOptions);
+    const {getOptions, getAction, getRelatedAction } = this.props;
+    if (this.props.location.pathname !== '/shortcuts') {
+      const id = getOptions.notebookId || getOptions.tagId;
+      if (id) {
+        getRelatedAction(id);
+      }
+      getAction(this.page, 'concat', getOptions);
     }
   }
 

@@ -4,6 +4,7 @@ import TagIndexItem from '../tags/tag_index_item';
 import ShortcutIndexItem from '../notes/shortcut_index_item';
 import SearchForm from '../search/search_form';
 import LoadingSpinnerContainer from '../spinners/loading_spinner_container';
+import { isEqual } from 'lodash/lang';
 
 export default class SidebarIndex extends React.Component {
   constructor(props) {
@@ -23,18 +24,17 @@ export default class SidebarIndex extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (
       (!this.props.modalIsOpen && nextProps.modalIsOpen) ||
-      (this.props.searchTerm !== nextProps.searchTerm && nextProps.modalIsOpen)
+      !isEqual(this.props.getOptions, nextProps.getOptions)
     ) {
-      console.log("TYPE", this.props.type);
-      console.log("THIS SEARCH", this.props.searchTerm);
-      console.log("NEXT SEARCH", nextProps.searchTerm);
       this.page = 1;
-      nextProps.fetchAction(this.page, 'replace', nextProps.searchTerm);
+      nextProps.fetchAction(this.page, 'replace', nextProps.getOptions);
     }
   }
 
   componentDidMount() {
-    this.props.fetchAction(this.page, 'replace', this.props.searchTerm);
+    if (this.props.modalIsOpen) {
+      this.props.fetchAction(this.page, 'replace', this.props.getOptions);
+    }
   }
 
   handleScroll(e) {
@@ -52,7 +52,7 @@ export default class SidebarIndex extends React.Component {
 
   fetchNextPage() {
     this.page += 1;
-    this.props.fetchAction(this.page, 'concat', this.props.searchTerm);
+    this.props.fetchAction(this.page, 'concat', this.props.getOptions);
   }
 
   openModal(e) {

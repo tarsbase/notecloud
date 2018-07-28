@@ -27,11 +27,19 @@ const removeTag = tag => ({
   tag
 });
 
-export const getTags = (page, actionType, searchTerm = null) => dispatch => {
+export const getTags = (
+  page,
+  actionType,
+  opts = { searchTerm: null }
+) => dispatch => {
+  let url = 'api/tags';
+  if (opts.searchTerm) {
+    url += `?search=${opts.searchTerm}`;
+  }
   if (actionType === 'concat' && page > 1) {
     dispatch(showLoadingSpinner());
-  } 
-  TagApiUtil.fetchTags(page, searchTerm).then(tags => {
+  }
+  TagApiUtil.fetchTags(page, url).then(tags => {
     if (actionType === 'replace') {
       dispatch(recevieTagsAndReplace(tags));
     } else {

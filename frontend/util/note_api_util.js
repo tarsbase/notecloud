@@ -13,36 +13,6 @@ export const fetchNote = id => (
   })
 );
 
-export const fetchNotesByNotebook = (page, notebookId) => (
-  $.ajax({
-    method: 'GET',
-    url: `api/notebooks/${notebookId}/notes`,
-    data: { page }
-  })
-);
-
-export const fetchNotesByTag = (page, tagId) => (
-  $.ajax({
-    method: 'GET',
-    url: `api/tags/${tagId}/notes`,
-    data: { page }
-  })
-);
-
-export const fetchShortcutNotes = (page, searchTerm) => {
-  let url;
-  if (searchTerm) {
-    url = `api/notes?shortcut=true?search=${searchTerm}`;
-  } else {
-    url = `api/notes?shortcut=true`;
-  }
-  return $.ajax({
-    method: 'GET',
-    data: { page },
-    url
-  });
-};
-
 export const createNote = note => (
   $.ajax({
     method: 'POST',

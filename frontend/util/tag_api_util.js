@@ -1,44 +1,32 @@
-export const fetchTags = (page, searchTerm) => {
-  let url;
-  if (searchTerm) {
-    url = `api/tags?search=${searchTerm}`;
-  } else {
-    url = 'api/tags';
-  }
-  return $.ajax({
+export const fetchTags = (page, url) =>
+  $.ajax({
     method: 'GET',
-    url,
-    data: { page }
+    data: { page },
+    url
   });
-};
 
-export const fetchTag = id => (
+export const fetchTag = id =>
   $.ajax({
     method: 'GET',
     url: `api/tags/${id}`
-  })
-);
+  });
 
-export const createTag = tag => (
+export const createTag = tag =>
   $.ajax({
     method: 'POST',
     url: 'api/tags',
     data: { tag }
-  })
-);
+  });
 
-export const updateTag = tag => (
+export const updateTag = tag =>
   $.ajax({
     method: 'PATCH',
     url: `api/tags/${tag.id}`,
     data: { tag }
-  })
-);
+  });
 
-export const deleteTag = id => (
+export const deleteTag = id =>
   $.ajax({
     method: 'DELETE',
     url: `api/tags/${id}`
-  })
-);
-
+  });

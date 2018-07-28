@@ -1,8 +1,11 @@
 import { connect } from 'react-redux';
 import NotebooksDropdown from './notebooks_dropdown';
 import { updateNote } from '../../actions/note_actions';
-import { setCurrentNotebook, closeNotebooksDropdown } from '../../actions/ui_actions';
- 
+import {
+  setCurrentNotebook,
+  closeNotebooksDropdown
+} from '../../actions/ui_actions';
+
 const mapStateToProps = (state, ownProps) => ({
   notebooks: Object.values(state.notebooks),
   note: ownProps.note,

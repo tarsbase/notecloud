@@ -1,16 +1,9 @@
-export const fetchNotebooks = (page, searchTerm) => {
-  let url;
-  if (searchTerm) {
-    url = `api/notebooks?search=${searchTerm}`;
-  } else {
-    url = `api/notebooks`;
-  }
-  return $.ajax({
+export const fetchNotebooks = (page, url) =>
+  $.ajax({
     method: 'GET',
-    url,
-    data: { page }
+    data: { page },
+    url
   });
-};
 
 export const fetchNotebook = id =>
   $.ajax({

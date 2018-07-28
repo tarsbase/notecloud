@@ -6,7 +6,7 @@ import { openDeleteModal, openBannerModal } from '../../actions/ui_actions';
 import { updateNote } from '../../actions/note_actions.js';
 
 const mapStateToProps = (state, ownProps) => {
-  const { entities, modalIsOpen, searchTerm, entityCount } = sidebarIndexSelector(
+  const { entities, modalIsOpen, getOptions, entityCount } = sidebarIndexSelector(
     state,
     ownProps
   );
@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
     loadingSpinnerIsVisible: state.ui.loadingSpinnerIsVisible,
     entities,
     modalIsOpen,
-    searchTerm,
+    getOptions,
     entityCount
   };
 };

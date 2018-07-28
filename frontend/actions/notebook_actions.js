@@ -29,12 +29,16 @@ const removeNotebook = notebook => ({
 export const getNotebooks = (
   page,
   actionType,
-  searchTerm = null
+  opts = {searchTerm: null}
 ) => dispatch => {
+  let url = `api/notebooks`;
+  if (opts.searchTerm) {
+    url += `?search=${opts.searchTerm}`;
+  }
   if (actionType === 'concat' && page > 1) {
     dispatch(showLoadingSpinner());
   }
-  NotebookApiUtil.fetchNotebooks(page, searchTerm).then(notebooks => {
+  NotebookApiUtil.fetchNotebooks(page, url).then(notebooks => {
     if (actionType === 'replace') {
       dispatch(receiveNotebooksAndReplace(notebooks));
     } else {
