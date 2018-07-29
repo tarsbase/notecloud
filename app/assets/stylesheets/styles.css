@@ -466,7 +466,7 @@ body {
 .sidebar-plus + .tooltip-text {
   top: 45px;
   width: fit-content;
-  left: 185px;
+  left: 170px;
   min-width: 110px;
   text-align: center;
 }
@@ -700,6 +700,14 @@ body {
   top: 94px;
   left: 365px;
   overflow: auto;
+}
+
+.notebooks-dropdown > .loading-spinner {
+  margin-left: 45%;
+}
+
+.notebooks-dropdown-list {
+  margin-bottom: 20px;
 }
 
 .selected-notebook,

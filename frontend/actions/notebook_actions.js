@@ -35,7 +35,7 @@ export const getNotebooks = (
   if (opts.searchTerm) {
     url += `?search=${opts.searchTerm}`;
   }
-  if (actionType === 'concat' && page > 1) {
+  if (actionType === 'concat' && page > 1 && !opts.dropdown) {
     dispatch(showLoadingSpinner());
   }
   NotebookApiUtil.fetchNotebooks(page, url).then(notebooks => {

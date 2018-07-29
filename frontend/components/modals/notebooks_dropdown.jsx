@@ -1,5 +1,6 @@
 import React from 'react';
 import NotebookIndexItem from '../notebooks/notebook_index_item';
+import LoadingSpinner from '../spinners/loading_spinner_container';
 
 export default class NotebooksDropdown extends React.Component {
   constructor(props) {
@@ -7,7 +8,7 @@ export default class NotebooksDropdown extends React.Component {
     this.page = 1;
     this.handleClick = this.handleClick.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
-    // this.handleScroll = this.handleScroll.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
@@ -33,23 +34,25 @@ export default class NotebooksDropdown extends React.Component {
     this.props.closeNotebooksDropdown();
   }
 
-  // handleScroll(e) {
-  //   const bottom =
-  //     e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-  //   if (
-  //     bottom &&
-  //     this.props.notebookCount > this.props.notebooks.length &&
-  //     !this.props.loadingSpinnerIsVisible
-  //   ) {
-  //     e.target.scrollTo(0, e.target.scrollHeight);
-  //     this.fetchNextPage();
-  //   }
-  // }
+  handleScroll(e) {
+    const bottom =
+      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    if (
+      bottom &&
+      this.props.notebookCount > this.props.notebooks.length &&
+      !this.props.loadingSpinnerIsVisible
+    ) {
+      e.target.scrollTo(0, e.target.scrollHeight);
+      this.fetchNextPage();
+    }
+  }
 
-  // fetchNextPage() {
-  //   this.page += 1;
-  //   this.props.getAction(this.page, 'concat', this.props.getArg);
-  // }
+  fetchNextPage() {
+    this.page += 1;
+    const opts = {};
+    // opts.dropdown = true;
+    this.props.getNotebooks(this.page, 'concat', opts);
+  }
 
   render() {
     const notebooks = this.props.notebooks.map(notebook => (
@@ -76,8 +79,10 @@ export default class NotebooksDropdown extends React.Component {
         ref={node => {
           this.node = node;
         }}
+        onScroll={this.handleScroll}
       >
-        <ul>{notebooks}</ul>
+        <ul className="notebooks-dropdown-list">{notebooks}</ul>
+        <LoadingSpinner/>
       </div>
     );
   }

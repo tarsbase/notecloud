@@ -21,10 +21,10 @@ export default class SidebarIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (
-      (!this.props.modalIsOpen && nextProps.modalIsOpen) ||
-      (nextProps.getOptions.searchTerm && nextProps.type === nextProps.searchEntity)
-    ) {
+    const searching =
+      nextProps.getOptions.searchTerm &&
+      nextProps.type === nextProps.searchEntity;
+    if ((!this.props.modalIsOpen && nextProps.modalIsOpen) || searching) {
       this.page = 1;
       nextProps.fetchAction(this.page, 'replace', nextProps.getOptions);
     }
@@ -150,17 +150,22 @@ export default class SidebarIndex extends React.Component {
         <div className="sidebar-header">
           <div className="sidebar-top-header">
             <h1>{this.props.type.toUpperCase()}</h1>
-            {this.props.type !== 'shortcuts' && (<i
-              className="fa fa-plus sidebar-plus"
-              onClick={this.openModal}
-              onMouseEnter={this.showTooltip}
-              onMouseLeave={this.hideTooltip}
-            />)}
+            {this.props.type !== 'shortcuts' && (
+              <i
+                className="fa fa-plus sidebar-plus"
+                onClick={this.openModal}
+                onMouseEnter={this.showTooltip}
+                onMouseLeave={this.hideTooltip}
+              />
+            )}
             <div className={tooltipClasses.join(' ')}>
               Create a {this.props.type.slice(0, this.props.type.length - 1)}
             </div>
           </div>
-          <SearchForm type={this.props.type}  setSearchTerm={this.props.setSearchTerm}/>
+          <SearchForm
+            type={this.props.type}
+            setSearchTerm={this.props.setSearchTerm}
+          />
         </div>
         <ul className="sidebar-index-list">{entities}</ul>
         <LoadingSpinnerContainer />
