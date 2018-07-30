@@ -66,7 +66,8 @@ class Api::NotesController < ApplicationController
         @notes = current_user.notes
           .includes([:notebook, :tags])
           .where(shortcut: true)
-          .order(created_at: :desc)        .limit(limit)
+          .order(created_at: :desc)        
+          .limit(limit)
           .offset(offset)
         @note_count = current_user.notes.where(shortcut: true).count
       end  
