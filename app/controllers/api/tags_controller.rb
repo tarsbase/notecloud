@@ -1,5 +1,4 @@
 class Api::TagsController < ApplicationController
-  before_action :require_login
 
   def index
     page = params[:page].to_i
