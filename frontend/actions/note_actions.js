@@ -74,8 +74,10 @@ export const getNote = id => dispatch =>
 export const createNote = note => dispatch =>
   NoteApiUtil.createNote(note).then(newNote => dispatch(receiveNote(newNote)));
 
-export const updateNote = (note, remove = false) => dispatch =>
+export const updateNote = (note, remove = false) => dispatch => {
+  console.log("NOTE", note);
   NoteApiUtil.updateNote(note).then(updatedNote => {
+    console.log("UPDATED", updatedNote);
     if (remove) {
       dispatch(removeNote(updatedNote));
       return;
@@ -90,6 +92,7 @@ export const updateNote = (note, remove = false) => dispatch =>
       }
     }
   });
+};
 
 export const deleteNote = id => dispatch =>
   NoteApiUtil.destroyNote(id).then(note => dispatch(removeNote(note)));
