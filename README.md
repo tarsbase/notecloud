@@ -48,7 +48,7 @@ def index
   ```
 ### Infinite Scroll 
 
-Notes are loaded 25 at a time with the next batch being fetched when the user scrolls to the bottom of the list. When this occurs a loading spinner appears when loading begins and the disappears when the response is received. 
+Notes are loaded 25 at a time with the next batch being fetched when the user scrolls to the bottom of the list. When this occurs a loading spinner appears when loading begins and then disappears when the response is received. 
 
 <img src="https://res.cloudinary.com/brainzilla/image/upload/v1530720926/infinite-scroll-large.gif_ytvwke.gif"/>
 
