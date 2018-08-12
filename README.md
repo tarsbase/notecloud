@@ -12,7 +12,7 @@ Notecloud is a lightweight Evernote clone built using Ruby on Rails and React.js
 
 ### Notebooks 
 
-Notes can be organized in notebooks. 
+Notes can be easily organized in notebooks. 
 
 <img src="https://res.cloudinary.com/brainzilla/image/upload/v1528810078/notecloud_notebooks.png"/>
 
