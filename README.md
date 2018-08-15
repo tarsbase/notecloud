@@ -6,7 +6,7 @@ Notecloud is a lightweight Evernote clone built using Ruby on Rails and React.js
 
 ### Notes
 
-  Users can create, read, update and delete notes.
+Users can create, read, update and delete notes.
 
 <img src="https://res.cloudinary.com/brainzilla/image/upload/v1528809424/notecloud_note_form.png"/>
 
